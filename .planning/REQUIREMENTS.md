@@ -93,17 +93,54 @@
 
 ---
 
-## Rastreabilidade (preenchido pelo roadmap)
+## Rastreabilidade
 
-| REQ-ID | Fase |
-|--------|------|
-| MOVE-01 a 05 | — |
-| WORLD-01 a 05 | — |
-| BOSS-01 a 08 | — |
-| POWER-01 a 08 | — |
-| NPC-01 a 04 | — |
-| NARR-01 a 05 | — |
-| SAVE-01 a 03 | — |
-| AUDIO-01 a 03 | — |
-| EXPORT-01 a 03 | — |
-| ACCESS-01 a 03 | — |
+| REQ-ID | Fase | Status |
+|--------|------|--------|
+| EXPORT-03 | Phase 0 — Fundação | Pending |
+| MOVE-01 | Phase 1 — Game Feel | Pending |
+| MOVE-02 | Phase 1 — Game Feel | Pending |
+| MOVE-03 | Phase 1 — Game Feel | Pending |
+| MOVE-04 | Phase 1 — Game Feel | Pending |
+| MOVE-05 | Phase 1 — Game Feel | Pending |
+| SAVE-01 | Phase 2 — Infraestrutura | Pending |
+| SAVE-02 | Phase 2 — Infraestrutura | Pending |
+| SAVE-03 | Phase 2 — Infraestrutura | Pending |
+| NARR-01 | Phase 2 — Infraestrutura | Pending |
+| NARR-02 | Phase 2 — Infraestrutura | Pending |
+| ACCESS-02 | Phase 2 — Infraestrutura | Pending |
+| ACCESS-03 | Phase 2 — Infraestrutura | Pending |
+| NPC-04 | Phase 2 — Infraestrutura | Pending |
+| WORLD-01 | Phase 3 — Mundo 1 Osasco | Pending |
+| WORLD-02 | Phase 3 — Mundo 1 Osasco | Pending |
+| WORLD-03 | Phase 3 — Mundo 1 Osasco | Pending |
+| WORLD-05 | Phase 3 — Mundo 1 Osasco | Pending |
+| BOSS-01 | Phase 3 — Mundo 1 Osasco | Pending |
+| NPC-01 | Phase 3 — Mundo 1 Osasco | Pending |
+| NARR-05 | Phase 3 — Mundo 1 Osasco | Pending |
+| AUDIO-02 | Phase 3 — Mundo 1 Osasco | Pending |
+| BOSS-02 | Phase 4 — Mundo 2 A Faculdade | Pending |
+| POWER-01 | Phase 4 — Mundo 2 A Faculdade | Pending |
+| BOSS-03 | Phase 5 — Mundo 3 O Corporativo | Pending |
+| POWER-02 | Phase 5 — Mundo 3 O Corporativo | Pending |
+| BOSS-04 | Phase 6 — Mundo 4 A Pandemia | Pending |
+| POWER-03 | Phase 6 — Mundo 4 A Pandemia | Pending |
+| NPC-02 | Phase 6 — Mundo 4 A Pandemia | Pending |
+| BOSS-05 | Phase 7 — Mundo 5 Santiago | Pending |
+| POWER-04 | Phase 7 — Mundo 5 Santiago | Pending |
+| NARR-03 | Phase 7 — Mundo 5 Santiago | Pending |
+| BOSS-06 | Phase 8 — Mundo 6 Tossa de Mar | Pending |
+| POWER-05 | Phase 8 — Mundo 6 Tossa de Mar | Pending |
+| BOSS-07 | Phase 9 — Mundo 7 Vilanova | Pending |
+| POWER-06 | Phase 9 — Mundo 7 Vilanova | Pending |
+| BOSS-08 | Phase 10 — Mundo 8 Zaragoza | Pending |
+| POWER-07 | Phase 10 — Mundo 8 Zaragoza | Pending |
+| POWER-08 | Phase 10 — Mundo 8 Zaragoza | Pending |
+| NARR-04 | Phase 10 — Mundo 8 Zaragoza | Pending |
+| WORLD-04 | Phase 11 — Overworld e NPCs | Pending |
+| NPC-03 | Phase 11 — Overworld e NPCs | Pending |
+| ACCESS-01 | Phase 12 — Polish e Release | Pending |
+| AUDIO-01 | Phase 12 — Polish e Release | Pending |
+| AUDIO-03 | Phase 12 — Polish e Release | Pending |
+| EXPORT-01 | Phase 12 — Polish e Release | Pending |
+| EXPORT-02 | Phase 12 — Polish e Release | Pending |
