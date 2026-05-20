@@ -38,12 +38,23 @@
 2. Git LFS está ativo e arquivos `.png`, `.wav`, `.ogg` são rastreados via LFS (confirmado com `git lfs ls-files`).
 3. Estrutura de pastas (`scenes/`, `assets/sprites/`, `assets/audio/`, `scripts/`, `.planning/`) está criada e commitada.
 4. Renderer Compatibility está definido em Project Settings e persiste após reabrir o projeto.
-**Plans:** 4 planos
-Plans:
+**Plans:** 4 planos (sequenciais)
+
+**Wave 1**
 - [ ] 00-001-git-lfs-scaffold-PLAN.md — Git LFS + estrutura de pastas + .gitignore + .gitattributes + serve.py
+
+**Wave 2** *(blocked on Wave 1 completion)*
 - [ ] 00-002-godot-project-PLAN.md — Instalação Godot 4.4.x + project.godot com Compatibility renderer + cena main.tscn
+
+**Wave 3** *(blocked on Wave 2 completion)*
 - [ ] 00-003-export-presets-PLAN.md — Export presets (Web/Windows/macOS) + teste de export local no navegador
+
+**Wave 4** *(blocked on Wave 3 completion)*
 - [ ] 00-004-github-actions-PLAN.md — GitHub Actions CI/CD pipeline com export automático e deploy itch.io
+
+**Cross-cutting constraints:**
+- Git LFS deve estar instalado antes de qualquer commit de asset binário (todas as waves)
+- Renderer Compatibility (`gl_compatibility`) deve persistir em project.godot (EXPORT-03)
 
 ### Phase 1: Game Feel
 **Goal:** A protagonista Natália se move com precisão e satisfação — coyote time, jump buffer, dash, knockback, animações e juice visual funcionando — antes de qualquer fase ser construída.

@@ -22,7 +22,7 @@ pontos específicos de cada mundo, ajuda a desbloquear poderes especiais, e tem 
 importante (proposta no Chile, auxílio nas maquetes, etc.). Quando próximo, ativa o bônus
 "Amor Power".
 
-**A Cachorra (companheira)** — Adotada durante a pandemia. Acompanha a Natália a partir do
+**Ellie (companheira)** — Cachorra adotada durante a pandemia. Acompanha a Natália a partir do
 Mundo 4. Habilidade: corre à frente alertando inimigos, pode atacar inimigos pequenos.
 
 ## Mundos e enredo
