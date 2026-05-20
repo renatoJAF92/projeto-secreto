@@ -1,7 +1,6 @@
-# .gitignore — Godot 4 project
-
-# Cache da engine (regenerado ao abrir o projeto)
+# Godot 4+ specific ignores
 .godot/
+/android/
 
 # Traduções compiladas (geradas automaticamente)
 *.translation

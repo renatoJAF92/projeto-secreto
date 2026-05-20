@@ -1,4 +1,7 @@
-# .gitattributes — Git LFS tracking rules
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=lf
+
+# Git LFS tracking rules
 # DEVE ser o primeiro arquivo commitado, antes de qualquer asset binário
 
 # Imagens
