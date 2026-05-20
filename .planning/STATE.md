@@ -2,13 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: In progress
-last_updated: "2026-05-21T00:00:00.000Z"
+status: executing
+last_updated: "2026-05-20T22:06:59.987Z"
 progress:
   total_phases: 13
   completed_phases: 0
   total_plans: 4
   completed_plans: 0
+  percent: 0
 ---
 
 # STATE — Jogo da Natália
@@ -23,9 +24,11 @@ progress:
 
 ## Current Position
 
+Phase: 00 (fundação) — EXECUTING
+Plan: 1 of 4
 **Phase:** 0 — Fundação
 **Plan:** 00-001 → 00-004 (4 plans, 4 waves sequential)
-**Status:** Ready to execute
+**Status:** Executing Phase 00
 
 ```
 Progress: [░░░░░░░░░░░░░░░░░░░░] 0/13 phases complete
