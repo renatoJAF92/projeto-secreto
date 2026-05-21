@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Body: pink-ish placeholder rectangle -->
+  <rect x="0" y="0" width="32" height="32" fill="#d98ab0"/>
+  <!-- Head indicator: darker square near top-center to show facing direction -->
+  <rect x="10" y="2" width="12" height="10" fill="#b5607a"/>
+  <!-- Eyes: two small dots to indicate facing right -->
+  <rect x="17" y="5" width="3" height="3" fill="#3a1a26"/>
+</svg>
