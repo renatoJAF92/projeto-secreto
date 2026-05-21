@@ -10,7 +10,7 @@
 
 ## Phases
 
-- [ ] **Phase 0: Fundação** — Projeto Godot configurado, Git LFS ativo, renderer Compatibility definido, estrutura de pastas pronta.
+- [x] **Phase 0: Fundação** — Projeto Godot configurado, Git LFS ativo, renderer Compatibility definido, estrutura de pastas pronta.
 - [ ] **Phase 1: Game Feel** — Movimentação da protagonista polida e responsiva antes de qualquer level design.
 - [ ] **Phase 2: Infraestrutura** — Save system, transições de cena, signal bus, Dialogic 2 integrado, controles reconfiguráveis.
 - [ ] **Phase 3: Mundo 1 — Osasco (vertical slice completo)** — Fases jogáveis, chefe O Pai Desconfiante, diálogos, padrão de mundo estabelecido.
@@ -41,16 +41,16 @@
 **Plans:** 4 planos (sequenciais)
 
 **Wave 1**
-- [ ] 00-001-git-lfs-scaffold-PLAN.md — Git LFS + estrutura de pastas + .gitignore + .gitattributes + serve.py
+- [x] 00-001-git-lfs-scaffold-PLAN.md — Git LFS + estrutura de pastas + .gitignore + .gitattributes + serve.py
 
 **Wave 2** *(blocked on Wave 1 completion)*
-- [ ] 00-002-godot-project-PLAN.md — Instalação Godot 4.4.x + project.godot com Compatibility renderer + cena main.tscn
+- [x] 00-002-godot-project-PLAN.md — Instalação Godot 4.4.x + project.godot com Compatibility renderer + cena main.tscn
 
 **Wave 3** *(blocked on Wave 2 completion)*
-- [ ] 00-003-export-presets-PLAN.md — Export presets (Web/Windows/macOS) + teste de export local no navegador
+- [x] 00-003-export-presets-PLAN.md — Export presets (Web/Windows/macOS) + teste de export local no navegador
 
 **Wave 4** *(blocked on Wave 3 completion)*
-- [ ] 00-004-github-actions-PLAN.md — GitHub Actions CI/CD pipeline com export automático e deploy itch.io
+- [x] 00-004-github-actions-PLAN.md — GitHub Actions CI/CD pipeline com export automático e deploy itch.io
 
 **Cross-cutting constraints:**
 - Git LFS deve estar instalado antes de qualquer commit de asset binário (todas as waves)
