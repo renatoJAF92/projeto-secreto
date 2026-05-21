@@ -18,7 +18,7 @@ position = Vector2(160, 160)
 shape = SubResource("RectangleShape2D_floor")
 
 [node name="Visual" type="Polygon2D" parent="MainFloor"]
-color = Color(0.3, 0.3, 0.35)
+color = Color(0.3, 0.3, 0.35, 1)
 polygon = PackedVector2Array(-160, -8, 160, -8, 160, 8, -160, 8)
 
 [node name="LedgePlatform" type="StaticBody2D" parent="."]
@@ -28,7 +28,7 @@ position = Vector2(240, 110)
 shape = SubResource("RectangleShape2D_ledge")
 
 [node name="Visual" type="Polygon2D" parent="LedgePlatform"]
-color = Color(0.4, 0.35, 0.3)
+color = Color(0.4, 0.35, 0.3, 1)
 polygon = PackedVector2Array(-32, -6, 32, -6, 32, 6, -32, 6)
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
