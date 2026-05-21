@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5tm3v87k2p1"]
+[gd_scene load_steps=5 format=3 uid="uid://c5tm3v87k2p1"]
 
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scenes/test_movement/test_movement.gd" id="2_hud"]
@@ -8,10 +8,6 @@ size = Vector2(320, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ledge"]
 size = Vector2(64, 12)
-
-[sub_resource type="PackedVector2Array" id="PackedVector2Array_floor"]
-
-[sub_resource type="PackedVector2Array" id="PackedVector2Array_ledge"]
 
 [node name="TestMovement" type="Node2D"]
 
