@@ -67,7 +67,16 @@
 3. Ao tomar dano, a Natália recebe knockback visível e exibe flash branco; hit-stop de 2-4 frames congela a ação brevemente.
 4. Todas as 6 animações (idle, run, jump, fall, hurt, death) tocam nos estados corretos sem artefatos de transição.
 5. Poeira ao aterrissar e squash/stretch no pulo são visíveis em test scene sem outros elementos de gameplay.
-**Plans:** TBD
+**Plans:** 3 plans (sequenciais)
+
+**Wave 1**
+- [ ] 01-001-core-movement-PLAN.md — Movimento base, gravidade assimétrica, coyote time, jump buffer, InputMap + test scene
+
+**Wave 2** *(blocked on Wave 1)*
+- [ ] 01-002-dash-knockback-animations-PLAN.md — Dash horizontal, knockback ao tomar dano, máquina de 6 animações + SpriteFrames placeholder
+
+**Wave 3** *(blocked on Wave 2)*
+- [ ] 01-003-juice-effects-PLAN.md — Poeira (CPUParticles2D), squash/stretch, flash branco, hit-stop + verificação final da fase
 **UI hint:** yes
 
 ### Phase 2: Infraestrutura
@@ -225,7 +234,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 0. Fundação | 0/4 | In progress | - |
-| 1. Game Feel | 0/0 | Not started | - |
+| 1. Game Feel | 0/3 | Not started | - |
 | 2. Infraestrutura | 0/0 | Not started | - |
 | 3. Mundo 1 — Osasco | 0/0 | Not started | - |
 | 4. Mundo 2 — A Faculdade | 0/0 | Not started | - |
