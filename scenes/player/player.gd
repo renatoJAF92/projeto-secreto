@@ -11,7 +11,6 @@ extends CharacterBody2D
 @export var jump_cut_multiplier: float = 0.4
 
 # --- Runtime state ---
-var _was_on_floor: bool = false
 var _coyote_timer: int = 0
 var _jump_buffer_timer: int = 0
 var _jumped_this_frame: bool = false
@@ -33,37 +32,36 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, run_speed)
 
-	# 3. Coyote time — detect transition from floor to air (not from a jump)
-	if _was_on_floor and not is_on_floor() and not _jumped_this_frame:
-		_coyote_timer = coyote_frames
-	if not is_on_floor():
-		_coyote_timer = max(_coyote_timer - 1, 0)
-
-	# 4. Jump buffer — remember jump press during airtime
+	# 3. Jump buffer — remember jump press during airtime
 	if Input.is_action_just_pressed("jump"):
 		_jump_buffer_timer = jump_buffer_frames
 	else:
 		_jump_buffer_timer = max(_jump_buffer_timer - 1, 0)
 
-	# 5. Jump cut (variable height) — release jump early to cut ascent
+	# 4. Jump cut (variable height) — release jump early to cut ascent
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
 		velocity.y *= jump_cut_multiplier
 
-	# 6. Execute jump when buffer active and grounded (or coyote still valid)
+	# 5. Execute jump when buffer active and grounded (or coyote still valid)
 	if _jump_buffer_timer > 0 and (is_on_floor() or _coyote_timer > 0):
 		velocity.y = jump_velocity
 		_coyote_timer = 0
 		_jump_buffer_timer = 0
 		_jumped_this_frame = true
 
-	# 7. Capture was_on_floor BEFORE move_and_slide (reflects previous frame state)
-	_was_on_floor = is_on_floor()
+	# 6. Snapshot floor state BEFORE move_and_slide, then slide
+	var pre_floor := is_on_floor()
 	move_and_slide()
 
-	# 8. Landing detection (post move_and_slide — landing edge transition)
-	if not _was_on_floor and is_on_floor():
+	# 7. Coyote: detect walk-off-edge transition (pre=on, post=off, didn't jump)
+	if pre_floor and not is_on_floor() and not _jumped_this_frame:
+		_coyote_timer = coyote_frames
+	if not is_on_floor():
+		_coyote_timer = max(_coyote_timer - 1, 0)
+
+	# 8. Landing detection
+	if not pre_floor and is_on_floor():
 		_on_land()
-	_was_on_floor = is_on_floor()
 
 	# 9. Update animation state
 	_update_animation()
