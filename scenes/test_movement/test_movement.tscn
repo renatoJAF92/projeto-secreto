@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5tm3v87k2p1"]
+
+[ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scenes/test_movement/test_movement.gd" id="2_hud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(320, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ledge"]
+size = Vector2(64, 12)
+
+[sub_resource type="PackedVector2Array" id="PackedVector2Array_floor"]
+
+[sub_resource type="PackedVector2Array" id="PackedVector2Array_ledge"]
+
+[node name="TestMovement" type="Node2D"]
+
+[node name="MainFloor" type="StaticBody2D" parent="."]
+position = Vector2(160, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainFloor"]
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="Visual" type="Polygon2D" parent="MainFloor"]
+color = Color(0.3, 0.3, 0.35)
+polygon = PackedVector2Array(-160, -8, 160, -8, 160, 8, -160, 8)
+
+[node name="LedgePlatform" type="StaticBody2D" parent="."]
+position = Vector2(240, 110)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LedgePlatform"]
+shape = SubResource("RectangleShape2D_ledge")
+
+[node name="Visual" type="Polygon2D" parent="LedgePlatform"]
+color = Color(0.4, 0.35, 0.3)
+polygon = PackedVector2Array(-32, -6, 32, -6, 32, 6, -32, 6)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(80, 120)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("2_hud")
+
+[node name="StateLabel" type="Label" parent="HUD"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 200.0
+offset_bottom = 120.0
