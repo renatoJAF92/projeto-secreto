@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var player: CharacterBody2D = $"../Player"
+@onready var player = $"../Player"
 @onready var state_label: Label = $StateLabel
 
 
