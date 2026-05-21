@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c5tm3v87k2p1"]
 
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="1_player"]
-[ext_resource type="Script" path="res://scenes/test_movement/test_movement.gd" id="2_hud"]
+[ext_resource type="Script" uid="uid://cicoek113qbvl" path="res://scenes/test_movement/test_movement.gd" id="2_hud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(320, 16)
@@ -33,6 +33,7 @@ polygon = PackedVector2Array(-32, -6, 32, -6, 32, 6, -32, 6)
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector2(80, 120)
+coyote_frames = 8
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("2_hud")
