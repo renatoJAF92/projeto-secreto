@@ -73,7 +73,7 @@
 - [x] 01-001-core-movement-PLAN.md — Movimento base, gravidade assimétrica, coyote time, jump buffer, InputMap + test scene
 
 **Wave 2** *(blocked on Wave 1)*
-- [ ] 01-002-dash-knockback-animations-PLAN.md — Dash horizontal, knockback ao tomar dano, máquina de 6 animações + SpriteFrames placeholder
+- [x] 01-002-dash-knockback-animations-PLAN.md — Dash horizontal, knockback ao tomar dano, máquina de 6 animações + SpriteFrames placeholder
 
 **Wave 3** *(blocked on Wave 2)*
 - [ ] 01-003-juice-effects-PLAN.md — Poeira (CPUParticles2D), squash/stretch, flash branco, hit-stop + verificação final da fase

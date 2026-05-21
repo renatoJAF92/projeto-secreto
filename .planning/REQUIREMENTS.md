@@ -4,9 +4,9 @@
 
 ### MOVE — Movimentação e Game Feel
 - [x] **MOVE-01**: Jogadora pode correr, pular e cair com física responsiva (coyote time 6 frames, jump buffer 8 frames, gravidade assimétrica)
-- [ ] **MOVE-02**: Jogadora pode dar dash horizontal (desbloqueado no Mundo 2)
-- [ ] **MOVE-03**: Jogadora recebe knockback ao ser atingida
-- [ ] **MOVE-04**: Animações de idle, run, jump, fall, hurt e death para a Natália
+- [x] **MOVE-02**: Jogadora pode dar dash horizontal (desbloqueado no Mundo 2)
+- [x] **MOVE-03**: Jogadora recebe knockback ao ser atingida
+- [x] **MOVE-04**: Animações de idle, run, jump, fall, hurt e death para a Natália
 - [ ] **MOVE-05**: Juice visual: poeira ao aterrissar, squash/stretch no pulo, flash branco ao tomar dano, hit-stop de 2-4 frames nos chefes
 
 ### WORLD — Mundos e Level Design
@@ -99,9 +99,9 @@
 |--------|------|--------|
 | EXPORT-03 | Phase 0 — Fundação | Pending |
 | MOVE-01 | Phase 1 — Game Feel | Complete |
-| MOVE-02 | Phase 1 — Game Feel | Pending |
-| MOVE-03 | Phase 1 — Game Feel | Pending |
-| MOVE-04 | Phase 1 — Game Feel | Pending |
+| MOVE-02 | Phase 1 — Game Feel | Complete |
+| MOVE-03 | Phase 1 — Game Feel | Complete |
+| MOVE-04 | Phase 1 — Game Feel | Complete |
 | MOVE-05 | Phase 1 — Game Feel | Pending |
 | SAVE-01 | Phase 2 — Infraestrutura | Pending |
 | SAVE-02 | Phase 2 — Infraestrutura | Pending |
