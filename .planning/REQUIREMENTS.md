@@ -3,7 +3,7 @@
 ## v1 Requirements
 
 ### MOVE — Movimentação e Game Feel
-- [ ] **MOVE-01**: Jogadora pode correr, pular e cair com física responsiva (coyote time 6 frames, jump buffer 8 frames, gravidade assimétrica)
+- [x] **MOVE-01**: Jogadora pode correr, pular e cair com física responsiva (coyote time 6 frames, jump buffer 8 frames, gravidade assimétrica)
 - [ ] **MOVE-02**: Jogadora pode dar dash horizontal (desbloqueado no Mundo 2)
 - [ ] **MOVE-03**: Jogadora recebe knockback ao ser atingida
 - [ ] **MOVE-04**: Animações de idle, run, jump, fall, hurt e death para a Natália
@@ -98,7 +98,7 @@
 | REQ-ID | Fase | Status |
 |--------|------|--------|
 | EXPORT-03 | Phase 0 — Fundação | Pending |
-| MOVE-01 | Phase 1 — Game Feel | Pending |
+| MOVE-01 | Phase 1 — Game Feel | Complete |
 | MOVE-02 | Phase 1 — Game Feel | Pending |
 | MOVE-03 | Phase 1 — Game Feel | Pending |
 | MOVE-04 | Phase 1 — Game Feel | Pending |
