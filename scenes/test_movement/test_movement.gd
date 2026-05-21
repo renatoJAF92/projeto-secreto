@@ -10,4 +10,7 @@ func _process(_delta: float) -> void:
 		+ "on_floor: %s\n" % player.is_on_floor()
 		+ "coyote: %d\n" % player._coyote_timer
 		+ "jump_buf: %d\n" % player._jump_buffer_timer
+		+ "dashing: %s\n" % player._is_dashing
+		+ "invincible: %s\n" % player._is_invincible
+		+ "hurt: %s\n" % player._is_hurt
 	)

@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5tm3v87k2p1"]
+[gd_scene load_steps=8 format=3 uid="uid://c5tm3v87k2p1"]
 
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="Script" uid="uid://cicoek113qbvl" path="res://scenes/test_movement/test_movement.gd" id="2_hud"]
+[ext_resource type="Script" path="res://scenes/test_movement/damage_trigger.gd" id="3_damage"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(320, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ledge"]
 size = Vector2(64, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(16, 24)
 
 [node name="TestMovement" type="Node2D"]
 
@@ -31,6 +35,18 @@ shape = SubResource("RectangleShape2D_ledge")
 color = Color(0.4, 0.35, 0.3, 1)
 polygon = PackedVector2Array(-32, -6, 32, -6, 32, 6, -32, 6)
 
+[node name="DamageTrigger" type="Area2D" parent="."]
+position = Vector2(150, 145)
+monitoring = true
+script = ExtResource("3_damage")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTrigger"]
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="Visual" type="Polygon2D" parent="DamageTrigger"]
+color = Color(0.85, 0.2, 0.2, 1)
+polygon = PackedVector2Array(-8, -12, 8, -12, 8, 12, -8, 12)
+
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector2(80, 120)
 coyote_frames = 8
@@ -42,4 +58,11 @@ script = ExtResource("2_hud")
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 200.0
-offset_bottom = 120.0
+offset_bottom = 180.0
+
+[node name="HintLabel" type="Label" parent="HUD"]
+offset_left = 4.0
+offset_top = 130.0
+offset_right = 310.0
+offset_bottom = 180.0
+text = "A/D run  SPACE jump  SHIFT/K dash  walk into red box for damage"
