@@ -75,9 +75,9 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("dash") and _can_dash:
 			_start_dash()
 
-	# 3. Knockback application — added AFTER movement, BEFORE move_and_slide
+	# 3. Knockback application — SET velocity.x (not +=) to prevent per-frame accumulation
 	if _knockback.length() > 1.0:
-		velocity += _knockback
+		velocity.x = _knockback.x
 		_knockback = _knockback.lerp(Vector2.ZERO, knockback_decay * delta)
 	else:
 		_knockback = Vector2.ZERO
