@@ -18,6 +18,7 @@ extends CharacterBody2D
 @export_group("Knockback")
 @export var knockback_decay: float = 8.0
 @export var knockback_impulse: float = 300.0
+@export var knockback_vertical_impulse: float = 150.0
 
 @export_group("Juice")
 @export var hit_stop_frames: int = 3
@@ -121,6 +122,12 @@ func _physics_process(delta: float) -> void:
 	_update_animation()
 
 
+# Captures jump press even when _physics_process is frozen by hit-stop (time_scale=0)
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		_jump_buffer_timer = jump_buffer_frames
+
+
 func _start_dash() -> void:
 	_is_dashing = true
 	_is_invincible = true
@@ -136,6 +143,7 @@ func take_damage(hit_from_position: Vector2) -> void:
 		return
 	var direction := (global_position - hit_from_position).normalized()
 	_knockback = direction * knockback_impulse
+	velocity.y = min(velocity.y, -knockback_vertical_impulse)  # Pop upward on hit
 	_jump_buffer_timer = 0  # Cancel buffered jump so it doesn't fire after the hit
 	_is_hurt = true
 	_start_white_flash()
