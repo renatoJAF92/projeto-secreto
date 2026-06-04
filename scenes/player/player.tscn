@@ -1,13 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3kp7mjpv8n4"]
+[gd_scene load_steps=11 format=3 uid="uid://b3kp7mjpv8n4"]
 
 [ext_resource type="Script" uid="uid://csfl12g5ata86" path="res://scenes/player/player.gd" id="1_player"]
-[ext_resource type="Texture2D" uid="uid://bygtk61raxhcr" path="res://assets/sprites/player/natalia_placeholder.svg" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/sprites/natalia_spritesheet.png" id="2_sprite"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle"]
+atlas = ExtResource("2_sprite")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_run"]
+atlas = ExtResource("2_sprite")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jump"]
+atlas = ExtResource("2_sprite")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fall"]
+atlas = ExtResource("2_sprite")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hurt"]
+atlas = ExtResource("2_sprite")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_death"]
+atlas = ExtResource("2_sprite")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("AtlasTexture_death")
 }],
 "loop": false,
 "name": &"death",
@@ -15,7 +39,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("AtlasTexture_fall")
 }],
 "loop": false,
 "name": &"fall",
@@ -23,7 +47,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("AtlasTexture_hurt")
 }],
 "loop": false,
 "name": &"hurt",
@@ -31,7 +55,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("AtlasTexture_idle")
 }],
 "loop": true,
 "name": &"idle",
@@ -39,7 +63,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("AtlasTexture_jump")
 }],
 "loop": false,
 "name": &"jump",
@@ -47,7 +71,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sprite")
+"texture": SubResource("AtlasTexture_run")
 }],
 "loop": true,
 "name": &"run",
