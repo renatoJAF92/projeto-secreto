@@ -13,6 +13,7 @@ must_haves:
   truths:
     - "Menu de opcoes lista walk_left, walk_right, jump, dash com o binding atual de cada"
     - "Jogador pode remapear qualquer das 4 acoes pressionando REMAP e depois uma tecla/botao"
+    - "Remap ignora InputEventJoypadMotion com abs(axis_value) <= 0.5 (guarda contra drift do analogico)"
     - "Conflito de tecla e resolvido silenciosamente (binding da outra acao limpo)"
     - "Remapeamento persiste em user://controls.cfg via ControlsManager"
     - "Gamepad (DualSense/Xbox) controla as 4 acoes sem config extra"
@@ -66,6 +67,7 @@ SceneTransition.go_to(scene_path: String) -> void
 <!-- UI-SPEC.md Screen 2 OptionsMenu + Godot Node Specification (OptionsMenu scene tree) é o contrato visual. -->
 <!-- Copy: OPCOES / RESETAR CONTROLES / VOLTAR / "Pressione uma tecla..." (UI-SPEC Copywriting). -->
 <!-- Labels de acao em PT: walk_left="Andar Esq.", walk_right="Andar Dir.", jump="Pular", dash="Dash". -->
+<!-- Drift do analogico: InputEventJoypadMotion com abs(axis_value) <= 0.5 deve ser IGNORADO no remap. -->
 </interfaces>
 </context>
 
@@ -117,7 +119,9 @@ SceneTransition.go_to(scene_path: String) -> void
     Estado: `var _waiting_for_input: String = ""` (vazio = nao aguardando).
     `_ready()`: `@onready`/get_node para os 4 BindingLabel e 4 RemapButton, ResetButton, BackButton. Conectar `pressed` de cada RemapButton a `start_remap(action_name)` com o nome da acao correspondente. Conectar ResetButton a `_on_reset`, BackButton a `_on_back`. Chamar `_refresh_ui()` para popular os BindingLabels.
     `start_remap(action_name)`: setar `_waiting_for_input = action_name`; mudar o BindingLabel da row para "Pressione uma tecla..." (cor `#8888AA`).
-    `_input(event)` (padrao player.gd linha 126): se `_waiting_for_input.is_empty()` retorna. Se Escape (`InputEventKey` keycode ESC) ou gamepad B durante espera, cancelar sem mudanca e `_refresh_ui()`. Se `event is InputEventKey or event is InputEventJoypadButton or event is InputEventJoypadMotion`: `get_viewport().set_input_as_handled()`, `ControlsManager.remap_action(_waiting_for_input, event)` (ControlsManager ja resolve conflito e salva — Plano 02), `_waiting_for_input = ""`, `_refresh_ui()`.
+    `_input(event)` (padrao player.gd linha 126): se `_waiting_for_input.is_empty()` retorna. Se Escape (`InputEventKey` keycode ESC) ou gamepad B durante espera, cancelar sem mudanca e `_refresh_ui()`.
+    DRIFT GUARD (Addresses review concern: Analog stick jitter in remap capture — HIGH, Gemini): ANTES de aceitar o evento como remap, se `event is InputEventJoypadMotion`, prosseguir SOMENTE se `abs(event.axis_value) > 0.5`; caso contrario `return` (ignora o evento — drift/jitter do analogico no centro nao deve disparar remap). Eixos parados ou com leve drift (abs(axis_value) <= 0.5) NUNCA chamam `ControlsManager.remap_action`.
+    Em seguida, se `event is InputEventKey or event is InputEventJoypadButton or (event is InputEventJoypadMotion and abs(event.axis_value) > 0.5)`: `get_viewport().set_input_as_handled()`, `ControlsManager.remap_action(_waiting_for_input, event)` (ControlsManager ja resolve conflito e salva — Plano 02), `_waiting_for_input = ""`, `_refresh_ui()`.
     `_refresh_ui()`: para cada acao em ControlsManager.ACTIONS, ler `InputMap.action_get_events(action)` e formatar texto legivel no BindingLabel (nome da tecla via `OS.get_keycode_string(event.physical_keycode)` para teclas; glyph generico amarelo `#FFDD57` para gamepad — prompts genericos D-17, sem marca).
     `_on_reset()`: apagar `user://controls.cfg` (`DirAccess.remove_absolute` no caminho global, ou `ControlsManager` expoe reset; se nao expoe, remover arquivo e chamar `ControlsManager.load_controls()` que recai nos defaults + gamepad), depois `_refresh_ui()`.
     `_on_back()`: `SceneTransition.go_to("res://scenes/main_menu/main_menu.tscn")`.
@@ -126,19 +130,20 @@ SceneTransition.go_to(scene_path: String) -> void
   </action>
   <acceptance_criteria>
     - `scenes/options_menu/options_menu.gd` contem `extends Control`, `_waiting_for_input`, `func _input`, `func start_remap`, `func _refresh_ui`
+    - `scenes/options_menu/options_menu.gd` contem a guarda de drift `abs(event.axis_value) > 0.5` (ou equivalente `axis_value > 0.5`) aplicada a InputEventJoypadMotion antes de chamar `ControlsManager.remap_action`
     - Contem `ControlsManager.remap_action` e `InputMap.action_get_events`
     - `_input` chama `get_viewport().set_input_as_handled()` ao capturar o remap
     - `_on_back` chama `SceneTransition.go_to` para o main_menu
     - `godot --headless --path . --check-only` sai com codigo 0
   </acceptance_criteria>
   <verify>
-    <automated>cd /Users/renatojaf/jogo-natalia; grep -q "_waiting_for_input" scenes/options_menu/options_menu.gd; grep -q "ControlsManager.remap_action" scenes/options_menu/options_menu.gd; grep -q "InputMap.action_get_events" scenes/options_menu/options_menu.gd; grep -q "SceneTransition.go_to" scenes/options_menu/options_menu.gd; godot --headless --path . --check-only</automated>
+    <automated>cd /Users/renatojaf/jogo-natalia; grep -q "_waiting_for_input" scenes/options_menu/options_menu.gd; grep -q "axis_value) > 0.5" scenes/options_menu/options_menu.gd; grep -q "ControlsManager.remap_action" scenes/options_menu/options_menu.gd; grep -q "InputMap.action_get_events" scenes/options_menu/options_menu.gd; grep -q "SceneTransition.go_to" scenes/options_menu/options_menu.gd; godot --headless --path . --check-only</automated>
   </verify>
-  <done>Remapeamento captura input, persiste via ControlsManager, exibe binding atual e suporta gamepad; check passa.</done>
+  <done>Remapeamento captura input, ignora drift do analogico (abs(axis_value) <= 0.5), persiste via ControlsManager, exibe binding atual e suporta gamepad; check passa.</done>
 </task>
 
 <task type="checkpoint:human-verify" gate="blocking">
-  <what-built>Menu de opcoes com remapeamento das 4 acoes, resolucao silenciosa de conflito, persistencia e gamepad.</what-built>
+  <what-built>Menu de opcoes com remapeamento das 4 acoes, guarda contra drift do analogico, resolucao silenciosa de conflito, persistencia e gamepad.</what-built>
   <how-to-verify>
     1. Abrir `scenes/options_menu/options_menu.tscn` no Godot, pressionar F6.
     2. Confirmar que as 4 linhas (Andar Esq., Andar Dir., Pular, Dash) mostram o binding atual (A, D, Space, Shift/K).
@@ -146,7 +151,8 @@ SceneTransition.go_to(scene_path: String) -> void
     4. Fechar e reabrir o Godot (ou rodar de novo): o binding de Pular deve continuar J (persistido em controls.cfg).
     5. Abrir `scenes/test_movement/test_movement.tscn` (F6) e confirmar que J agora faz pular.
     6. Voltar ao Options, clicar RESETAR CONTROLES; bindings voltam ao default (Pular = Space).
-    7. Conectar um gamepad (DualSense/Xbox): em test_movement, mover com o analogico esquerdo e pular com A/South — sem configuracao extra.
+    7. Com um gamepad conectado: clicar REMAP em "Dash" e, sem tocar nos botoes, apenas encostar levemente no analogico (drift). Confirmar que o remap NAO dispara com toque leve; so dispara ao empurrar o analogico alem da metade do curso ou ao pressionar um botao.
+    8. Conectar um gamepad (DualSense/Xbox): em test_movement, mover com o analogico esquerdo e pular com A/South — sem configuracao extra.
   </how-to-verify>
   <resume-signal>Digite "approved" ou descreva ajustes de remap/gamepad/layout.</resume-signal>
 </task>
@@ -167,18 +173,21 @@ SceneTransition.go_to(scene_path: String) -> void
 |-----------|----------|-----------|-------------|-----------------|
 | T-02-09 | Denial of Service | Remapear duas acoes para a mesma tecla deixa uma sem controle | mitigate | ControlsManager.remap_action limpa o new_event das outras acoes antes de adicionar; UI faz _refresh_ui apos remap |
 | T-02-10 | Denial of Service | Jogador remapeia para tecla inutilizavel e fica preso na tela | mitigate | Escape/gamepad B cancela o remap em andamento; RESETAR CONTROLES restaura defaults sem afetar o save |
+| T-02-11 | Tampering | Drift/jitter do analogico dispara remap nao intencional | mitigate | Guarda `abs(event.axis_value) > 0.5` em _input ignora InputEventJoypadMotion no centro antes de chamar remap_action |
 </threat_model>
 
 <verification>
 - `godot --headless --path . --check-only` passa.
 - 4 rows de acao + Reset/Voltar presentes; remap_action e action_get_events referenciados.
-- Human-verify confirma remap persistente, conflito silencioso, reset e gamepad.
+- Guarda de drift `abs(event.axis_value) > 0.5` presente em options_menu.gd.
+- Human-verify confirma remap persistente, conflito silencioso, reset, drift ignorado e gamepad.
 </verification>
 
 <success_criteria>
-ACCESS-02 e ACCESS-03 atendidos: jogador remapeia qualquer das 4 acoes e usa gamepad sem config; success criterion 4 do ROADMAP.
+ACCESS-02 e ACCESS-03 atendidos: jogador remapeia qualquer das 4 acoes e usa gamepad sem config; drift do analogico nao dispara remap; success criterion 4 do ROADMAP.
 </success_criteria>
 
 <output>
 Apos completar, criar `.planning/phases/02-infraestrutura/02-004-SUMMARY.md`.
 </output>
+</content>
