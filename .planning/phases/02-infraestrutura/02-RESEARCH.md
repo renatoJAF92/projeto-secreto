@@ -636,7 +636,7 @@ func _input(event: InputEvent) -> void:
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Ordem de instalação de Dialogic 2 vs. autoloads custom**
    - What we know: Dialogic registra `DialogicGameHandler` automaticamente ao habilitar
