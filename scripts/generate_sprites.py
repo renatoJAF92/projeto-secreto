@@ -14,144 +14,108 @@ Uso:
 Executar a partir da raiz do projeto (/Users/renatojaf/jogo-natalia).
 """
 
-from PIL import Image
+from PIL import Image, ImageEnhance, ImageFilter
 import os
 import sys
 
 PHOTOS_DIR = "Photos"
 OUTPUT_DIR = "assets/sprites"
 
+# Source photos — chosen for best frontal angle and face visibility.
+NATALIA_PHOTO = "Photos/Natalia/IMG-20260527-WA0015.jpg"   # mirror selfie, frontal view
+RENATO_PHOTO  = "Photos/Renato/WhatsApp Image 2026-01-29 at 14.52.18.jpeg"  # close frontal
 
-def photo_to_pixel_art(img_path: str, target_size: tuple, palette_colors: int = 16) -> Image.Image:
-    """Redimensiona foto para pixel art com paleta limitada.
+# Crop parameters — (y_start_fraction, y_end_fraction, x_start_fraction, x_end_fraction)
+# Verified visually against preview crops (2304x4096).
+NATALIA_BUST_CROP = (0.15, 0.60, 0.05, 0.75)   # face centered, hair+glasses+smile
+NATALIA_BODY_CROP = (0.12, 0.88, 0.03, 0.90)    # full visible body for sprite
+RENATO_BUST_CROP  = (0.25, 0.62, 0.15, 0.85)    # face centered, avoids sky
 
-    Args:
-        img_path: Caminho para a foto de entrada (JPG/JPEG).
-        target_size: Tupla (largura, altura) do resultado.
-        palette_colors: Numero de cores na paleta (padrao 16).
 
-    Returns:
-        Imagem quantizada convertida para RGB.
+def _pixel_art_resize(img: Image.Image, target_size: tuple) -> Image.Image:
+    """Convert to JRPG pixel art look.
+
+    Pipeline: contrast boost → LANCZOS downscale → 16-color quantize.
+    Uses LANCZOS throughout for smooth SNES/GBA portrait style (not chunky NEAREST).
     """
+    img = img.convert("RGB")
+
+    # Moderate contrast boost so face features survive downscale
+    img = ImageEnhance.Contrast(img).enhance(1.3)
+    img = ImageEnhance.Color(img).enhance(1.2)
+
+    # Single LANCZOS resize — smooth, portrait-style
+    img = img.resize(target_size, Image.LANCZOS)
+
+    # 16-color quantize → RGBA
+    img = img.quantize(colors=16, method=Image.Quantize.MEDIANCUT).convert("RGBA")
+    return img
+
+
+def _open_photo(path: str) -> Image.Image:
     try:
-        img = Image.open(img_path).convert("RGB")
+        return Image.open(path).convert("RGB")
     except FileNotFoundError as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{img_path}': {e}", file=sys.stderr)
+        print(f"ERRO: nao foi possivel abrir a foto '{path}': {e}", file=sys.stderr)
         sys.exit(1)
     except OSError as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{img_path}': {e}", file=sys.stderr)
+        print(f"ERRO: nao foi possivel abrir a foto '{path}': {e}", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{img_path}': {e}", file=sys.stderr)
+        print(f"ERRO: nao foi possivel abrir a foto '{path}': {e}", file=sys.stderr)
         sys.exit(1)
 
-    small = img.resize(target_size, Image.LANCZOS)
-    quantized = small.quantize(colors=palette_colors, method=Image.Quantize.MEDIANCUT)
-    return quantized.convert("RGB")
+
+def _crop(img: Image.Image, fractions: tuple) -> Image.Image:
+    """Crop image by fractions (y0, y1, x0, x1) of total dimensions."""
+    w, h = img.size
+    y0, y1, x0, x1 = fractions
+    return img.crop((int(w * x0), int(h * y0), int(w * x1), int(h * y1)))
 
 
 def generate_natalia_spritesheet(photo_path: str) -> None:
     """Gera sprite sheet 192x32 (6 frames x 32x32) a partir de foto real.
 
-    Todas as 6 animacoes (idle, run, jump, fall, hurt, death) usam o mesmo
-    frame base nesta fase - placeholder funcional. Animacoes frame-a-frame
-    ficam para a Phase 3 (ver RESEARCH.md Open Question 2).
-
-    Usando o MESMO frame quantizado em todos os 6 slots evita flickering
-    de paleta entre frames (Pitfall 6 do RESEARCH.md).
-
-    Args:
-        photo_path: Caminho para a foto da Natalia.
+    Todas as 6 animacoes usam o mesmo frame base como placeholder funcional.
+    Animacoes frame-a-frame ficam para a Phase 3 (RESEARCH.md Open Question 2).
+    Mesmo frame em todos os slots evita flickering de paleta (Pitfall 6).
     """
-    try:
-        img = Image.open(photo_path).convert("RGB")
-    except FileNotFoundError as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{photo_path}': {e}", file=sys.stderr)
-        sys.exit(1)
-    except OSError as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{photo_path}': {e}", file=sys.stderr)
-        sys.exit(1)
-    except Exception as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{photo_path}': {e}", file=sys.stderr)
-        sys.exit(1)
+    img = _open_photo(photo_path)
+    body = _crop(img, NATALIA_BODY_CROP)
 
-    w, h = img.size
+    frame = _pixel_art_resize(body, (32, 32))
 
-    # Crop corpo inteiro: centralizado, proporcao slim
-    crop_h = int(h * 0.85)
-    crop_w = int(crop_h * 0.5)
-    left = (w - crop_w) // 2
-    body = img.crop((left, int(h * 0.02), left + crop_w, int(h * 0.02) + crop_h))
-
-    # Resize para 32x32 e quantizar
-    sprite = body.resize((32, 32), Image.LANCZOS)
-    quantized_frame = sprite.quantize(colors=16, method=Image.Quantize.MEDIANCUT).convert("RGBA")
-
-    # 6 frames: idle(0), run(1), jump(2), fall(3), hurt(4), death(5)
-    # Mesmo frame quantizado em todos os slots para evitar flickering de paleta
     frames = ["idle", "run", "jump", "fall", "hurt", "death"]
     sheet = Image.new("RGBA", (32 * len(frames), 32), (0, 0, 0, 0))
     for i in range(len(frames)):
-        sheet.paste(quantized_frame, (i * 32, 0))
+        sheet.paste(frame, (i * 32, 0))
 
     output_path = os.path.join(OUTPUT_DIR, "natalia_spritesheet.png")
     sheet.save(output_path)
     print(f"Sprite sheet gerado: {output_path} ({sheet.size[0]}x{sheet.size[1]})")
 
 
-def generate_portrait(photo_path: str, output_name: str) -> None:
+def generate_portrait(photo_path: str, output_name: str, crop_fractions: tuple) -> None:
     """Gera portrait 64x80 (busto JRPG) a partir de foto real.
 
     Args:
         photo_path: Caminho para a foto de entrada.
-        output_name: Nome do arquivo de saida (sem extensao), salvo em
-                     assets/sprites/portraits/{output_name}.png
+        output_name: Nome do arquivo de saida (sem extensao).
+        crop_fractions: (y0, y1, x0, x1) fractions for the bust region.
     """
-    try:
-        img = Image.open(photo_path).convert("RGB")
-    except FileNotFoundError as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{photo_path}': {e}", file=sys.stderr)
-        sys.exit(1)
-    except OSError as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{photo_path}': {e}", file=sys.stderr)
-        sys.exit(1)
-    except Exception as e:
-        print(f"ERRO: nao foi possivel abrir a foto '{photo_path}': {e}", file=sys.stderr)
-        sys.exit(1)
+    img = _open_photo(photo_path)
+    bust = _crop(img, crop_fractions)
 
-    w, h = img.size
-
-    # Crop busto: cabeca + ombros (55% superior da foto)
-    crop_h = int(h * 0.55)
-    crop_w = min(w, int(crop_h * 0.8))
-    left = (w - crop_w) // 2
-    bust = img.crop((left, 0, left + crop_w, crop_h))
-
-    portrait = bust.resize((64, 80), Image.LANCZOS)
-    quantized = portrait.quantize(colors=16, method=Image.Quantize.MEDIANCUT).convert("RGBA")
+    portrait = _pixel_art_resize(bust, (64, 80))
 
     output_path = os.path.join(OUTPUT_DIR, "portraits", f"{output_name}.png")
-    quantized.save(output_path)
-    print(f"Portrait gerado: {output_path} ({quantized.size[0]}x{quantized.size[1]})")
+    portrait.save(output_path)
+    print(f"Portrait gerado: {output_path} ({portrait.size[0]}x{portrait.size[1]})")
 
 
 if __name__ == '__main__':
-    # Criar diretorios de saida se nao existirem
     os.makedirs(os.path.join(OUTPUT_DIR, "portraits"), exist_ok=True)
 
-    # Gerar sprite sheet da Natalia
-    generate_natalia_spritesheet(
-        os.path.join(PHOTOS_DIR, "Natalia", "IMG_20260222_212225.jpg")
-    )
-
-    # Gerar portrait da Natalia
-    generate_portrait(
-        os.path.join(PHOTOS_DIR, "Natalia", "IMG_20260222_212225.jpg"),
-        "natalia_portrait"
-    )
-
-    # Gerar portrait do Renato
-    generate_portrait(
-        os.path.join(PHOTOS_DIR, "Renato", "WhatsApp Image 2026-01-29 at 14.52.08.jpeg"),
-        "renato_portrait"
-    )
+    generate_natalia_spritesheet(NATALIA_PHOTO)
+    generate_portrait(NATALIA_PHOTO, "natalia_portrait", NATALIA_BUST_CROP)
+    generate_portrait(RENATO_PHOTO,  "renato_portrait",  RENATO_BUST_CROP)
