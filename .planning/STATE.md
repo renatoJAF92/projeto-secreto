@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-last_updated: "2026-05-21T10:06:39.292Z"
+status: ready_to_plan
+last_updated: "2026-06-04T00:00:00.000Z"
 progress:
   total_phases: 13
-  completed_phases: 1
-  total_plans: 7
-  completed_plans: 6
-  percent: 86
+  completed_phases: 2
+  total_plans: 10
+  completed_plans: 9
+  percent: 15
 ---
 
 # STATE — Jogo da Natália
@@ -24,13 +24,11 @@ progress:
 
 ## Current Position
 
-Phase: 01 (game-feel) — EXECUTING
-Plan: 2 of 3 — awaiting checkpoint:human-verify (Task 4)
-**Phase:** 1 — Game Feel
-**Status:** Ready to execute
+**Phase:** 02 — Infraestrutura
+**Status:** Ready to plan
 
 ```
-Progress: [███████░░░] 71%
+Progress: [██░░░░░░░░] 15% (2 of 13 phases complete)
 ```
 
 ---
@@ -40,7 +38,7 @@ Progress: [███████░░░] 71%
 | Phase | Name | Status |
 |-------|------|--------|
 | 0 | Fundação | ✅ Complete |
-| 1 | Game Feel | Not started |
+| 1 | Game Feel | ✅ Complete |
 | 2 | Infraestrutura | Not started |
 | 3 | Mundo 1 — Osasco | Not started |
 | 4 | Mundo 2 — A Faculdade | Not started |
@@ -59,8 +57,8 @@ Progress: [███████░░░] 71%
 
 **Phases complete:** 0/13
 **Requirements mapped:** 44/44
-**Plans complete:** 0
-**Playtests documented:** 0
+**Plans complete:** 7/10 (phases 0-1 complete)
+**Playtests documented:** 1 (Phase 1 human-verify approved 2026-06-04)
 
 ---
 
@@ -101,12 +99,12 @@ Progress: [███████░░░] 71%
 
 ### Context for next session
 
-- Phase 0 COMPLETA: Godot 4.4.1 configurado, Git LFS ativo, 3 export presets, CI verde (Web ✓ Windows ✓ macOS ✓).
-- Deploy itch.io: `continue-on-error: true` — funciona quando BUTLER_CREDENTIALS for configurado.
-- Phase 1 Plan 01 (MOVE-01): player.gd + player.tscn + test_movement.tscn implementados. Aguardando checkpoint:human-verify.
-- player.gd: CharacterBody2D, coyote 6 frames, jump buffer 8 frames, asymmetric gravity (900/1600), jump cut 0.4.
-- test_movement.tscn: F6 no Godot editor, HUD mostra vel/coyote/jump_buf live.
-- _on_land() e _update_animation() são stubs prontos para extensão no Plan 02.
+- Phase 0 COMPLETA: Godot 4.4.1 configurado, Git LFS ativo, 3 export presets, CI verde.
+- **Phase 1 COMPLETA (2026-06-04):** player.gd com coyote 6f, jump buffer 8f, dash, knockback, 6 animações, squash/stretch, white flash, hit-stop 3f, CPUParticles2D dust. Todos os 5 critérios de sucesso aprovados em human-verify.
+- Bug crítico corrigido: `velocity.x = _knockback.x` (não `+=`) evita acumulação infinita de knockback.
+- player.gd + player.tscn são o controlador reutilizável para todos os 8 mundos.
+- CPUParticles2D obrigatório (nunca GPUParticles2D) — renderer gl_compatibility não suporta GPU particles na web.
+- Hit-stop usa `create_timer(duration, true)` — argumento process_always=true é obrigatório.
 - O padrão de mundo completo é estabelecido na Phase 3 (Mundo 1) e replicado nas Phases 4-10.
-- POWER-08 (persistência de poderes) foi mapeado para Phase 10 pois só é verificável quando todos os poderes existem.
 - macOS CI pitfalls documentados em 00-004-SUMMARY.md (ETC2 ASTC, bundle identifier, codesign=1).
+- **Próxima fase: Phase 2 — Infraestrutura** (save system, Dialogic 2, controles reconfiguráveis).

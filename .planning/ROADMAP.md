@@ -11,7 +11,7 @@
 ## Phases
 
 - [x] **Phase 0: Fundação** — Projeto Godot configurado, Git LFS ativo, renderer Compatibility definido, estrutura de pastas pronta.
-- [ ] **Phase 1: Game Feel** — Movimentação da protagonista polida e responsiva antes de qualquer level design.
+- [x] **Phase 1: Game Feel** — Movimentação da protagonista polida e responsiva antes de qualquer level design.
 - [ ] **Phase 2: Infraestrutura** — Save system, transições de cena, signal bus, Dialogic 2 integrado, controles reconfiguráveis.
 - [ ] **Phase 3: Mundo 1 — Osasco (vertical slice completo)** — Fases jogáveis, chefe O Pai Desconfiante, diálogos, padrão de mundo estabelecido.
 - [ ] **Phase 4: Mundo 2 — A Faculdade** — Mundo completo + poder Sketch desbloqueado.
@@ -67,7 +67,7 @@
 3. Ao tomar dano, a Natália recebe knockback visível e exibe flash branco; hit-stop de 2-4 frames congela a ação brevemente.
 4. Todas as 6 animações (idle, run, jump, fall, hurt, death) tocam nos estados corretos sem artefatos de transição.
 5. Poeira ao aterrissar e squash/stretch no pulo são visíveis em test scene sem outros elementos de gameplay.
-**Plans:** 1/3 plans executed
+**Plans:** 3/3 plans executed — **COMPLETE** (2026-06-04)
 
 **Wave 1**
 - [x] 01-001-core-movement-PLAN.md — Movimento base, gravidade assimétrica, coyote time, jump buffer, InputMap + test scene
@@ -76,7 +76,7 @@
 - [x] 01-002-dash-knockback-animations-PLAN.md — Dash horizontal, knockback ao tomar dano, máquina de 6 animações + SpriteFrames placeholder
 
 **Wave 3** *(blocked on Wave 2)*
-- [ ] 01-003-juice-effects-PLAN.md — Poeira (CPUParticles2D), squash/stretch, flash branco, hit-stop + verificação final da fase
+- [x] 01-003-juice-effects-PLAN.md — Poeira (CPUParticles2D), squash/stretch, flash branco, hit-stop + verificação final da fase
 **UI hint:** yes
 
 ### Phase 2: Infraestrutura
@@ -234,7 +234,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 0. Fundação | 0/4 | In progress | - |
-| 1. Game Feel | 1/3 | In Progress|  |
+| 1. Game Feel | 3/3 | Complete | 2026-06-04 |
 | 2. Infraestrutura | 0/0 | Not started | - |
 | 3. Mundo 1 — Osasco | 0/0 | Not started | - |
 | 4. Mundo 2 — A Faculdade | 0/0 | Not started | - |
