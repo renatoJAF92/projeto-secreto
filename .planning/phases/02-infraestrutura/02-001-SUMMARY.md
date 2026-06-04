@@ -70,13 +70,16 @@ Substituiu o `ext_resource` que apontava para `natalia_placeholder.svg` por `nat
 
 Nomes e flags de loop das 6 animações mantidos exatamente iguais ao original. `load_steps` atualizado de 5 para 11. `natalia_placeholder.svg` completamente removido. Godot `--import` executou sem erros (exit 0); `.ctex` gerados em `.godot/imported/` para os 3 novos PNGs.
 
-### Task 3: Checkpoint human-verify (PENDENTE)
+### Task 3: Checkpoint human-verify — ACEITO COMO PLACEHOLDER
 
-Aguardando verificação visual no Godot editor:
-1. Abrir `scenes/test_movement/test_movement.tscn` e pressionar F6
-2. Confirmar que a Natália aparece com sprite novo (não placeholder)
-3. Testar idle/run/jump/fall/hurt animando sem erro no Output
-4. Abrir portraits e confirmar rostos reconhecíveis
+User revisou os sprites gerados e decidiu aceitar os assets foto-baseados como **placeholder temporário**.
+Sprites definitivos serão criados manualmente no **Pixelorama** e substituídos quando prontos.
+
+Especificações para criação manual dos sprites reais:
+- Sprite sheet: 192×32 px (6 frames × 32×32), PNG RGBA — `assets/sprites/natalia_spritesheet.png`
+- Portrait Natália: 64×80 px, PNG RGBA — `assets/sprites/portraits/natalia_portrait.png`
+- Portrait Renato: 64×80 px, PNG RGBA — `assets/sprites/portraits/renato_portrait.png`
+- Ordem frames sheet: idle(x=0), run(x=32), jump(x=64), fall(x=96), hurt(x=128), death(x=160)
 
 ## Deviations from Plan
 
