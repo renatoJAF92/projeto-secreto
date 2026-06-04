@@ -44,6 +44,7 @@ var _flash_tween: Tween
 var _squash_tween: Tween
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var dust_particles: CPUParticles2D = $DustParticles
 
 
 func _physics_process(delta: float) -> void:
@@ -141,9 +142,9 @@ func take_damage(hit_from_position: Vector2) -> void:
 	_start_hit_stop(hit_stop_frames)  # Detached coroutine — take_damage returns immediately
 
 
-# Stub: Plans 02/03 will add squash/stretch + dust here
 func _on_land() -> void:
-	pass
+	_apply_land_squash()
+	dust_particles.restart()  # One-shot burst on every landing
 
 
 # Animation state machine — 6 states by priority
