@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://test_save"]
+
+[ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scenes/test_save/test_save.gd" id="2_test_save"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(320, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_checkpoint"]
+radius = 16.0
+
+[node name="TestSave" type="Node2D"]
+script = ExtResource("2_test_save")
+
+[node name="MainFloor" type="StaticBody2D" parent="."]
+position = Vector2(160, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainFloor"]
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="StatusLabel" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 312.0
+offset_bottom = 28.0
+text = "Checkpoints: aguardando..."
+
+[node name="Checkpoint" type="Area2D" parent="."]
+position = Vector2(160, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Checkpoint"]
+shape = SubResource("CircleShape2D_checkpoint")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(80, 120)
+
+[connection signal="body_entered" from="Checkpoint" to="." method="_on_checkpoint_entered"]
