@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5tm3v87k2p1"]
+[gd_scene load_steps=7 format=3 uid="uid://c5tm3v87k2p1"]
 
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="Script" uid="uid://cicoek113qbvl" path="res://scenes/test_movement/test_movement.gd" id="2_hud"]
-[ext_resource type="Script" path="res://scenes/test_movement/damage_trigger.gd" id="3_damage"]
+[ext_resource type="Script" uid="uid://c0ve2voiyjdr3" path="res://scenes/test_movement/damage_trigger.gd" id="3_damage"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(320, 16)
@@ -37,7 +37,6 @@ polygon = PackedVector2Array(-32, -6, 32, -6, 32, 6, -32, 6)
 
 [node name="DamageTrigger" type="Area2D" parent="."]
 position = Vector2(150, 145)
-monitoring = true
 script = ExtResource("3_damage")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageTrigger"]
