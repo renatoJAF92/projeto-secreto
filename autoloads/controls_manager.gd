@@ -8,24 +8,24 @@ func _ready() -> void:
 	load_controls()
 
 func _add_gamepad_defaults() -> void:
-	# Pulo: botão A (JoyButton 0) — padrão Xbox/DualSense South (ACCESS-03)
+	# Pulo: botão A (JOY_BUTTON_A = 0) — padrão Xbox/DualSense South (ACCESS-03)
 	var joy_jump := InputEventJoypadButton.new()
-	joy_jump.button_index = JoyButton.A
+	joy_jump.button_index = JOY_BUTTON_A
 	InputMap.action_add_event("jump", joy_jump)
 
-	# Dash: botão B (JoyButton 1) — padrão Xbox East / DualSense Circle
+	# Dash: botão B (JOY_BUTTON_B = 1) — padrão Xbox East / DualSense Circle
 	var joy_dash := InputEventJoypadButton.new()
-	joy_dash.button_index = JoyButton.B
+	joy_dash.button_index = JOY_BUTTON_B
 	InputMap.action_add_event("dash", joy_dash)
 
-	# Movimento: Left Stick — JoyAxis LEFT_X
+	# Movimento: Left Stick — JOY_AXIS_LEFT_X = 0
 	var joy_left := InputEventJoypadMotion.new()
-	joy_left.axis = JoyAxis.LEFT_X
+	joy_left.axis = JOY_AXIS_LEFT_X
 	joy_left.axis_value = -1.0
 	InputMap.action_add_event("walk_left", joy_left)
 
 	var joy_right := InputEventJoypadMotion.new()
-	joy_right.axis = JoyAxis.LEFT_X
+	joy_right.axis = JOY_AXIS_LEFT_X
 	joy_right.axis_value = 1.0
 	InputMap.action_add_event("walk_right", joy_right)
 
