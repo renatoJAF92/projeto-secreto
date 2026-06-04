@@ -29,10 +29,10 @@ key_decisions:
   - "_start_hit_stop called without await in take_damage: detached coroutine, function returns immediately"
   - "ControlsLabel anchored bottom-left in pt-BR: matches project language; replaces previous English HintLabel"
 metrics:
-  duration: "~15 min"
+  duration: "~20 min"
   completed: "2026-06-04"
   tasks_total: 5
-  tasks_completed: 4
+  tasks_completed: 5
   files_created: 0
   files_modified: 4
 ---
@@ -49,7 +49,8 @@ metrics:
 | 2 | Hit-stop + wire flash+hit-stop into take_damage | 188af76 | player.gd |
 | 3 | CPUParticles2D landing dust in player.tscn + _on_land() | dab289f | player.gd, player.tscn |
 | 4 | Polish test scene HUD (time_scale readout + ControlsLabel) | 3a7fe5a | test_movement.gd, test_movement.tscn |
-| 5 | Human verify — ALL 5 Phase 1 Success Criteria | PENDING | checkpoint:human-verify |
+| 5 | Human verify — ALL 5 Phase 1 Success Criteria | APROVADO | checkpoint:human-verify |
+| fix | Corrigir acumulo de velocidade no knockback | 3da8543 | player.gd |
 
 ## Implementation Details
 
@@ -113,7 +114,20 @@ All tween durations are under 0.3s per RESEARCH.md constraint (snap_2d_transform
 
 ## Deviations from Plan
 
-None — plan executed exactly as written. All four juice functions implemented per RESEARCH.md Pattern 5a/5b/5c/5d. No Rule 1/2/3 interventions needed.
+### Auto-fixed Issues
+
+**1. [Rule 1 - Bug] Corrigido acumulo de velocidade no knockback**
+- **Found during:** Pos-checkpoint (apos human-verify aprovado)
+- **Issue:** `velocity += _knockback` dentro de `_physics_process` acumulava o knockback a cada frame enquanto `_knockback != Vector2.ZERO`, causando velocidade horizontal descontrolada ao tocar na caixa de dano repetidamente.
+- **Fix:** Substituido `velocity += _knockback` por `velocity.x = _knockback.x` — o knockback e aplicado como valor absoluto, nao acumulativo. Eixo Y nao e tocado para preservar a gravidade.
+- **Files modified:** `scenes/player/player.gd`
+- **Verification:** Player nao mais acelera fora de controle ao receber knockback multiplos ou manter contato com DamageTrigger.
+- **Commit:** 3da8543
+
+---
+
+**Total deviations:** 1 auto-fixed (1 bug fix — Rule 1)
+**Impact on plan:** Correcao essencial para jogabilidade correta. Sem scope creep.
 
 ## Known Stubs
 
@@ -127,31 +141,37 @@ None — plan executed exactly as written. All four juice functions implemented 
 
 No new network endpoints, auth paths, or file access patterns introduced. Pure local game logic — no STRIDE concerns (confirmed per plan threat_model).
 
+## Human Verification
+
+**Task 5 — checkpoint:human-verify: APROVADO (2026-06-04)**
+
+Todos os 5 criterios da Phase 1 verificados pelo usuario no editor Godot:
+1. Coyote time + jump buffer — temporizadores visiveis no HUD
+2. Dash com cooldown — SHIFT/K dash, bloqueio de re-dash funcionando
+3. Knockback + white flash + hit-stop — time_scale desce a 0 e retoma corretamente, nao congela
+4. 6 animacoes limpas — idle/run/jump/fall/hurt/death sem flickering
+5. Landing dust + squash/stretch — particulas nos pes e spring do sprite a cada aterrissagem
+
 ## Self-Check
 
-- [x] player.gd has `_apply_jump_stretch`, `_apply_land_squash`, `_start_white_flash` — cd609a4
-- [x] player.gd has `_start_hit_stop` with `create_timer(duration, true)` — 188af76
-- [x] player.gd `take_damage()` calls `_start_white_flash()` and `_start_hit_stop()` — 188af76
-- [x] player.tscn has CPUParticles2D `DustParticles`, no GPUParticles2D — dab289f
-- [x] player.gd `_on_land()` calls `_apply_land_squash()` and `dust_particles.restart()` — dab289f
-- [x] test_movement.gd has `Engine.time_scale` in HUD readout — 3a7fe5a
-- [x] test_movement.tscn has `ControlsLabel`, `LedgePlatform`, `DamageTrigger` — 3a7fe5a
+- [x] player.gd tem `_apply_jump_stretch`, `_apply_land_squash`, `_start_white_flash` — cd609a4
+- [x] player.gd tem `_start_hit_stop` com `create_timer(duration, true)` — 188af76
+- [x] player.gd `take_damage()` chama `_start_white_flash()` e `_start_hit_stop()` — 188af76
+- [x] player.tscn tem CPUParticles2D `DustParticles`, sem GPUParticles2D — dab289f
+- [x] player.gd `_on_land()` chama `_apply_land_squash()` e `dust_particles.restart()` — dab289f
+- [x] test_movement.gd tem `Engine.time_scale` no readout do HUD — 3a7fe5a
+- [x] test_movement.tscn tem `ControlsLabel`, `LedgePlatform`, `DamageTrigger` — 3a7fe5a
+- [x] player.gd `velocity.x = _knockback.x` (nao +=) — 3da8543
+- [x] Human-verify Task 5: APROVADO
 
 ## Self-Check: PASSED
 
-All files verified on disk. All commits verified in git log.
+Todos os arquivos verificados em disco. Todos os commits verificados no git log.
 
-## Next Step
+## Proxima Etapa
 
-Task 5 (checkpoint:human-verify): Open `scenes/test_movement/test_movement.tscn` in the Godot editor, press F6, and verify all 5 Phase 1 Success Criteria:
-1. Coyote + jump buffer (HUD timers visible)
-2. Dash (SHIFT/K, cooldown blocks re-dash)
-3. Knockback + white flash + hit-stop (time_scale drops to 0 then resumes — never stays frozen)
-4. 6 clean animations (idle/run/jump/fall/hurt/death — no flicker)
-5. Landing dust + squash/stretch (every landing: particles at feet + sprite spring)
-
-Once approved, `player.gd` and `player.tscn` are the reusable player controller for all later worlds (Phase 3+). Phase 1 goal achieved: "Natália se move com precisão e satisfação."
+`player.gd` e `player.tscn` estao prontos como controlador reutilizavel para todos os mundos futuros (Phase 3+). Meta da Phase 1 atingida: "Natalia se move com precisao e satisfacao."
 
 ---
 *Phase: 01-game-feel*
-*Completed: 2026-06-04 (pending Task 5 human-verify)*
+*Completed: 2026-06-04*
