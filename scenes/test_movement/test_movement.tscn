@@ -59,9 +59,13 @@ offset_top = 4.0
 offset_right = 200.0
 offset_bottom = 180.0
 
-[node name="HintLabel" type="Label" parent="HUD"]
+[node name="ControlsLabel" type="Label" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 4.0
-offset_top = 130.0
+offset_top = -30.0
 offset_right = 310.0
-offset_bottom = 180.0
-text = "A/D run  SPACE jump  SHIFT/K dash  walk into red box for damage"
+offset_bottom = -4.0
+grow_vertical = 0
+text = "A/D correr  |  SPACE pular  |  SHIFT/K dash  |  caixa vermelha = dano"

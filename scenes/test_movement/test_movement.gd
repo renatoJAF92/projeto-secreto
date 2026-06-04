@@ -5,6 +5,8 @@ extends CanvasLayer
 
 
 func _process(_delta: float) -> void:
+	if player == null:
+		return
 	state_label.text = (
 		"vel: %.0f, %.0f\n" % [player.velocity.x, player.velocity.y]
 		+ "on_floor: %s\n" % player.is_on_floor()
@@ -13,4 +15,5 @@ func _process(_delta: float) -> void:
 		+ "dashing: %s\n" % player._is_dashing
 		+ "invincible: %s\n" % player._is_invincible
 		+ "hurt: %s\n" % player._is_hurt
+		+ "time_scale: %.1f\n" % Engine.time_scale
 	)
