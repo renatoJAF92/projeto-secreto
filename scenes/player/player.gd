@@ -19,6 +19,9 @@ extends CharacterBody2D
 @export var knockback_decay: float = 8.0
 @export var knockback_impulse: float = 300.0
 
+@export_group("Juice")
+@export var hit_stop_frames: int = 3
+
 # --- Runtime state ---
 var _coyote_timer: int = 0
 var _jump_buffer_timer: int = 0
@@ -35,6 +38,10 @@ var _is_invincible: bool = false
 var _knockback: Vector2 = Vector2.ZERO
 var _is_hurt: bool = false
 var _is_dead: bool = false
+
+# Juice tween handles
+var _flash_tween: Tween
+var _squash_tween: Tween
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -93,6 +100,7 @@ func _physics_process(delta: float) -> void:
 		# Dash-cancel on jump: prevent dash velocity from carrying through jump arc
 		_is_dashing = false
 		_dash_frames_remaining = 0
+		_apply_jump_stretch()
 
 	# 7. Snapshot floor state BEFORE move_and_slide, then slide
 	var pre_floor := is_on_floor()
@@ -161,6 +169,43 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		_is_hurt = false
 	elif sprite.animation == "death":
 		print("Player death animation finished — respawn hooked in Phase 3")
+
+
+# --- Juice effects ---
+
+# Squash sprite tall+narrow on jump takeoff; elastic ease-out back to (1,1)
+func _apply_jump_stretch() -> void:
+	if _squash_tween and _squash_tween.is_valid():
+		_squash_tween.kill()
+	sprite.scale = Vector2(0.75, 1.3)
+	_squash_tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	_squash_tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.25)
+
+
+# Squash sprite wide+short on landing; elastic ease-out back to (1,1)
+func _apply_land_squash() -> void:
+	if _squash_tween and _squash_tween.is_valid():
+		_squash_tween.kill()
+	sprite.scale = Vector2(1.3, 0.75)
+	_squash_tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	_squash_tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.2)
+
+
+# Flash sprite to HDR white then tween back to normal color
+func _start_white_flash() -> void:
+	if _flash_tween and _flash_tween.is_valid():
+		_flash_tween.kill()
+	sprite.modulate = Color(10.0, 10.0, 10.0)
+	_flash_tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	_flash_tween.tween_property(sprite, "modulate", Color(1.0, 1.0, 1.0), 0.3)
+
+
+# Freeze game for N frames then resume — MUST use create_timer(duration, true) so
+# the timer is NOT paused by time_scale=0 (RESEARCH.md Pitfall 2)
+func _start_hit_stop(frames: int = 3) -> void:
+	Engine.time_scale = 0.0
+	await get_tree().create_timer(frames / 60.0, true).timeout
+	Engine.time_scale = 1.0
 
 
 # Temporary helper: exposes death animation for test scene
