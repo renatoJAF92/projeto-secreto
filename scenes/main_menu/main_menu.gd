@@ -43,4 +43,8 @@ func _on_new_game_confirmed() -> void:
 
 
 func _on_options_pressed() -> void:
-	SceneTransition.go_to("res://scenes/options_menu/options_menu.tscn")
+	# options_menu será implementado no plano 02-004
+	if ResourceLoader.exists("res://scenes/options_menu/options_menu.tscn"):
+		SceneTransition.go_to("res://scenes/options_menu/options_menu.tscn")
+	else:
+		OS.alert("Menu de Opções em desenvolvimento.", "Em breve")
