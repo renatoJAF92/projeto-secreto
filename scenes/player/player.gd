@@ -137,7 +137,8 @@ func take_damage(hit_from_position: Vector2) -> void:
 	_knockback = direction * knockback_impulse
 	_jump_buffer_timer = 0  # Cancel buffered jump so it doesn't fire after the hit
 	_is_hurt = true
-	# Plan 03 will add white-flash + hit-stop here
+	_start_white_flash()
+	_start_hit_stop(hit_stop_frames)  # Detached coroutine — take_damage returns immediately
 
 
 # Stub: Plans 02/03 will add squash/stretch + dust here
