@@ -1,5 +1,6 @@
 {
 "@subtype": "DialogicCharacter",
+"@path": "res://addons/dialogic/Resources/character.gd",
 "display_name": "Natália",
 "nicknames": [],
 "color": Color(0.545098, 0.294118, 0.627451, 1),

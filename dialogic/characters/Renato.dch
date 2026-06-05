@@ -1,5 +1,6 @@
 {
 "@subtype": "DialogicCharacter",
+"@path": "res://addons/dialogic/Resources/character.gd",
 "display_name": "Renato",
 "nicknames": [],
 "color": Color(0.290196, 0.482353, 0.752941, 1),
