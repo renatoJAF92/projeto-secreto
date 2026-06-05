@@ -1,0 +1,18 @@
+{
+"@subtype": "DialogicCharacter",
+"display_name": "Renato",
+"nicknames": [],
+"color": Color(0.290196, 0.482353, 0.752941, 1),
+"description": "",
+"scale": 1.0,
+"offset": Vector2(0, 0),
+"mirror": false,
+"default_portrait": "default",
+"portraits": {
+"default": {
+"scene": "res://assets/sprites/portraits/renato_portrait.png"
+}
+},
+"custom_info": {
+}
+}

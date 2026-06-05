@@ -1,0 +1,18 @@
+{
+"@subtype": "DialogicCharacter",
+"display_name": "Natália",
+"nicknames": [],
+"color": Color(0.545098, 0.294118, 0.627451, 1),
+"description": "",
+"scale": 1.0,
+"offset": Vector2(0, 0),
+"mirror": false,
+"default_portrait": "default",
+"portraits": {
+"default": {
+"scene": "res://assets/sprites/portraits/natalia_portrait.png"
+}
+},
+"custom_info": {
+}
+}
