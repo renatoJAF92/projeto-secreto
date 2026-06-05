@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7n9p2q_tdlg"]
+
+[ext_resource type="Script" path="res://scenes/test_dialogue/test_dialogue.gd" id="1_tdlg"]
+
+[node name="TestDialogue" type="Node2D"]
+script = ExtResource("1_tdlg")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.08, 0.08, 0.12, 1)
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 76.0
+offset_right = 224.0
+offset_bottom = 100.0
+text = "INICIAR DIÁLOGO"
+
+[node name="SkipButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 8.0
+offset_right = 312.0
+offset_bottom = 24.0
+visible = false
+text = "PULAR"
