@@ -24,8 +24,13 @@ ControlsManager="*res://autoloads/controls_manager.gd"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={}
+directories/dch_directory={
+"Natalia": "res://dialogic/characters/Natalia.dch",
+"Renato": "res://dialogic/characters/Renato.dch"
+}
+directories/dtl_directory={
+"test_dialogue": "res://dialogic/timelines/test_dialogue.dtl"
+}
 layout/style_directory={}
 
 [display]
