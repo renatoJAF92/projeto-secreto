@@ -38,5 +38,11 @@
   "agent_skills": {},
   "features": {},
   "mode": "yolo",
-  "granularity": "standard"
+  "granularity": "standard",
+  "review": {
+    "models": {
+      "ollama": "qwen2.5-coder:7b",
+      "opencode": "google/gemini-2.5-pro"
+    }
+  }
 }

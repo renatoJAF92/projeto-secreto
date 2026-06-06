@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4m7v3x_opts"]
+[gd_scene load_steps=2 format=3 uid="uid://dc26ka54kbc2h"]
 
-[ext_resource type="Script" path="res://scenes/options_menu/options_menu.gd" id="1_optsmenu"]
+[ext_resource type="Script" uid="uid://bpcp7o80dbr1c" path="res://scenes/options_menu/options_menu.gd" id="1_optsmenu"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -46,20 +46,20 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="ActionLabel" type="Label" parent="ActionList/ActionRow_WalkLeft"]
-layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 text = "Andar Esq."
 
 [node name="BindingLabel" type="Label" parent="ActionList/ActionRow_WalkLeft"]
-layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-horizontal_alignment = 1
 text = "-"
+horizontal_alignment = 1
 
 [node name="RemapButton" type="Button" parent="ActionList/ActionRow_WalkLeft"]
-layout_mode = 2
 custom_minimum_size = Vector2(48, 16)
+layout_mode = 2
 text = "REMAP"
 
 [node name="ActionRow_WalkRight" type="HBoxContainer" parent="ActionList"]
@@ -67,20 +67,20 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="ActionLabel" type="Label" parent="ActionList/ActionRow_WalkRight"]
-layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 text = "Andar Dir."
 
 [node name="BindingLabel" type="Label" parent="ActionList/ActionRow_WalkRight"]
-layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-horizontal_alignment = 1
 text = "-"
+horizontal_alignment = 1
 
 [node name="RemapButton" type="Button" parent="ActionList/ActionRow_WalkRight"]
-layout_mode = 2
 custom_minimum_size = Vector2(48, 16)
+layout_mode = 2
 text = "REMAP"
 
 [node name="ActionRow_Jump" type="HBoxContainer" parent="ActionList"]
@@ -88,20 +88,20 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="ActionLabel" type="Label" parent="ActionList/ActionRow_Jump"]
-layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 text = "Pular"
 
 [node name="BindingLabel" type="Label" parent="ActionList/ActionRow_Jump"]
-layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-horizontal_alignment = 1
 text = "-"
+horizontal_alignment = 1
 
 [node name="RemapButton" type="Button" parent="ActionList/ActionRow_Jump"]
-layout_mode = 2
 custom_minimum_size = Vector2(48, 16)
+layout_mode = 2
 text = "REMAP"
 
 [node name="ActionRow_Dash" type="HBoxContainer" parent="ActionList"]
@@ -109,20 +109,20 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="ActionLabel" type="Label" parent="ActionList/ActionRow_Dash"]
-layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 text = "Dash"
 
 [node name="BindingLabel" type="Label" parent="ActionList/ActionRow_Dash"]
-layout_mode = 2
 custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_horizontal = 3
-horizontal_alignment = 1
 text = "-"
+horizontal_alignment = 1
 
 [node name="RemapButton" type="Button" parent="ActionList/ActionRow_Dash"]
-layout_mode = 2
 custom_minimum_size = Vector2(48, 16)
+layout_mode = 2
 text = "REMAP"
 
 [node name="Divider2" type="ColorRect" parent="."]
@@ -142,11 +142,11 @@ offset_bottom = 160.0
 theme_override_constants/separation = 8
 
 [node name="ResetButton" type="Button" parent="BottomButtons"]
-layout_mode = 2
 custom_minimum_size = Vector2(144, 16)
+layout_mode = 2
 text = "RESETAR CONTROLES"
 
 [node name="BackButton" type="Button" parent="BottomButtons"]
-layout_mode = 2
 custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
 text = "VOLTAR"

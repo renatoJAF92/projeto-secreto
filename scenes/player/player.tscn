@@ -1,19 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://b3kp7mjpv8n4"]
 
 [ext_resource type="Script" uid="uid://csfl12g5ata86" path="res://scenes/player/player.gd" id="1_player"]
-[ext_resource type="Texture2D" path="res://assets/sprites/natalia_spritesheet.png" id="2_sprite"]
+[ext_resource type="Texture2D" uid="uid://njhubu4ytb4t" path="res://assets/sprites/natalia_spritesheet.png" id="2_sprite"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_death"]
 atlas = ExtResource("2_sprite")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_run"]
-atlas = ExtResource("2_sprite")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jump"]
-atlas = ExtResource("2_sprite")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fall"]
 atlas = ExtResource("2_sprite")
@@ -23,9 +15,17 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("2_sprite")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_death"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle"]
 atlas = ExtResource("2_sprite")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jump"]
+atlas = ExtResource("2_sprite")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_run"]
+atlas = ExtResource("2_sprite")
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1"]
 animations = [{
