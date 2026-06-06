@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-06-06T10:36:12.411Z",
+  "phase": "02",
+  "phase_name": "infraestrutura",
+  "phase_dir": ".planning/phases/02-infraestrutura",
+  "plan": 4,
+  "task": 3,
+  "total_tasks": 3,
+  "status": "paused",
+  "completed_tasks": [
+    {"id": "02-004/1", "name": "options_menu.tscn — 4 action rows + reset/back", "status": "done", "commit": "d1ddda6"},
+    {"id": "02-004/2", "name": "options_menu.gd — remap controller + drift guard", "status": "done", "commit": "afe1051"},
+    {"id": "02-005/1", "name": "Natalia.dch — Dialogic character", "status": "done", "commit": "8c5c62d"},
+    {"id": "02-005/2", "name": "Renato.dch — Dialogic character", "status": "done", "commit": "8c5c62d"},
+    {"id": "02-005/3", "name": "test_dialogue.dtl + project.godot registry", "status": "done", "commit": "670dd89"},
+    {"id": "02-005/4", "name": "test_dialogue.tscn + test_dialogue.gd skip-on-seen", "status": "done", "commit": "1b9888a"},
+    {"id": "fix", "name": "scene_transition overlay mouse_filter=IGNORE", "status": "done", "commit": "3faa9f7"}
+  ],
+  "remaining_tasks": [
+    {"id": "02-004/3", "name": "human-verify: test options menu remap in Godot", "status": "awaiting_human"},
+    {"id": "02-005/5", "name": "human-verify: test Dialogic dialogue + skip in Godot", "status": "awaiting_human"},
+    {"id": "02-004/meta", "name": "create 02-004-SUMMARY.md after human approval", "status": "not_started"},
+    {"id": "02-005/meta", "name": "create 02-005-SUMMARY.md after human approval", "status": "not_started"},
+    {"id": "phase", "name": "phase verification + VERIFICATION.md + phase completion", "status": "not_started"}
+  ],
+  "blockers": [
+    {
+      "description": "Human must test options_menu.tscn and test_dialogue.tscn in Godot editor",
+      "type": "human_action",
+      "workaround": "Navigate main menu → OPCOES (or open tscn directly with F6)"
+    }
+  ],
+  "human_actions_pending": [
+    {
+      "action": "Open Godot, navigate to options menu (main menu → OPCOES) and test all remap flows",
+      "context": "Plan 04 human-verify: test 8 checklist items including drift guard, persistence, gamepad, reset",
+      "blocking": true
+    },
+    {
+      "action": "Open scenes/test_dialogue/test_dialogue.tscn (F6) and test Dialogic dialogue + skip-on-seen",
+      "context": "Plan 05 human-verify: test dialogue with portraits, first-time vs seen cutscene, PULAR button",
+      "blocking": true
+    }
+  ],
+  "decisions": [
+    {
+      "decision": ".dch files require both @subtype AND @path fields",
+      "rationale": "Godot dict_to_inst() needs @path to locate the GDScript class definition; @subtype alone is insufficient",
+      "phase": "02"
+    },
+    {
+      "decision": "SceneTransition Overlay needs mouse_filter=MOUSE_FILTER_IGNORE (=2)",
+      "rationale": "Transparent ColorRect with default mouse_filter=STOP blocks all mouse events on every scene after any transition",
+      "phase": "02"
+    }
+  ],
+  "uncommitted_files": [],
+  "next_action": "User approves human-verify for Plan 04 and Plan 05, then create SUMMARY.md files and run phase verification",
+  "context_notes": "Both plans 04 and 05 have all auto tasks done and committed. Waiting for human-verify approval before creating SUMMARYs and running gsd-verifier. The mouse_filter fix was just committed and not yet tested by the user — they should reopen Godot to pick it up."
+}
