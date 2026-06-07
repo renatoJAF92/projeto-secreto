@@ -31,7 +31,9 @@ directories/dch_directory={
 directories/dtl_directory={
 "test_dialogue": "res://dialogic/timelines/test_dialogue.dtl"
 }
-layout/style_directory={}
+layout/default_style="res://dialogic/pixel_art_style.tres"
+layout/style_directory={"Pixel Art Style": "res://dialogic/pixel_art_style.tres"}
+layout/style_list=PackedStringArray("res://dialogic/pixel_art_style.tres")
 
 [display]
 

@@ -96,8 +96,8 @@ Progress: [██░░░░░░░░] 15% (2 of 13 phases complete)
 
 ## Session Continuity
 
-**Last updated:** 2026-05-21T08:47:30Z
-**Next action:** Human verify Task 4 in Godot editor (open test_movement.tscn, press F6, test coyote + jump buffer on ledge). After approval, continue with Plan 02 (dash + knockback).
+**Last updated:** 2026-06-06T00:00:00Z
+**Next action:** Human-verify Plans 02-004 (options menu remap) e 02-005 (Dialogic dialogue) no Godot. Após aprovação: criar SUMMARYs + rodar verificação de fase.
 
 ### Context for next session
 
