@@ -1,4 +1,7 @@
+join Natalia (default) left
 Natalia (default): De Osasco à Espanha — essa é a minha história.
 Natalia (default): Cada obstáculo me fez mais forte.
+join Renato (default) right
 Renato (default): E eu estive aqui em cada passo.
+leave all
 [end_timeline]
