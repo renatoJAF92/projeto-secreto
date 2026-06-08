@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-06-08T20:55:00.000Z"
+last_updated: "2026-06-08T21:35:00.000Z"
 progress:
   total_phases: 13
   completed_phases: 3
   total_plans: 17
-  completed_plans: 15
-  percent: 88
+  completed_plans: 16
+  percent: 94
 ---
 
 # STATE — Jogo da Natália
@@ -25,9 +25,9 @@ progress:
 ## Current Position
 
 Phase: 03 (mundo-1-osasco-vertical-slice-completo) — EXECUTING
-Plan: 3 of 5 (Plans 01, 02, 03 complete)
+Plan: 4 of 5 (Plans 01, 02, 03, 04 complete)
 **Phase:** 03 — Mundo 1 — Osasco
-**Status:** Executing Phase 03 — Plan 04 next
+**Status:** Executing Phase 03 — Plan 05 (final) next
 
 ```
 Progress: [█████░░░░░] 38% (3 of 13 phases touched)
@@ -42,7 +42,7 @@ Progress: [█████░░░░░] 38% (3 of 13 phases touched)
 | 0 | Fundação | ✅ Complete |
 | 1 | Game Feel | ✅ Complete |
 | 2 | Infraestrutura | ✅ Complete |
-| 3 | Mundo 1 — Osasco | Executing (Plans 01-03/05 done) |
+| 3 | Mundo 1 — Osasco | Executing (Plans 01-04/05 done) |
 | 4 | Mundo 2 — A Faculdade | Not started |
 | 5 | Mundo 3 — O Corporativo | Not started |
 | 6 | Mundo 4 — A Pandemia | Not started |
@@ -96,8 +96,8 @@ Progress: [█████░░░░░] 38% (3 of 13 phases touched)
 
 ## Session Continuity
 
-**Last updated:** 2026-06-08T20:55:00Z
-**Next action:** Execute Plan 04 (mundo1_abertura cutscene + boss_pai setup)
+**Last updated:** 2026-06-08T21:35:00Z
+**Next action:** Execute Plan 05 (mundo1_abertura cutscene + SFX + world1_end)
 
 ### Context for next session
 
@@ -119,4 +119,16 @@ Progress: [█████░░░░░] 38% (3 of 13 phases touched)
   - Control substitution: 'jump' action used as interact trigger (no dedicated 'interact' action exists)
 - CPUParticles2D obrigatório (nunca GPUParticles2D) — renderer gl_compatibility não suporta GPU particles na web
 - Hit-stop uses `create_timer(duration, true)` — argumento process_always=true é obrigatório
-- **Próxima: Plan 04** (mundo1_abertura.gd + Renato dialogue timeline authoring — cutscene intro + boss setup)
+- **Phase 3 Plan 04 COMPLETA (2026-06-08):** Boss fight + Dialogic timelines
+  - boss_abertura.dtl: 3 question choices with signal events (choice_correct/wrong), renato_entrada cue
+  - boss_renato_entrada.dtl: Renato's commitment speech
+  - boss_vitoria.dtl: Luis relents + accepts couple
+  - renato_restaurante.dtl: fase3 restaurant dialogue (forward-ref from Plan 03 closed)
+  - boss_abertura_bloqueado.dtl: blocking message for <2 provas
+  - boss_pai.tscn + boss_pai.gd: trust HUD (CanvasLayer 51), provas gate (≥2), trust mechanics (+20 prova, +10 correct, -15 wrong)
+  - HUD color steps: red <20%, green <80%, gold ≥80% (stepped)
+  - Renato entrance at ~80% trust via signal event
+  - Victory at 100%, game-over at 0% (reload preserves provas)
+  - CRITICAL FIXES: Signal connect before Dialogic.start, Dialogic.end_timeline before transition
+  - Luis character definition (Luis.dch)
+- **Próxima: Plan 05** (mundo1_abertura.tscn + SFX + world1_end.tscn)
