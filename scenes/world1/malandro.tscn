@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://wj8twxy6wvmx"]
 
-[ext_resource type="Script" path="res://scenes/world1/malandro.gd"]
+[ext_resource type="Script" path="res://scenes/world1/malandro.gd" id="1"]
 [ext_resource type="Resource" path="res://scenes/world1/malandro_sprite_frames.tres" id="2_frames"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_malandro"]
