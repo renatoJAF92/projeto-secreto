@@ -76,7 +76,6 @@ offset_top = 50.0
 offset_right = 76.0
 offset_bottom = 78.0
 text = "Prova"
-label_settings = LabelSettings.new()
 
 [node name="BossHUD" type="CanvasLayer" parent="."]
 layer = 51
@@ -93,7 +92,6 @@ offset_top = 6.0
 offset_right = 48.0
 offset_bottom = 20.0
 text = "CONFIANÇA"
-label_settings = LabelSettings.new()
 
 [node name="TrustBarContainer" type="NinePatchRect" parent="BossHUD/HUDContainer"]
 offset_left = 56.0
@@ -120,7 +118,6 @@ offset_top = 6.0
 offset_right = 310.0
 offset_bottom = 20.0
 text = "0%"
-label_settings = LabelSettings.new()
 
 [node name="GameOverFlash" type="CanvasLayer" parent="."]
 layer = 99

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1xowkflt0g0"]
+[gd_scene load_steps=8 format=3 uid="uid://d1xowkflt0g0"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase2_parque.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" path="res://scenes/world1/malandro.tscn" id="4_malandro"]
 [ext_resource type="PackedScene" path="res://scenes/world1/checkpoint.tscn" id="5_checkpoint"]
 [ext_resource type="PackedScene" path="res://scenes/world1/prova_item.tscn" id="6_prova"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(32, 48)
 
 [node name="Fase2Parque" type="Node2D"]
 script = ExtResource("1_script")
@@ -64,5 +67,4 @@ color = Color(0.364706, 0.682353, 0.886275, 1)
 position = Vector2(300, 144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
-shape = RectangleShape2D()
-custom_minimum_size = Vector2(32, 48)
+shape = SubResource("RectangleShape2D_exit")

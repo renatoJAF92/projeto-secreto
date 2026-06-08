@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwhqcn1xhkqg"]
+[gd_scene load_steps=10 format=3 uid="uid://dwhqcn1xhkqg"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase3_restaurante.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" path="res://scenes/world1/checkpoint.tscn" id="5_checkpoint"]
 [ext_resource type="PackedScene" path="res://scenes/world1/prova_item.tscn" id="6_prova"]
 [ext_resource type="Script" path="res://scenes/world1/renato_npc.gd" id="7_renato"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dialogue"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(32, 48)
 
 [node name="Fase3Restaurante" type="Node2D"]
 script = ExtResource("1_script")
@@ -74,8 +80,7 @@ color = Color(0.364706, 0.682353, 0.886275, 1)
 position = Vector2(0, 0)
 
 [node name="DialogueZoneCollision" type="CollisionShape2D" parent="RenatoNPC/DialogueZone"]
-shape = RectangleShape2D()
-custom_minimum_size = Vector2(32, 16)
+shape = SubResource("RectangleShape2D_dialogue")
 
 [node name="Prompt" type="Label" parent="RenatoNPC"]
 offset_left = -8.0
@@ -83,12 +88,10 @@ offset_top = -30.0
 offset_right = 8.0
 offset_bottom = -20.0
 text = "[E]"
-label_settings = LabelSettings.new()
 visible = false
 
 [node name="ExitTrigger" type="Area2D" parent="."]
 position = Vector2(300, 144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
-shape = RectangleShape2D()
-custom_minimum_size = Vector2(32, 48)
+shape = SubResource("RectangleShape2D_exit")
