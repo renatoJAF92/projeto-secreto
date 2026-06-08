@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dve8wqcvkm"]
+
+[ext_resource type="Script" path="res://scenes/world1/static_obstacle.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_collision"]
+size = Vector2(14, 14)
+
+[node name="StaticObstacle" type="Area2D"]
+monitoring = true
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_collision")
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.784313, 0.188235, 0.188235, 1)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[node name="Marker" type="Polygon2D" parent="."]
+position = Vector2(6, 6)
+color = Color(1, 0.866667, 0.341176, 1)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
