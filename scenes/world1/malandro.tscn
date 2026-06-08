@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://wj8twxy6wvmx"]
+[gd_scene load_steps=6 format=3 uid="uid://wj8twxy6wvmx"]
 
 [ext_resource type="Script" path="res://scenes/world1/malandro.gd" id="1"]
 [ext_resource type="Resource" path="res://scenes/world1/malandro_sprite_frames.tres" id="2_frames"]
@@ -9,6 +9,9 @@ height = 22.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stomp"]
 size = Vector2(16, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(14, 28)
 
 [node name="Malandro" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1")
@@ -32,9 +35,6 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompZone"]
 shape = SubResource("RectangleShape2D_stomp")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(14, 28)
 
 [node name="BodyHitbox" type="Area2D" parent="."]
 monitoring = true
