@@ -19,12 +19,7 @@ func start_cutscene(timeline_name: String) -> void:
 	if Dialogic.current_timeline != null:
 		return
 
-	if SaveManager.has_seen_cutscene(timeline_name):
-		Dialogic.Inputs.auto_skip.enabled = true
-		Dialogic.Inputs.auto_skip.time_per_event = 0.05
-		skip_button.visible = true
-	else:
-		skip_button.visible = false
+	skip_button.visible = SaveManager.has_seen_cutscene(timeline_name)
 
 	Dialogic.start(timeline_name)
 	await Dialogic.timeline_ended
@@ -35,4 +30,5 @@ func start_cutscene(timeline_name: String) -> void:
 
 
 func _on_skip_pressed() -> void:
-	Dialogic.Inputs.auto_skip.enabled = not Dialogic.Inputs.auto_skip.enabled
+	Dialogic.Inputs.auto_skip.enabled = true
+	Dialogic.Inputs.auto_skip.time_per_event = 0.05
