@@ -105,7 +105,22 @@
 4. Texto narrativo de abertura do Mundo 1 é exibido antes da primeira fase.
 5. SFX de pulo, dano, checkpoint e power-up tocam nos momentos corretos durante o gameplay do Mundo 1.
 6. NPC Renato aparece em pelo menos um ponto do Mundo 1 com diálogo funcional.
-**Plans:** TBD
+**Plans:** 5 planos (sequenciais, 1 por wave)
+
+**Wave 1**
+- [ ] 03-01-PLAN.md — Foundation: AudioManager autoload, player `signal died` + "player" group, save schema `provas_mundo1`
+
+**Wave 2** *(blocked on Wave 1)*
+- [ ] 03-02-PLAN.md — Reusable game objects: Malandro, StaticObstacle, Checkpoint (McFly), ProvaItem
+
+**Wave 3** *(blocked on Waves 1-2)*
+- [ ] 03-03-PLAN.md — Playable phases fase1/fase2/fase3 + Osasco tileset + instant respawn + Renato/Luis NPCs
+
+**Wave 4** *(blocked on Waves 1, 3)*
+- [ ] 03-04-PLAN.md — Boss O Pai Desconfiante: trust-bar HUD + Dialogic timelines + Renato entrance + win/lose
+
+**Wave 5** *(blocked on Waves 1, 3, 4)*
+- [ ] 03-05-PLAN.md — Opening narrative + main_menu wiring + SFX registration + world1_end + human-verify
 **UI hint:** yes
 
 ### Phase 4: Mundo 2 — A Faculdade
