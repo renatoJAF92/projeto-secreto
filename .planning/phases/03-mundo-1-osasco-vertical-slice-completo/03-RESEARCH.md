@@ -654,22 +654,22 @@ func _on_new_game_confirmed() -> void:
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Phase 2 precisa estar 100% completa antes de iniciar Phase 3?**
    - What we know: STATE.md diz "Phase: 02 — EXECUTING"; plans 02-001 a 02-005 existem com SUMMARY.md = executados.
    - What's unclear: Se os critérios de sucesso da Phase 2 (SaveManager funcionando, Dialogic funcionando com personagens, main_menu completo) foram validados em human-verify.
-   - Recommendation: Verificar 02-VALIDATION.md antes de iniciar Phase 3. Phase 3 depende diretamente de SceneTransition, SaveManager e Dialogic.
+   - **RESOLVED (Phase 2 completion gate):** Phase 3 depende diretamente de SceneTransition, SaveManager e Dialogic — todos entregues na Phase 2. Antes de executar qualquer plano da Phase 3, confirmar a conclusão da Phase 2 por UMA das condições: **(a)** `02-VERIFICATION.md` mostra `Phase Goal: ACHIEVED`, OU **(b)** todos os 5 arquivos `02-00{1..5}-PLAN.md` possuem o `SUMMARY.md` correspondente confirmando execução. Se nenhuma condição for satisfeita, NÃO iniciar a Phase 3 — é um bloqueador de runtime real (AudioManager, SaveManager schema e Dialogic dependem da base da Phase 2). Esta verificação é o gate de entrada da Phase 3; sem ela, a cadeia menu → abertura → fase1 quebra na primeira chamada a SceneTransition/SaveManager.
 
 2. **AudioManager.play_sfx() deve aceitar falha silenciosa (chave não encontrada)?**
    - What we know: SFX WAV files não existem ainda; serão criados com bfxr.
    - What's unclear: Se tasks de mechanics e de audio devem ser waves separadas ou se AudioManager stub (sem WAV reais) é suficiente para não bloquear mechanics.
-   - Recommendation: AudioManager stub com print() em play_sfx() para Phase 3 wave inicial; adicionar WAV reais em wave final de SFX.
+   - **RESOLVED:** Sim — `AudioManager.play_sfx()` aceita falha silenciosa. Se a chave não está em `_sfx_players`, o método não faz nada (o guarda `if _sfx_players.has(key):` em Pattern 4 já implementa isso). Plano **03-01 Task 1** implementa o AudioManager com esse `has(key)` guard, e o registro de cada SFX em **03-05 Task 2** é protegido por `ResourceLoader.exists(path)`. Mechanics (Waves 2-4) podem chamar `play_sfx` sem bloquear, mesmo antes dos WAV reais existirem — calls para chaves não registradas são no-ops, não crashes.
 
 3. **A cena de fim do Mundo 1 (`world1_end` / `world1_credits`) existe ou é placeholder?**
    - What we know: UI-SPEC menciona `SceneTransition.go_to("scenes/world1/world1_credits.tscn")` na vitória do boss.
    - What's unclear: Essa cena não está no scope explícito de Phase 3; DEFERRED section não a menciona.
-   - Recommendation: Criar `world1_end.tscn` mínima (tela preta + texto "Fim do Mundo 1" + botão para menu) como placeholder para Phase 3. A cena real de créditos com fotos é Phase 10.
+   - **RESOLVED:** É um placeholder criado nesta fase. **Plano 03-05 Task 1** cria `scenes/world1/world1_end.tscn` mínima (ColorRect `#1A1A2E` + Label "Fim do Mundo 1" + botão "Menu" que volta ao main_menu). A vitória do boss (Plano 03-04 Task 2) aponta para `world1_end.tscn` com guarda `ResourceLoader.exists` e fallback para `main_menu.tscn`. A cena real de créditos com fotos é Phase 10.
 
 ---
 
