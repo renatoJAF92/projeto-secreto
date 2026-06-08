@@ -1,18 +1,17 @@
 extends Node2D
 
-# Validate tileset before proceeding
 func _ready() -> void:
-	assert(ResourceLoader.exists("res://scenes/world1/osasco_tileset.tres"), "osasco_tileset.tres not found — complete Task 0 (human-verify) before continuing")
-
-	# Store checkpoint position for respawn
+	print("[Fase1Rua] _ready START")
+	if not ResourceLoader.exists("res://scenes/world1/osasco_tileset.tres"):
+		push_error("[Fase1Rua] osasco_tileset.tres not found")
+	print("[Fase1Rua] tileset check ok, checkpoint=", checkpoint)
 	_checkpoint_position = checkpoint.global_position
-
-	# Hook player death signal to respawn logic
+	print("[Fase1Rua] checkpoint pos ok, player=", player)
 	player.died.connect(_on_player_died)
-
-	# Hook exit trigger
+	print("[Fase1Rua] player.died connected")
 	if exit_trigger:
 		exit_trigger.body_entered.connect(_on_exit_trigger_body_entered)
+	print("[Fase1Rua] _ready DONE")
 
 	# AudioManager.play_music(...) wired in Plan 05 — for now, commented out
 	# AudioManager.play_music(preload("res://assets/music/mundo1.ogg"))

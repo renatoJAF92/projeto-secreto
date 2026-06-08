@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rysmlmyirwg5"]
 
-[ext_resource type="Script" uid="uid://og86g7l689ii" path="res://scenes/main_menu/main_menu.gd" id="1_mainmenu"]
+[ext_resource type="Script" uid="uid://ce2cskjjddmyq" path="res://scenes/main_menu/main_menu.gd" id="1_mainmenu"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -19,12 +19,11 @@ color = Color(0.101961, 0.101961, 0.180392, 1)
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 40.0
 offset_right = 320.0
 offset_bottom = 60.0
-horizontal_alignment = 1
 text = "Destiny — Tales de Natalia"
+horizontal_alignment = 1
 
 [node name="ButtonGroup" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -32,36 +31,35 @@ offset_left = 96.0
 offset_top = 80.0
 offset_right = 224.0
 offset_bottom = 140.0
-alignment = 1
 theme_override_constants/separation = 8
+alignment = 1
 
 [node name="ContinueButton" type="Button" parent="ButtonGroup"]
-layout_mode = 2
 custom_minimum_size = Vector2(128, 20)
+layout_mode = 2
 text = "CONTINUAR"
 
 [node name="NewGameButton" type="Button" parent="ButtonGroup"]
-layout_mode = 2
 custom_minimum_size = Vector2(128, 20)
+layout_mode = 2
 text = "NOVO JOGO"
 
 [node name="OptionsButton" type="Button" parent="ButtonGroup"]
-layout_mode = 2
 custom_minimum_size = Vector2(128, 20)
+layout_mode = 2
 text = "OPCOES"
 
 [node name="VersionLabel" type="Label" parent="."]
+modulate = Color(0.533333, 0.533333, 0.666667, 1)
 layout_mode = 0
 offset_left = 260.0
 offset_top = 168.0
 offset_right = 316.0
 offset_bottom = 176.0
-modulate = Color(0.533333, 0.533333, 0.666667, 1)
 text = "v0.2"
 
 [node name="ConfirmNewGame" type="ConfirmationDialog" parent="."]
 title = "Novo Jogo"
-dialog_text = "Apagar progresso? Esta acao nao pode ser desfeita."
 ok_button_text = "APAGAR"
+dialog_text = "Apagar progresso? Esta acao nao pode ser desfeita."
 cancel_button_text = "CANCELAR"
-dialog_hide_on_ok = true

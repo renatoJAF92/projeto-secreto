@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpy5n3h1xy9qa"]
+[gd_scene load_steps=2 format=3 uid="uid://cpy5n3h1x0aqa"]
 
 [ext_resource type="Script" uid="uid://fkm2h8dq4ohz" path="res://scenes/world1/mundo1_abertura.gd" id="1_mundo1"]
 
