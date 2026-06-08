@@ -12,8 +12,8 @@
 
 - [x] **Phase 0: Fundação** — Projeto Godot configurado, Git LFS ativo, renderer Compatibility definido, estrutura de pastas pronta.
 - [x] **Phase 1: Game Feel** — Movimentação da protagonista polida e responsiva antes de qualquer level design.
-- [ ] **Phase 2: Infraestrutura** — Save system, transições de cena, signal bus, Dialogic 2 integrado, controles reconfiguráveis.
-- [ ] **Phase 3: Mundo 1 — Osasco (vertical slice completo)** — Fases jogáveis, chefe O Pai Desconfiante, diálogos, padrão de mundo estabelecido.
+- [x] **Phase 2: Infraestrutura** — Save system, transições de cena, signal bus, Dialogic 2 integrado, controles reconfiguráveis.
+- [x] **Phase 3: Mundo 1 — Osasco (vertical slice completo)** — Fases jogáveis, chefe O Pai Desconfiante, diálogos, padrão de mundo estabelecido.
 - [ ] **Phase 4: Mundo 2 — A Faculdade** — Mundo completo + poder Sketch desbloqueado.
 - [ ] **Phase 5: Mundo 3 — O Corporativo** — Mundo completo + poder Mapa Urbano desbloqueado.
 - [ ] **Phase 6: Mundo 4 — A Pandemia** — Mundo completo + poder Escudo Blueprint + cachorra companheira.
@@ -108,19 +108,19 @@
 **Plans:** 5 planos (sequenciais, 1 por wave)
 
 **Wave 1**
-- [ ] 03-01-PLAN.md — Foundation: AudioManager autoload, player `signal died` + "player" group, save schema `provas_mundo1`
+- [x] 03-01-PLAN.md — Foundation: AudioManager autoload, player `signal died` + "player" group, save schema `provas_mundo1`
 
 **Wave 2** *(blocked on Wave 1)*
-- [ ] 03-02-PLAN.md — Reusable game objects: Malandro, StaticObstacle, Checkpoint (McFly), ProvaItem
+- [x] 03-02-PLAN.md — Reusable game objects: Malandro, StaticObstacle, Checkpoint (McFly), ProvaItem
 
 **Wave 3** *(blocked on Waves 1-2)*
-- [ ] 03-03-PLAN.md — Playable phases fase1/fase2/fase3 + Osasco tileset + instant respawn + Renato/Luis NPCs
+- [x] 03-03-PLAN.md — Playable phases fase1/fase2/fase3 + Osasco tileset + instant respawn + Renato/Luis NPCs
 
 **Wave 4** *(blocked on Waves 1, 3)*
-- [ ] 03-04-PLAN.md — Boss O Pai Desconfiante: trust-bar HUD + Dialogic timelines + Renato entrance + win/lose
+- [x] 03-04-PLAN.md — Boss O Pai Desconfiante: trust-bar HUD + Dialogic timelines + Renato entrance + win/lose
 
 **Wave 5** *(blocked on Waves 1, 3, 4)*
-- [ ] 03-05-PLAN.md — Opening narrative + main_menu wiring + SFX registration + world1_end + human-verify
+- [x] 03-05-PLAN.md — Opening narrative + main_menu wiring + SFX registration + world1_end + human-verify
 **UI hint:** yes
 
 ### Phase 4: Mundo 2 — A Faculdade

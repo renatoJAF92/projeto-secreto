@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-06-08T19:26:36.671Z"
+last_updated: "2026-06-09T01:34:00.000Z"
 progress:
   total_phases: 13
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 17
   completed_plans: 17
-  percent: 31
+  percent: 38
 ---
 
 # STATE — Jogo da Natália
@@ -24,13 +24,12 @@ progress:
 
 ## Current Position
 
-Phase: 03 (mundo-1-osasco-vertical-slice-completo) — EXECUTING
-Plan: 4 of 5 (Plans 01, 02, 03, 04 complete)
-**Phase:** 03 — Mundo 1 — Osasco
-**Status:** Executing Phase 03 — Plan 05 (final) next
+Phase: 04 (mundo-2-faculdade) — NOT STARTED
+**Phase:** 03 — Mundo 1 — Osasco — ✅ COMPLETE (2026-06-09)
+**Status:** Ready to plan Phase 04
 
 ```
-Progress: [█████░░░░░] 38% (3 of 13 phases touched)
+Progress: [███████░░░] 38% (5 of 13 phases complete)
 ```
 
 ---
@@ -42,7 +41,7 @@ Progress: [█████░░░░░] 38% (3 of 13 phases touched)
 | 0 | Fundação | ✅ Complete |
 | 1 | Game Feel | ✅ Complete |
 | 2 | Infraestrutura | ✅ Complete |
-| 3 | Mundo 1 — Osasco | Executing (Plans 01-04/05 done) |
+| 3 | Mundo 1 — Osasco | ✅ Complete (2026-06-09) |
 | 4 | Mundo 2 — A Faculdade | Not started |
 | 5 | Mundo 3 — O Corporativo | Not started |
 | 6 | Mundo 4 — A Pandemia | Not started |
@@ -96,8 +95,8 @@ Progress: [█████░░░░░] 38% (3 of 13 phases touched)
 
 ## Session Continuity
 
-**Last updated:** 2026-06-08T21:35:00Z
-**Next action:** Execute Plan 05 (mundo1_abertura cutscene + SFX + world1_end)
+**Last updated:** 2026-06-09T01:34:00Z
+**Next action:** `/gsd-plan-phase 4` — Mundo 2 A Faculdade
 
 ### Context for next session
 
@@ -131,4 +130,11 @@ Progress: [█████░░░░░] 38% (3 of 13 phases touched)
   - Victory at 100%, game-over at 0% (reload preserves provas)
   - CRITICAL FIXES: Signal connect before Dialogic.start, Dialogic.end_timeline before transition
   - Luis character definition (Luis.dch)
-- **Próxima: Plan 05** (mundo1_abertura.tscn + SFX + world1_end.tscn)
+- **Phase 3 Plan 05 COMPLETA (2026-06-09):** Opening narrative + SFX + world1_end + human-verify
+  - mundo1_abertura.dtl/.tscn/.gd: cutscene com skip-on-seen, auto-start Dialogic, SceneTransition para fase1_rua
+  - 8 SFX registrados no AudioManager (jump, checkpoint, prova_coletada, prova_apresentada, dialogo_errado, stomp, dano, vitoria)
+  - jump SFX wire em player.gd jump-execution branch
+  - world1_end.tscn/.gd placeholder criado (retorno ao menu)
+  - main_menu.gd roteado para mundo1_abertura.tscn (New Game + Continue)
+  - AUDIO-02 FULL PASS: 8 WAVs audíveis com tons distintos gerados via Python PCM synthesis
+- **PHASE 3 COMPLETA ✅ (2026-06-09):** Mundo 1 Osasco vertical slice completo e jogável

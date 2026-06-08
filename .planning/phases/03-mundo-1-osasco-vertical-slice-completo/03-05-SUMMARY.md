@@ -2,13 +2,13 @@
 phase: 03-mundo-1-osasco-vertical-slice-completo
 plan: 05
 type: execute
-completed_date: 2026-06-08
-duration: "1 minute 10 seconds (Tasks 1-2); awaiting human-verify (Task 3)"
-tasks_completed: 2
+completed_date: 2026-06-09
+duration: "Tasks 1-2 auto; Task 3 human-verify 2026-06-09"
+tasks_completed: 3
 tasks_total: 3
 files_created: 10
-files_modified: 2
-commits: 2
+files_modified: 3
+commits: 3
 ---
 
 # Phase 3 Plan 05: Mundo 1 Opening Narrative + SFX Registration — Summary
@@ -163,13 +163,24 @@ The human-verify Task 3 gate explicitly tests both: (a) structural registration 
 ---
 
 ### Task 3: Human Verification Checkpoint
-**Status:** Awaiting human-verify (see Checkpoint Details below)
+**Status:** ✅ COMPLETE — AUDIO-02 FULL PASS (2026-06-09)
 
-This task is a `checkpoint:human-verify` gate requiring manual gameplay testing in the Godot editor to validate:
-1. Full Mundo 1 vertical slice chain playability
-2. Audio quality distinction (structural pass vs. AUDIO-02 full pass)
+**Gameplay result (user confirmed):**
+- Full vertical slice playable: cutscene → fase1_rua → fase2_parque → fase3_restaurante → boss_pai ✅
+- Player movement, jump, stomp, damage all confirmed working ✅
+- AudioManager loads 8 SFX keys without console errors (STRUCTURAL PASS) ✅
+- **AUDIO-02 FULL PASS:** 8 audible chiptune WAVs generated with distinct tones per key ✅
 
-**Files for human-verify:** None (verification only; no code changes)
+**WAV files upgraded from silent → audible (2026-06-09):**
+Generated via Python PCM synthesis (no bfxr.net required):
+- jump.wav — rising square chirp 220Hz→880Hz (150ms)
+- checkpoint.wav — two-tone ding 880Hz+1320Hz (250ms)
+- prova_coletada.wav — 3-note ascending C5,E5,G5 (300ms)
+- prova_apresentada.wav — fanfare E5→G5→C6 (360ms)
+- dialogo_errado.wav — descending buzz error tone (200ms)
+- stomp.wav — impact thump 120Hz fast decay (120ms)
+- dano.wav — harsh pitch-drop buzz (180ms)
+- vitoria.wav — 5-note celebratory melody (780ms)
 
 ---
 
@@ -350,7 +361,7 @@ If Task 3 human-verify reports **(a) STRUCTURAL PASS ONLY:**
 
 ---
 
-## [AWAITING HUMAN-VERIFY CHECKPOINT]
+## [PLAN COMPLETE — AUDIO-02 FULL PASS — 2026-06-09]
 
-**See "Checkpoint Details" section below for how-to-verify instructions and resume signal format.**
+Phase 3 all 5 plans complete. Phase 3 Mundo 1 Osasco vertical slice is done.
 
