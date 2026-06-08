@@ -13,6 +13,15 @@ func _ready() -> void:
 	_music_player.bus = "Master"
 	add_child(_music_player)
 
+	# Register the 8 Mundo 1 SFX keys
+	# Each registration is guarded by ResourceLoader.exists() so missing WAVs never crash startup
+	var sfx_keys := ["jump", "checkpoint", "prova_coletada", "prova_apresentada", "dialogo_errado", "stomp", "dano", "vitoria"]
+	for key in sfx_keys:
+		var path := "res://assets/audio/sfx/" + key + ".wav"
+		if ResourceLoader.exists(path):
+			var stream = load(path)
+			register_sfx(key, stream)
+
 func register_sfx(key: String, stream: AudioStream) -> void:
 	# Create a new AudioStreamPlayer for this SFX key
 	var player := AudioStreamPlayer.new()

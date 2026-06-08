@@ -105,6 +105,7 @@ func _physics_process(delta: float) -> void:
 		_is_dashing = false
 		_dash_frames_remaining = 0
 		_apply_jump_stretch()
+		AudioManager.play_sfx("jump")
 
 	# 7. Snapshot floor state BEFORE move_and_slide, then slide
 	var pre_floor := is_on_floor()
