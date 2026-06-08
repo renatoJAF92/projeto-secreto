@@ -1,5 +1,5 @@
 ---
-status: complete
+status: diagnosed
 phase: 02-infraestrutura
 source: [02-001-SUMMARY.md, 02-002-SUMMARY.md, 02-003-SUMMARY.md, 02-004-SUMMARY.md, 02-005-SUMMARY.md]
 started: 2026-06-08T00:00:00Z
@@ -70,7 +70,10 @@ blocked: 0
   reason: "User reported: A tela não está com a melhor resolução, pois a versão está sendo cortada na parte de baixo"
   severity: cosmetic
   test: 1
-  root_cause: ""
-  artifacts: []
-  missing: []
+  root_cause: "VersionLabel offset_top=172/offset_bottom=180 ocupa a borda exata da viewport 320x180 sem margem — arredondamento de pixel corta o texto"
+  artifacts:
+    - path: "scenes/main_menu/main_menu.tscn"
+      issue: "VersionLabel sem margem inferior"
+  missing:
+    - "Mover label 4px para cima: offset_top=168, offset_bottom=176"
   debug_session: ""
