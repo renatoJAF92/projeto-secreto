@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ry6yf73"]
+
+[ext_resource type="Script" path="res://scenes/world1/prova_item.gd" id="1_script"]
+[ext_resource type="Resource" path="res://scenes/world1/prova_item_sprite_frames.tres" id="2_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_collision"]
+size = Vector2(16, 16)
+
+[node name="ProvaItem" type="Area2D"]
+monitoring = true
+monitorable = false
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_collision")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.909804, 0.909804, 0.941176, 1)
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 4)
+emitting = false
+amount = 6
+lifetime = 1.2
+direction = Vector2(0, -1)
+spread = 45.0
+initial_velocity_min = 30.0
+initial_velocity_max = 80.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color = Color(0.878431, 0.43922, 0.125490, 1)
+emission_shape = 3
+emission_box_extents = Vector2(8, 2)
