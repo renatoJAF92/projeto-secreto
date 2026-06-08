@@ -53,14 +53,22 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_stomp_zone_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") and body.velocity.y > 0.0:
+	# velocity.y may be 0 if move_and_slide already resolved the collision this frame
+	if body.is_in_group("player") and body.velocity.y >= 0.0 and not _stomped_this_frame:
 		_stomped_this_frame = true
 		die()
 		body.velocity.y = body.jump_velocity * 0.6
 
 
 func _on_body_hitbox_entered(body: Node2D) -> void:
-	if body.is_in_group("player") and not _is_dead and not _stomped_this_frame:
+	if not body.is_in_group("player") or _is_dead or _stomped_this_frame:
+		return
+	# Fallback stomp: player center clearly above enemy center and not moving upward
+	if body.global_position.y < global_position.y - 8.0 and body.velocity.y >= 0.0:
+		_stomped_this_frame = true
+		die()
+		body.velocity.y = body.jump_velocity * 0.6
+	else:
 		body.take_damage(global_position)
 
 
