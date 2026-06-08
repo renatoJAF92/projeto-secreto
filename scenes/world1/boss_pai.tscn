@@ -21,7 +21,7 @@ tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("3_tileset")
 physics_layer_0/collision_enabled = true
-layer_physics_layer_0 = 0
+layer_physics_layer_0 = 1
 tile_data = PackedInt32Array(393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0, 393233, 0, 0, 393234, 0, 0, 393235, 0, 0)
 
 [node name="LuisForeshadow" type="Node2D" parent="."]
@@ -34,7 +34,7 @@ polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
 color = Color(0.545098, 0, 0, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector2(60, 120)
+position = Vector2(60, 75)
 
 [node name="RenatoEntrance" type="Node2D" parent="."]
 visible = false
