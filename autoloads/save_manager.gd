@@ -6,6 +6,10 @@ const SCHEMA_VERSION := 1
 var current_save: Dictionary = {}
 
 func _ready() -> void:
+	# Phase 3 pre-flight gate: validate Phase 2 completion
+	if not (has_method("set_checkpoint") and has_method("has_seen_cutscene") and has_method("mark_cutscene_seen")):
+		push_error("PHASE 2 NOT COMPLETE: SaveManager missing set_checkpoint, has_seen_cutscene, or mark_cutscene_seen. Execute Phase 2 fully before Phase 3.")
+		get_tree().quit(1)
 	load_game()
 
 func save_exists() -> bool:
