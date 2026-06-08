@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-06-08T18:05:00.000Z"
+last_updated: "2026-06-08T20:00:00.000Z"
 progress:
   total_phases: 13
   completed_phases: 3
   total_plans: 17
-  completed_plans: 13
-  percent: 76
+  completed_plans: 14
+  percent: 82
 ---
 
 # STATE — Jogo da Natália
@@ -25,12 +25,12 @@ progress:
 ## Current Position
 
 Phase: 03 (mundo-1-osasco-vertical-slice-completo) — EXECUTING
-Plan: 2 of 5 (Plan 01 complete)
+Plan: 3 of 5 (Plan 01 and 02 complete)
 **Phase:** 03 — Mundo 1 — Osasco
-**Status:** Executing Phase 03 — Plan 02 next
+**Status:** Executing Phase 03 — Plan 03 next
 
 ```
-Progress: [███░░░░░░░] 23% (3 of 13 phases touched)
+Progress: [████░░░░░░] 31% (3 of 13 phases touched)
 ```
 
 ---
@@ -42,7 +42,7 @@ Progress: [███░░░░░░░] 23% (3 of 13 phases touched)
 | 0 | Fundação | ✅ Complete |
 | 1 | Game Feel | ✅ Complete |
 | 2 | Infraestrutura | ✅ Complete |
-| 3 | Mundo 1 — Osasco | Executing (Plan 01/05 done) |
+| 3 | Mundo 1 — Osasco | Executing (Plans 01-02/05 done) |
 | 4 | Mundo 2 — A Faculdade | Not started |
 | 5 | Mundo 3 — O Corporativo | Not started |
 | 6 | Mundo 4 — A Pandemia | Not started |
@@ -96,17 +96,21 @@ Progress: [███░░░░░░░] 23% (3 of 13 phases touched)
 
 ## Session Continuity
 
-**Last updated:** 2026-06-06T00:00:00Z
-**Next action:** Human-verify Plans 02-004 (options menu remap) e 02-005 (Dialogic dialogue) no Godot. Após aprovação: criar SUMMARYs + rodar verificação de fase.
+**Last updated:** 2026-06-08T20:00:00Z
+**Next action:** Execute Plan 03 (nivel assembly com Malandro, Checkpoint, ProvaItem em fase1_rua.gd)
 
 ### Context for next session
 
 - Phase 0 COMPLETA: Godot 4.4.1 configurado, Git LFS ativo, 3 export presets, CI verde.
-- **Phase 1 COMPLETA (2026-06-04):** player.gd com coyote 6f, jump buffer 8f, dash, knockback, 6 animações, squash/stretch, white flash, hit-stop 3f, CPUParticles2D dust. Todos os 5 critérios de sucesso aprovados em human-verify.
-- Bug crítico corrigido: `velocity.x = _knockback.x` (não `+=`) evita acumulação infinita de knockback.
-- player.gd + player.tscn são o controlador reutilizável para todos os 8 mundos.
-- CPUParticles2D obrigatório (nunca GPUParticles2D) — renderer gl_compatibility não suporta GPU particles na web.
-- Hit-stop usa `create_timer(duration, true)` — argumento process_always=true é obrigatório.
-- O padrão de mundo completo é estabelecido na Phase 3 (Mundo 1) e replicado nas Phases 4-10.
-- macOS CI pitfalls documentados em 00-004-SUMMARY.md (ETC2 ASTC, bundle identifier, codesign=1).
-- **Próxima fase: Phase 2 — Infraestrutura** (save system, Dialogic 2, controles reconfiguráveis).
+- Phase 1 COMPLETA (2026-06-04): player.gd com coyote 6f, jump buffer 8f, dash, knockback, 6 animações
+- Phase 2 COMPLETA: SaveManager, AudioManager, ControlsManager autoloads; Dialogic 2 integration
+- **Phase 3 Plan 01 COMPLETA (2026-06-08):** AudioManager autoload, player.died signal, provas_mundo1 schema
+- **Phase 3 Plan 02 COMPLETA (2026-06-08):** Malandro (stomp + lateral damage), StaticObstacle, Checkpoint, ProvaItem
+  - Todos os 4 objetos são reusáveis e can be instanced múltiplas vezes
+  - Stomp-kill com bounce guarded by _stomped_this_frame flag (previne double-hit)
+  - Prova persistence com defensive .get() e dedup guard
+  - All collision disables use set_deferred() (physics safety)
+  - No GPUParticles2D anywhere (gl_compatibility constraint)
+- CPUParticles2D obrigatório (nunca GPUParticles2D) — renderer gl_compatibility não suporta GPU particles na web
+- Hit-stop uses `create_timer(duration, true)` — argumento process_always=true é obrigatório
+- **Próxima: Plan 03** (fase1_rua.gd + mundo1_abertura.gd — level assembly e boss intro)
