@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var skip_button: Button = $SkipButton
+@onready var skip_button: Button = $UILayer/SkipButton
 @onready var start_button: Button = $StartButton
 
 const TIMELINE_ID := "test_dialogue"

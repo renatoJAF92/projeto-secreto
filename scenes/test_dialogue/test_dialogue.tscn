@@ -17,7 +17,10 @@ offset_right = 224.0
 offset_bottom = 100.0
 text = "INICIAR DIÁLOGO"
 
-[node name="SkipButton" type="Button" parent="."]
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="SkipButton" type="Button" parent="UILayer"]
 visible = false
 offset_left = 248.0
 offset_top = 8.0
