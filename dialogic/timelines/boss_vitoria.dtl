@@ -1,0 +1,14 @@
+join Natalia (default) left
+join Renato (default) right
+join Luis (default) center
+
+Luis: Tudo bem, vocês conquistaram minha confiança. Tenham uma boa vida juntos.
+
+Natalia (default): Obrigada, pai. Você não vai se arrepender.
+
+Renato (default): Vamos criar algo bonito — para você, para ela, para a gente.
+
+Luis: Eu acredito em vocês.
+
+leave all
+[end_timeline]

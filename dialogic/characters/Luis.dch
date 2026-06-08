@@ -1,0 +1,22 @@
+{
+"@subtype": "DialogicCharacter",
+"@path": "res://addons/dialogic/Resources/character.gd",
+"display_name": "Luis",
+"nicknames": [],
+"color": Color(0.627451, 0.294118, 0.294118, 1),
+"description": "O pai desconfiante de Natália",
+"scale": 1.0,
+"offset": Vector2(0, 0),
+"mirror": false,
+"default_portrait": "default",
+"portraits": {
+"default": {
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn",
+"export_overrides": {
+"image": "res://addons/dialogic/Modules/Character/default_portrait.png"
+}
+}
+},
+"custom_info": {
+}
+}

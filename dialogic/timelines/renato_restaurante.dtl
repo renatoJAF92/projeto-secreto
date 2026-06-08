@@ -1,0 +1,13 @@
+join Natalia (default) left
+join Renato (default) right
+
+Renato (default): Natália... você acredita que conseguimos?
+Natalia (default): Conseguimos tudo até agora. Porque parariamos agora?
+
+Renato (default): É... você tem razão. Vamos lá então, encarar o teu pai.
+Natalia (default): Com você do meu lado, consigo qualquer coisa.
+
+Renato (default): Sempre. Pra sempre, Natália.
+
+leave all
+[end_timeline]

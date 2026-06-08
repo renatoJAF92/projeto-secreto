@@ -1,0 +1,38 @@
+join Natalia (default) left
+join Renato (default) right
+
+Natalia (default): Pai, eu queria falar de um jeito sério...
+Luis: Você acha que está pronta para essa responsabilidade?
+
+Luis: Vou fazer três perguntas. Responda com verdade.
+
+Luis: Primeira: o Renato está realmente comprometido com você?
+
+- choice: Ele provou cada dia — trouxe presentes, planejou o futuro
+	signal choice_correct
+
+- choice: Acho que sim, mas é incerto
+	signal choice_wrong
+
+Luis: Segunda: você tem certeza que ele não foi só passageira?
+
+- choice: Temos memórias que provam o contrário — a carta dele, a foto do nosso encontro
+	signal choice_correct
+
+- choice: As vezes tenho dúvidas...
+	signal choice_wrong
+
+Luis: Terceira: se tudo desse errado, você teria força para levantar sozinha?
+
+- choice: Aprendi a lutar — cada passo até aqui foi só meu
+	signal choice_correct
+
+- choice: Espero que não chegue a isso...
+	signal choice_wrong
+
+Luis: Espera... quem é aquele rapaz ali?
+
+signal renato_entrada
+
+leave all
+[end_timeline]
