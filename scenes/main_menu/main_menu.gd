@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 func _on_continue_pressed() -> void:
-	SceneTransition.go_to("res://scenes/test_movement/test_movement.tscn")
+	SceneTransition.go_to("res://scenes/world1/mundo1_abertura.tscn")
 
 
 func _on_new_game_pressed() -> void:
@@ -34,12 +34,12 @@ func _on_new_game_pressed() -> void:
 		return
 
 	SaveManager.new_game()
-	SceneTransition.go_to("res://scenes/test_movement/test_movement.tscn")
+	SceneTransition.go_to("res://scenes/world1/mundo1_abertura.tscn")
 
 
 func _on_new_game_confirmed() -> void:
 	SaveManager.new_game()
-	SceneTransition.go_to("res://scenes/test_movement/test_movement.tscn")
+	SceneTransition.go_to("res://scenes/world1/mundo1_abertura.tscn")
 
 
 func _on_options_pressed() -> void:

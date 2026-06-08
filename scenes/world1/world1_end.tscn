@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxfhx6gfab6f"]
+
+[ext_resource type="Script" uid="uid://bejgwh1xnkng" path="res://scenes/world1/world1_end.gd" id="1_end"]
+
+[node name="World1End" type="Node2D"]
+script = ExtResource("1_end")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.08, 0.08, 0.12, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 100.0
+text = "Fim do Mundo 1"
+
+[node name="MenuButton" type="Button" parent="."]
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 200.0
+offset_bottom = 144.0
+text = "Menu"
