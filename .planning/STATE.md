@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-06-08T20:00:00.000Z"
+last_updated: "2026-06-08T20:55:00.000Z"
 progress:
   total_phases: 13
   completed_phases: 3
   total_plans: 17
-  completed_plans: 14
-  percent: 82
+  completed_plans: 15
+  percent: 88
 ---
 
 # STATE — Jogo da Natália
@@ -25,12 +25,12 @@ progress:
 ## Current Position
 
 Phase: 03 (mundo-1-osasco-vertical-slice-completo) — EXECUTING
-Plan: 3 of 5 (Plan 01 and 02 complete)
+Plan: 3 of 5 (Plans 01, 02, 03 complete)
 **Phase:** 03 — Mundo 1 — Osasco
-**Status:** Executing Phase 03 — Plan 03 next
+**Status:** Executing Phase 03 — Plan 04 next
 
 ```
-Progress: [████░░░░░░] 31% (3 of 13 phases touched)
+Progress: [█████░░░░░] 38% (3 of 13 phases touched)
 ```
 
 ---
@@ -42,7 +42,7 @@ Progress: [████░░░░░░] 31% (3 of 13 phases touched)
 | 0 | Fundação | ✅ Complete |
 | 1 | Game Feel | ✅ Complete |
 | 2 | Infraestrutura | ✅ Complete |
-| 3 | Mundo 1 — Osasco | Executing (Plans 01-02/05 done) |
+| 3 | Mundo 1 — Osasco | Executing (Plans 01-03/05 done) |
 | 4 | Mundo 2 — A Faculdade | Not started |
 | 5 | Mundo 3 — O Corporativo | Not started |
 | 6 | Mundo 4 — A Pandemia | Not started |
@@ -96,8 +96,8 @@ Progress: [████░░░░░░] 31% (3 of 13 phases touched)
 
 ## Session Continuity
 
-**Last updated:** 2026-06-08T20:00:00Z
-**Next action:** Execute Plan 03 (nivel assembly com Malandro, Checkpoint, ProvaItem em fase1_rua.gd)
+**Last updated:** 2026-06-08T20:55:00Z
+**Next action:** Execute Plan 04 (mundo1_abertura cutscene + boss_pai setup)
 
 ### Context for next session
 
@@ -111,6 +111,12 @@ Progress: [████░░░░░░] 31% (3 of 13 phases touched)
   - Prova persistence com defensive .get() e dedup guard
   - All collision disables use set_deferred() (physics safety)
   - No GPUParticles2D anywhere (gl_compatibility constraint)
+- **Phase 3 Plan 03 COMPLETA (2026-06-08):** Vertical slice assembly + NPCs
+  - fase1_rua.tscn + fase1_rua.gd: playable linear phase com respawn <500ms + enemy reset
+  - fase2_parque.tscn + fase2_parque.gd: playable linear phase + Renato background NPC (z_index=-1, alpha 0.8)
+  - fase3_restaurante.tscn + fase3_restaurante.gd: playable linear phase + Luis foreshadow (z_index=-2, occluded) + Renato dialogue NPC
+  - renato_npc.gd: StaticBody2D com DialogueZone + Prompt label, guarded Dialogic.start()
+  - Control substitution: 'jump' action used as interact trigger (no dedicated 'interact' action exists)
 - CPUParticles2D obrigatório (nunca GPUParticles2D) — renderer gl_compatibility não suporta GPU particles na web
 - Hit-stop uses `create_timer(duration, true)` — argumento process_always=true é obrigatório
-- **Próxima: Plan 03** (fase1_rua.gd + mundo1_abertura.gd — level assembly e boss intro)
+- **Próxima: Plan 04** (mundo1_abertura.gd + Renato dialogue timeline authoring — cutscene intro + boss setup)
