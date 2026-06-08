@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwhqcn1xhkqg"]
+[gd_scene load_steps=11 format=3 uid="uid://dwhqcn1xhkqg"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase3_restaurante.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" path="res://scenes/world1/checkpoint.tscn" id="5_checkpoint"]
 [ext_resource type="PackedScene" path="res://scenes/world1/prova_item.tscn" id="6_prova"]
 [ext_resource type="Script" path="res://scenes/world1/renato_npc.gd" id="7_renato"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(320, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dialogue"]
 size = Vector2(32, 16)
@@ -89,6 +92,12 @@ offset_right = 8.0
 offset_bottom = -20.0
 text = "[E]"
 visible = false
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(160, 168)
+
+[node name="FloorShape" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_floor")
 
 [node name="ExitTrigger" type="Area2D" parent="."]
 position = Vector2(300, 144)
