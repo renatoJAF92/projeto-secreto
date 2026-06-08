@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 # --- Movement tuning (visible in Inspector) ---
 @export_group("Movement")
 @export var run_speed: float = 200.0
@@ -178,7 +180,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "hurt":
 		_is_hurt = false
 	elif sprite.animation == "death":
-		print("Player death animation finished — respawn hooked in Phase 3")
+		died.emit()
 
 
 # --- Juice effects ---
