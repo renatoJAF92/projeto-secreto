@@ -1,0 +1,20 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dja8f5x7xyxyz"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}]
