@@ -1,7 +1,7 @@
 extends Node
 
 const SAVE_PATH := "user://save.dat"
-const SCHEMA_VERSION := 1
+const SCHEMA_VERSION := 2
 
 var current_save: Dictionary = {}
 
@@ -57,4 +57,5 @@ func _default_save() -> Dictionary:
 		"worlds_completed": [],
 		"powers_unlocked": [],
 		"seen_cutscenes": {},
+		"provas_mundo1": [],
 	}
