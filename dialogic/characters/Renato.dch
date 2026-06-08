@@ -11,7 +11,10 @@
 "default_portrait": "default",
 "portraits": {
 "default": {
-"scene": "res://assets/sprites/portraits/renato_portrait.png"
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn",
+"export_overrides": {
+"image": "res://assets/sprites/portraits/renato_portrait.png"
+}
 }
 },
 "custom_info": {
