@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfcwyz9srq"]
+[gd_scene load_steps=3 format=3 uid="uid://cfcwyz9srq"]
 
 [ext_resource type="Script" path="res://scenes/world2/checkpoint_cafe.gd" id="1_script"]
+[ext_resource type="Resource" path="res://scenes/world1/checkpoint_sprite_frames.tres" id="2_frames"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_collision"]
 size = Vector2(16, 24)
@@ -15,6 +16,7 @@ checkpoint_id = "mundo2_checkpoint_cafe"
 shape = SubResource("RectangleShape2D_collision")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_frames")
 animation = &"idle"
 autoplay = "idle"
 modulate = Color(0.533333, 0.533333, 0.533333, 1)
