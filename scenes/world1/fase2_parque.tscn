@@ -34,13 +34,28 @@ position = Vector2(40, 144)
 position = Vector2(140, 144)
 
 [node name="Malandro2" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(420, 144)
+position = Vector2(280, 144)
 
 [node name="Malandro3" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(780, 144)
+position = Vector2(460, 144)
 
 [node name="Malandro4" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(1100, 144)
+position = Vector2(620, 144)
+
+[node name="Malandro5" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(820, 144)
+
+[node name="Malandro6" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(960, 144)
+
+[node name="Malandro7" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(1140, 144)
+
+[node name="Malandro8" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(1260, 144)
+
+[node name="Malandro9" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(1460, 144)
 
 [node name="Renato" type="Node2D" parent="."]
 position = Vector2(1320, 152)

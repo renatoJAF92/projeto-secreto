@@ -47,19 +47,31 @@ position = Vector2(40, 144)
 position = Vector2(180, 144)
 
 [node name="ProfessorCareca1" parent="." instance=ExtResource("5_professor")]
-position = Vector2(420, 130)
+position = Vector2(320, 130)
 
 [node name="Impressora2" parent="." instance=ExtResource("4_impressora")]
-position = Vector2(640, 144)
+position = Vector2(460, 144)
 
 [node name="ProfessorCareca2" parent="." instance=ExtResource("5_professor")]
-position = Vector2(900, 130)
+position = Vector2(590, 130)
 
 [node name="Impressora3" parent="." instance=ExtResource("4_impressora")]
-position = Vector2(1120, 144)
+position = Vector2(720, 144)
 
 [node name="ProfessorCareca3" parent="." instance=ExtResource("5_professor")]
-position = Vector2(1380, 130)
+position = Vector2(870, 130)
+
+[node name="Impressora4" parent="." instance=ExtResource("4_impressora")]
+position = Vector2(1000, 144)
+
+[node name="ProfessorCareca4" parent="." instance=ExtResource("5_professor")]
+position = Vector2(1130, 130)
+
+[node name="Impressora5" parent="." instance=ExtResource("4_impressora")]
+position = Vector2(1260, 144)
+
+[node name="ProfessorCareca5" parent="." instance=ExtResource("5_professor")]
+position = Vector2(1400, 130)
 
 [node name="TFGItem1" parent="." instance=ExtResource("6_tfg_item")]
 position = Vector2(100, 109)
