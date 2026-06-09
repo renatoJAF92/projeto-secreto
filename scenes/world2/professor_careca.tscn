@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://g2n4o3p5q6r7"]
+
+[ext_resource type="Script" path="res://scenes/world2/professor_careca.gd" id="1"]
+[ext_resource type="Resource" path="res://scenes/world1/malandro_sprite_frames.tres" id="2_frames"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_professor"]
+radius = 6.0
+height = 22.0
+
+[node name="ProfessorCareca" type="StaticBody2D" groups=["hazards"]]
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_professor")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_frames")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.3, 0.3, 0.4, 1)
+polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(0, -20)
