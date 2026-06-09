@@ -14,7 +14,7 @@
 - [x] **Phase 1: Game Feel** — Movimentação da protagonista polida e responsiva antes de qualquer level design.
 - [x] **Phase 2: Infraestrutura** — Save system, transições de cena, signal bus, Dialogic 2 integrado, controles reconfiguráveis.
 - [x] **Phase 3: Mundo 1 — Osasco (vertical slice completo)** — Fases jogáveis, chefe O Pai Desconfiante, diálogos, padrão de mundo estabelecido.
-- [ ] **Phase 4: Mundo 2 — A Faculdade** — Mundo completo + poder Sketch desbloqueado.
+- [ ] **Phase 4: Mundo 2 — A Faculdade** — Mundo completo + poder Sketch desbloqueado. *(Planned — 5 plans, cross-AI reviewed 2026-06-09)*
 - [ ] **Phase 5: Mundo 3 — O Corporativo** — Mundo completo + poder Mapa Urbano desbloqueado.
 - [ ] **Phase 6: Mundo 4 — A Pandemia** — Mundo completo + poder Escudo Blueprint + cachorra companheira.
 - [ ] **Phase 7: Mundo 5 — Santiago e os Votos** — Mundo completo + poder Amor Power + cutscene da proposta.
