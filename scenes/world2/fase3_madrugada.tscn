@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://e6p2r1s3n5q6"]
+
+[ext_resource type="Script" path="res://scenes/world2/fase3_madrugada.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/world2/checkpoint_cafe.tscn" id="3_checkpoint"]
+[ext_resource type="PackedScene" path="res://scenes/world2/impressora_raivosa.tscn" id="4_impressora"]
+[ext_resource type="PackedScene" path="res://scenes/world2/professor_careca.tscn" id="5_professor"]
+[ext_resource type="PackedScene" path="res://scenes/world2/tfg_item.tscn" id="6_tfg_item"]
+[ext_resource type="PackedScene" path="res://scenes/world2/renato_cafe_npc.tscn" id="7_renato_npc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(320, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(32, 48)
+
+[node name="Fase3Madrugada" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.6, 0.58, 0.65, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(40, 144)
+
+[node name="Impressora1" parent="." instance=ExtResource("4_impressora")]
+position = Vector2(120, 144)
+
+[node name="ProfessorCareca" parent="." instance=ExtResource("5_professor")]
+position = Vector2(200, 100)
+
+[node name="TFGItem1" parent="." instance=ExtResource("6_tfg_item")]
+position = Vector2(80, 110)
+prova_id = "tfg_sustentabilidade"
+
+[node name="RenatoCafeNPC" parent="." instance=ExtResource("7_renato_npc")]
+position = Vector2(170, 130)
+
+[node name="Checkpoint" parent="." instance=ExtResource("3_checkpoint")]
+position = Vector2(260, 130)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(160, 168)
+
+[node name="FloorShape" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="ExitTrigger" type="Area2D" parent="."]
+position = Vector2(300, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
+shape = SubResource("RectangleShape2D_exit")
