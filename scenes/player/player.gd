@@ -171,8 +171,7 @@ func take_damage(hit_from_position: Vector2) -> void:
 	hp -= 1
 	if hp <= 0:
 		_is_dead = true
-		died.emit()
-		return
+		return  # death animation triggers died signal via _on_animated_sprite_2d_animation_finished
 	# Play damage effects and knockback
 	var direction := (global_position - hit_from_position).normalized()
 	_knockback = direction * knockback_impulse
