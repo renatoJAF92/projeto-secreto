@@ -42,12 +42,20 @@ var _knockback: Vector2 = Vector2.ZERO
 var _is_hurt: bool = false
 var _is_dead: bool = false
 
+# Power system (new in Phase 4)
+var _current_power: String = ""  # "" = no power
+var _power_cooldown: float = 0.0
+
 # Juice tween handles
 var _flash_tween: Tween
 var _squash_tween: Tween
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dust_particles: CPUParticles2D = $DustParticles
+
+
+func _ready() -> void:
+	_current_power = SaveManager.current_save.get("active_power", "")
 
 
 func _physics_process(delta: float) -> void:
@@ -78,6 +86,14 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("dash") and _can_dash:
 			_start_dash()
 
+		# Power usage (new)
+		if Input.is_action_just_pressed("use_power") and _current_power != "":
+			use_power()
+
+		# Power cycling (new)
+		if Input.is_action_just_pressed("cycle_power"):
+			cycle_power()
+
 	# 3. Knockback application — SET velocity.x (not +=) to prevent per-frame accumulation
 	if _knockback.length() > 1.0:
 		velocity.x = _knockback.x
@@ -94,6 +110,9 @@ func _physics_process(delta: float) -> void:
 	# 5. Jump cut (variable height) — release jump early to cut ascent
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
 		velocity.y *= jump_cut_multiplier
+
+	# 5.5. Power cooldown decrement
+	_power_cooldown -= delta
 
 	# 6. Execute jump when buffer active and grounded (or coyote still valid)
 	if _jump_buffer_timer > 0 and (is_on_floor() or _coyote_timer > 0):
@@ -182,6 +201,65 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		_is_hurt = false
 	elif sprite.animation == "death":
 		died.emit()
+
+
+# --- Power system (Phase 4+) ---
+
+func use_power() -> void:
+	if _power_cooldown > 0.0:
+		return
+
+	match _current_power:
+		"sketch":
+			_use_sketch_power()
+		"amor":
+			_use_amor_power()
+
+
+func _use_sketch_power() -> void:
+	# Plan 03: projectile spawn
+	pass
+
+
+func _use_amor_power() -> void:
+	# Plan 04: aura spawn
+	pass
+
+
+func cycle_power() -> void:
+	var unlocked = SaveManager.current_save.get("powers_unlocked", [])
+	if unlocked.is_empty():
+		return
+
+	var current_idx = unlocked.find(_current_power)
+	if current_idx == -1:
+		current_idx = 0
+	else:
+		current_idx = (current_idx + 1) % unlocked.size()
+
+	_current_power = unlocked[current_idx]
+	SaveManager.current_save["active_power"] = _current_power
+	SaveManager.save_game()
+
+
+func unlock_power(power_id: String) -> void:
+	var unlocked = SaveManager.current_save.get("powers_unlocked", [])
+	if power_id not in unlocked:
+		unlocked.append(power_id)
+		SaveManager.current_save["powers_unlocked"] = unlocked
+
+	# Auto-select if first power
+	if _current_power == "":
+		_current_power = power_id
+		SaveManager.current_save["active_power"] = power_id
+
+	SaveManager.save_game()
+
+
+func heal(amount: int = 1) -> void:
+	# Phase 4+: restore health (3 PV max)
+	# TODO: Implement when HP system is wired in Phase 4
+	pass
 
 
 # --- Juice effects ---

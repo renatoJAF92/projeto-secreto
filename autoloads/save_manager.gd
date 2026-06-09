@@ -1,7 +1,7 @@
 extends Node
 
 const SAVE_PATH := "user://save.dat"
-const SCHEMA_VERSION := 2
+const SCHEMA_VERSION := 3
 
 var current_save: Dictionary = {}
 
@@ -22,7 +22,16 @@ func load_game() -> void:
 	var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if file:
 		var data = file.get_var(true)  # allow_objects=true para Array/Dict aninhados (Pitfall 2)
-		if data is Dictionary and data.get("version", 0) == SCHEMA_VERSION:
+
+		# Handle v2→v3 migration
+		if data is Dictionary and data.get("version", 0) == 2:
+			# Upgrade v2 to v3
+			data["version"] = 3
+			data["active_power"] = ""
+			data["itens_tfg_mundo2"] = []
+			current_save = data
+			save_game()  # Persist the upgraded save
+		elif data is Dictionary and data.get("version", 0) == SCHEMA_VERSION:
 			current_save = data
 		else:
 			# Save corrompido ou versão incompatível (T-02-03, T-02-04)
@@ -56,6 +65,8 @@ func _default_save() -> Dictionary:
 		"checkpoint_id": "",
 		"worlds_completed": [],
 		"powers_unlocked": [],
+		"active_power": "",
 		"seen_cutscenes": {},
 		"provas_mundo1": [],
+		"itens_tfg_mundo2": [],
 	}
