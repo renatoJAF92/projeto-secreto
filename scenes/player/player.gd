@@ -230,8 +230,30 @@ func use_power() -> void:
 
 
 func _use_sketch_power() -> void:
-	# Plan 03: projectile spawn
-	pass
+	# Check cooldown
+	if _power_cooldown > 0.0:
+		return
+
+	# Preload and instantiate projectile
+	var proj_scene = preload("res://scenes/world2/projeto_sketch.tscn")
+	var proj = proj_scene.instantiate()
+
+	# Add to scene
+	get_tree().current_scene.add_child(proj)
+
+	# Set spawn position with facing direction offset
+	var spawn_offset = 10.0 if not sprite.flip_h else -10.0
+	proj.global_position = global_position + Vector2(spawn_offset, 0.0)
+
+	# Set velocity based on facing
+	var velocity_x = 300.0 if not sprite.flip_h else -300.0
+	proj.velocity = Vector2(velocity_x, 0.0)
+
+	# Play SFX
+	AudioManager.play_sfx("sketch_disparo")
+
+	# Set cooldown
+	_power_cooldown = 0.5
 
 
 func _use_amor_power() -> void:
