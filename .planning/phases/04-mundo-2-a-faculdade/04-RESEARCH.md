@@ -668,27 +668,31 @@ func _ready() -> void:
 
 **User confirmation needed for:** A1, A2, A4 before implementation. A3, A5 are LOW-confidence assumptions flagged for design review.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **How many instances of Professor Careca per phase?**
    - What we know: Professor stays in one classroom (fase3), fires comments periodically
    - What's unclear: Do multiple classrooms have Professors (fase1, fase2)? Or only one in fase3?
    - Recommendation: Start with 1 in fase3, balance via Inspector. Add more if fase feels too easy.
+   - [RESOLVED: 1 Professor Careca per fase, positioned per Claude's discretion (CONTEXT.md "Claude's Discretion"). Appears only in fase3_madrugada per D-12: "Professor Careca... aparece em cena específica".]
 
 2. **How should Renato café healing work visually?**
    - What we know: Renato is an NPC in fase3, dialogue triggers on proximity
    - What's unclear: Does healing happen during dialogue or after? SFX or visual feedback?
    - Recommendation: Healing on dialogue end, flash player white, +1 heart icon fade-in.
+   - [RESOLVED: Per D-08 and D-13 (CONTEXT.md): healing on NPC proximity with dialogue "Trouxe café". Flash white + SFX at dialogue end per UI-SPEC recommendation.]
 
 3. **Amor power: AoE kill or contact-based?**
    - What we know: "bolha/aura rotativa" for ~2s, enemies touching it die
    - What's unclear: Damage radius? Does player move inside aura or aura follow player?
    - Recommendation: Fixed radius around player (32px), follows player center. Scale sprite at spawn.
+   - [RESOLVED: Per D-21 (CONTEXT.md): "bolha/aura rotativa que circula ao redor da Natália por ~2s. Qualquer inimigo que tocar morre." Fixed orbit around player. 32px aura radius, follows player center.]
 
 4. **How are the 5 TFG items visually distinct?**
    - What we know: Names (Pesquisa de Campo, Masterplan, etc.)
    - What's unclear: Sprite design for each item? Generic scrolls or unique shapes?
    - Recommendation: Use simple geometric shapes per item (scroll, grid, folder, chart, leaf for sustainability).
+   - [RESOLVED: Per D-16 (CONTEXT.md): each item has a "sprite único" (not generic). Simple geometric shapes per recommendation: scroll (Pesquisa), grid (Masterplan), folder (Complexo Misto), chart (Análise Fluxos), leaf (Sustentabilidade). 16x16px each.]
 
 ## Validation Architecture
 
