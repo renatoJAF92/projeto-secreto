@@ -13,9 +13,14 @@ func _ready() -> void:
 	_music_player.bus = "Master"
 	add_child(_music_player)
 
-	# Register the 8 Mundo 1 SFX keys
+	# Register Mundo 1-4 SFX keys
 	# Each registration is guarded by ResourceLoader.exists() so missing WAVs never crash startup
-	var sfx_keys: Array[String] = ["jump", "checkpoint", "prova_coletada", "prova_apresentada", "dialogo_errado", "stomp", "dano", "vitoria"]
+	var sfx_keys: Array[String] = [
+		# Mundo 1-3
+		"jump", "checkpoint", "prova_coletada", "prova_apresentada", "dialogo_errado", "stomp", "dano", "vitoria",
+		# Mundo 2+ (Phase 4)
+		"prova_tfg_coletada", "qualidade_apresentada", "qualidade_perdida", "sketch_disparo", "amor_ativado", "dano_profundo"
+	]
 	for key: String in sfx_keys:
 		var path: String = "res://assets/audio/sfx/" + key + ".wav"
 		if ResourceLoader.exists(path):
