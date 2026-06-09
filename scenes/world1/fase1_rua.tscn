@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" path="res://scenes/world1/prova_item.tscn" id="6_prova"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
-size = Vector2(320, 16)
+size = Vector2(1600, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
 size = Vector2(32, 48)
@@ -17,7 +17,7 @@ size = Vector2(32, 48)
 script = ExtResource("1_script")
 
 [node name="Background" type="ColorRect" parent="."]
-offset_right = 320.0
+offset_right = 1600.0
 offset_bottom = 180.0
 color = Color(0.101961, 0.101961, 0.18039, 1)
 
@@ -25,33 +25,46 @@ color = Color(0.101961, 0.101961, 0.18039, 1)
 tile_set = ExtResource("3_tileset")
 physics_layer_0/collision_enabled = true
 layer_physics_layer_0 = 1
-tile_data = PackedInt32Array(655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655379, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 393232, 0, 0)
+tile_data = PackedInt32Array(655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655379, 0, 0, 655380, 0, 0, 655381, 0, 0, 655382, 0, 0, 655383, 0, 0, 655384, 0, 0, 655385, 0, 0, 655386, 0, 0, 655387, 0, 0, 655388, 0, 0, 655389, 0, 0, 655390, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0, 655395, 0, 0, 655396, 0, 0, 655397, 0, 0, 655398, 0, 0, 655399, 0, 0, 655400, 0, 0, 655401, 0, 0, 655402, 0, 0, 655403, 0, 0, 655404, 0, 0, 655405, 0, 0, 655406, 0, 0, 655407, 0, 0, 655408, 0, 0, 655409, 0, 0, 655410, 0, 0, 655411, 0, 0, 655412, 0, 0, 655413, 0, 0, 655414, 0, 0, 655415, 0, 0, 655416, 0, 0, 655417, 0, 0, 655418, 0, 0, 655419, 0, 0, 655420, 0, 0, 655421, 0, 0, 655422, 0, 0, 655423, 0, 0, 655424, 0, 0, 655425, 0, 0, 655426, 0, 0, 655427, 0, 0, 655428, 0, 0, 655429, 0, 0, 655430, 0, 0, 655431, 0, 0, 655432, 0, 0, 655433, 0, 0, 655434, 0, 0, 655435, 0, 0, 655436, 0, 0, 655437, 0, 0, 655438, 0, 0, 655439, 0, 0, 655440, 0, 0, 655441, 0, 0, 655442, 0, 0, 655443, 0, 0, 655444, 0, 0, 655445, 0, 0, 655446, 0, 0, 655447, 0, 0, 655448, 0, 0, 655449, 0, 0, 655450, 0, 0, 655451, 0, 0, 655452, 0, 0, 655453, 0, 0, 655454, 0, 0, 655455, 0, 0, 655456, 0, 0, 655457, 0, 0, 655458, 0, 0, 655459, 0, 0, 458772, 0, 0, 458773, 0, 0, 458774, 0, 0, 458775, 0, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 393251, 0, 0, 524336, 0, 0, 524337, 0, 0, 524338, 0, 0, 524339, 0, 0, 524340, 0, 0, 458814, 0, 0, 458815, 0, 0, 458816, 0, 0, 458817, 0, 0, 393292, 0, 0, 393293, 0, 0, 393294, 0, 0, 393295, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
 position = Vector2(40, 144)
 
 [node name="Malandro1" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(120, 144)
+position = Vector2(160, 144)
 
 [node name="Malandro2" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(220, 144)
+position = Vector2(400, 144)
+
+[node name="Malandro3" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(700, 144)
+
+[node name="Malandro4" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(1050, 144)
+
+[node name="Malandro5" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(1350, 144)
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_checkpoint")]
-position = Vector2(160, 130)
+position = Vector2(790, 118)
 checkpoint_id = "mundo1_fase1_cp1"
 
 [node name="ProvaItem1" parent="." instance=ExtResource("6_prova")]
-position = Vector2(80, 110)
+position = Vector2(280, 109)
 prova_id = "prova_foto"
 
+[node name="ProvaItem2" parent="." instance=ExtResource("6_prova")]
+position = Vector2(960, 94)
+prova_id = "prova_carta"
+
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(160, 168)
+position = Vector2(800, 168)
 
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_floor")
 
 [node name="ExitTrigger" type="Area2D" parent="."]
-position = Vector2(300, 144)
+position = Vector2(1555, 144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
 shape = SubResource("RectangleShape2D_exit")

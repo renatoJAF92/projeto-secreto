@@ -182,10 +182,5 @@ func _trigger_victory() -> void:
 	await flash_tween.finished
 	game_over_flash.visible = false
 
-	# Transition to world1_end with fallback
-	var world_end_path = "res://scenes/world1/world1_end.tscn"
-	if ResourceLoader.exists(world_end_path):
-		SceneTransition.go_to(world_end_path)
-	else:
-		# Fallback to main menu if world1_end doesn't exist yet
-		SceneTransition.go_to("res://scenes/main_menu/main_menu.tscn")
+	# Transition to World 2 opening cutscene
+	SceneTransition.go_to("res://scenes/world2/mundo2_abertura.tscn")
