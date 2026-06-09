@@ -42,6 +42,9 @@ var _knockback: Vector2 = Vector2.ZERO
 var _is_hurt: bool = false
 var _is_dead: bool = false
 
+# HP system (new in Phase 4, Mundo 2+)
+var hp: int = 3  # Max HP for Mundo 2+
+
 # Power system (new in Phase 4)
 var _current_power: String = ""  # "" = no power
 var _power_cooldown: float = 0.0
@@ -55,6 +58,7 @@ var _squash_tween: Tween
 
 
 func _ready() -> void:
+	hp = 3
 	_current_power = SaveManager.current_save.get("active_power", "")
 
 
@@ -163,6 +167,13 @@ func _start_dash() -> void:
 func take_damage(hit_from_position: Vector2) -> void:
 	if _is_invincible:
 		return
+	# Decrement HP (Phase 4+)
+	hp -= 1
+	if hp <= 0:
+		_is_dead = true
+		died.emit()
+		return
+	# Play damage effects and knockback
 	var direction := (global_position - hit_from_position).normalized()
 	_knockback = direction * knockback_impulse
 	velocity.y = min(velocity.y, -knockback_vertical_impulse)  # Pop upward on hit
@@ -170,6 +181,8 @@ func take_damage(hit_from_position: Vector2) -> void:
 	_is_hurt = true
 	_start_white_flash()
 	_start_hit_stop(hit_stop_frames)  # Detached coroutine — take_damage returns immediately
+	# Play damage SFX
+	AudioManager.play_sfx("dano")
 
 
 func _on_land() -> void:
@@ -258,8 +271,7 @@ func unlock_power(power_id: String) -> void:
 
 func heal(amount: int = 1) -> void:
 	# Phase 4+: restore health (3 PV max)
-	# TODO: Implement when HP system is wired in Phase 4
-	pass
+	hp = min(hp + amount, 3)
 
 
 # --- Juice effects ---
