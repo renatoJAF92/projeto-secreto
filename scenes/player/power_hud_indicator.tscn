@@ -1,0 +1,32 @@
+[gd_scene load_steps=1 format=3 uid="uid://d3jfqhcmqpw"]
+
+[ext_resource type="Script" path="res://scenes/player/power_hud_indicator.gd" id="1_script"]
+
+[node name="PowerHUDIndicator" type="CanvasLayer"]
+layer = 1
+script = ExtResource("1_script")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_left = 1.0
+anchors_top = 0.0
+anchors_right = 1.0
+anchors_bottom = 0.0
+offset_left = -32.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 32.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="."]
+anchors_left = 1.0
+anchors_top = 0.0
+anchors_right = 1.0
+anchors_bottom = 0.0
+offset_left = -40.0
+offset_top = 32.0
+offset_right = -0.0
+offset_bottom = 44.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = ""
