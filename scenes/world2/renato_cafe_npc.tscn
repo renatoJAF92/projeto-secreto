@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://j4o5p6q7r8s9"]
+
+[ext_resource type="Script" path="res://scenes/world2/renato_cafe_npc.gd" id="1"]
+[ext_resource type="Resource" path="res://scenes/world1/malandro_sprite_frames.tres" id="2_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dialogue"]
+size = Vector2(32, 32)
+
+[node name="RenatoCafeNPC" type="StaticBody2D"]
+script = ExtResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_frames")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.5, 0.5, 0.8, 1)
+polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
+
+[node name="DialogueZone" type="Area2D" parent="."]
+monitoring = true
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueZone"]
+shape = SubResource("RectangleShape2D_dialogue")
+
+[node name="Prompt" type="Label" parent="DialogueZone"]
+offset_left = -16.0
+offset_top = -40.0
+offset_right = 16.0
+offset_bottom = -30.0
+text = "[Z]"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
