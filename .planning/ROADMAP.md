@@ -15,14 +15,15 @@
 - [x] **Phase 2: Infraestrutura** — Save system, transições de cena, signal bus, Dialogic 2 integrado, controles reconfiguráveis.
 - [x] **Phase 3: Mundo 1 — Osasco (vertical slice completo)** — Fases jogáveis, chefe O Pai Desconfiante, diálogos, padrão de mundo estabelecido.
 - [ ] **Phase 4: Mundo 2 — A Faculdade** — Mundo completo + poder Sketch desbloqueado. *(Planned — 5 plans, cross-AI reviewed 2026-06-09)*
-- [ ] **Phase 5: Mundo 3 — O Corporativo** — Mundo completo + poder Mapa Urbano desbloqueado.
-- [ ] **Phase 6: Mundo 4 — A Pandemia** — Mundo completo + poder Escudo Blueprint + cachorra companheira.
-- [ ] **Phase 7: Mundo 5 — Santiago e os Votos** — Mundo completo + poder Amor Power + cutscene da proposta.
-- [ ] **Phase 8: Mundo 6 — Tossa de Mar** — Mundo completo + poder Cerâmica desbloqueado.
-- [ ] **Phase 9: Mundo 7 — Vilanova i la Geltrú** — Mundo completo + poder UX Flow desbloqueado.
-- [ ] **Phase 10: Mundo 8 — Zaragoza (finale)** — Mundo completo + Combo Final + ending com fotos reais.
-- [ ] **Phase 11: Overworld e NPCs secundários** — Mapa-mundo navegável, NPCs de suporte por mundo, experiência de progressão conectada.
-- [ ] **Phase 12: Polish, Acessibilidade e Release** — Assist Mode, trilhas sonoras, opções de volume, builds PC e web validadas.
+- [ ] **Phase 5: Level Design Overhaul** — Fases dos Mundos 1 e 2 expandidas: 6400px, mecânicas ambientais, inimigos ricos e arte melhorada.
+- [ ] **Phase 6: Mundo 3 — O Corporativo** — Mundo completo + poder Mapa Urbano desbloqueado.
+- [ ] **Phase 7: Mundo 4 — A Pandemia** — Mundo completo + poder Escudo Blueprint + cachorra companheira.
+- [ ] **Phase 8: Mundo 5 — Santiago e os Votos** — Mundo completo + poder Amor Power + cutscene da proposta.
+- [ ] **Phase 9: Mundo 6 — Tossa de Mar** — Mundo completo + poder Cerâmica desbloqueado.
+- [ ] **Phase 10: Mundo 7 — Vilanova i la Geltrú** — Mundo completo + poder UX Flow desbloqueado.
+- [ ] **Phase 11: Mundo 8 — Zaragoza (finale)** — Mundo completo + Combo Final + ending com fotos reais.
+- [ ] **Phase 12: Overworld e NPCs secundários** — Mapa-mundo navegável, NPCs de suporte por mundo, experiência de progressão conectada.
+- [ ] **Phase 13: Polish, Acessibilidade e Release** — Assist Mode, trilhas sonoras, opções de volume, builds PC e web validadas.
 
 ---
 
@@ -136,10 +137,25 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 5: Mundo 3 — O Corporativo
-**Goal:** O jogador navega pelas torres opressivas de SP, derrota o Gestor Tóxico sem perder HP de saúde mental e desbloqueia Mapa Urbano para revelar caminhos ocultos.
+### Phase 5: Level Design Overhaul
+**Goal:** Expandir e aprofundar as 6 fases dos Mundos 1 e 2 com tamanho quadruplicado (6400px), mecânicas ambientais, variantes de inimigos e arte melhorada com silhuetas reconhecíveis e fundos com paralaxe — antes de construir qualquer mundo novo.
 **Mode:** mvp
 **Depends on:** Phase 4
+**Requirements:** (quality overhaul — sem req-id formal)
+**Success Criteria:**
+1. Todas as 6 fases dos Mundos 1 e 2 têm 6400px de largura com 1 checkpoint no meio (3200px).
+2. Cada fase tem pelo menos 2 seções temáticas distintas com composições de inimigos diferentes.
+3. Inimigo Moto com Dois Homens funciona nas 3 fases do Mundo 1 com comportamento de 2 fases (passageiro → piloto).
+4. Variantes de inimigos presentes: pelo menos 1 variante 2-hit e 1 variante dash-only por mundo.
+5. Todas as 4 mecânicas ambientais (plataformas móveis, zonas de dano passivo, objetos empurráveis, obstáculos temporizados) aparecem em pelo menos 1 fase cada.
+6. Arte melhorada: inimigos com silhuetas reconhecíveis (Polygon2D multi-peça); cada fase tem pelo menos 1 camada de paralaxe no fundo.
+**Plans:** TBD
+**UI hint:** yes
+
+### Phase 6: Mundo 3 — O Corporativo
+**Goal:** O jogador navega pelas torres opressivas de SP, derrota o Gestor Tóxico sem perder HP de saúde mental e desbloqueia Mapa Urbano para revelar caminhos ocultos.
+**Mode:** mvp
+**Depends on:** Phase 5
 **Requirements:** BOSS-03, POWER-02
 **Success Criteria:**
 1. Mundo 3 tem fases com cenário corporativo (torres, e-mails voadores, reuniões-fantasma) e paleta opressiva de cinza.
@@ -149,10 +165,10 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 6: Mundo 4 — A Pandemia
+### Phase 7: Mundo 4 — A Pandemia
 **Goal:** O jogador atravessa ruas vazias e enfrenta o Vírus Chefão de tela inteira, desbloqueia o Escudo Blueprint e ganha a cachorra como companheira permanente a partir deste mundo.
 **Mode:** mvp
-**Depends on:** Phase 5
+**Depends on:** Phase 6
 **Requirements:** BOSS-04, POWER-03, NPC-02
 **Success Criteria:**
 1. Mundo 4 tem fases com cenário de isolamento (ruas vazias, apartamento, máscaras) e paleta escura.
@@ -163,10 +179,10 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 7: Mundo 5 — Santiago e os Votos
+### Phase 8: Mundo 5 — Santiago e os Votos
 **Goal:** O jogador navega burocracia e romance, assiste à cutscene da proposta em Santiago, derrota A Burocracia e desbloqueia Amor Power — invencibilidade conjunta com Renato.
 **Mode:** mvp
-**Depends on:** Phase 6
+**Depends on:** Phase 7
 **Requirements:** BOSS-05, POWER-04, NARR-03
 **Success Criteria:**
 1. Mundo 5 tem fases com cenário de cartório/aeroporto/Santiago e inimigos de burocracia (carimbos, formulários voadores).
@@ -176,10 +192,10 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 8: Mundo 6 — Tossa de Mar
+### Phase 9: Mundo 6 — Tossa de Mar
 **Goal:** O jogador experimenta o primeiro respiro da jornada na costa catalã, derrota a Barreira do Idioma via mini-game de vocabulário e desbloqueia poder Cerâmica.
 **Mode:** mvp
-**Depends on:** Phase 7
+**Depends on:** Phase 8
 **Requirements:** BOSS-06, POWER-05
 **Success Criteria:**
 1. Mundo 6 tem fases com paleta colorida de mar e sol (contraste visual claro em relação aos mundos anteriores).
@@ -189,10 +205,10 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 9: Mundo 7 — Vilanova i la Geltrú
+### Phase 10: Mundo 7 — Vilanova i la Geltrú
 **Goal:** O jogador enfrenta a frustração do mercado fechado, derrota O Mercado Fechado encontrando caminhos alternativos e desbloqueia UX Flow para alterar padrões de inimigos.
 **Mode:** mvp
-**Depends on:** Phase 8
+**Depends on:** Phase 9
 **Requirements:** BOSS-07, POWER-06
 **Success Criteria:**
 1. Mundo 7 tem fases mistas (belas amizades vs. frustração profissional) refletidas no level design com seções de contraste.
@@ -202,10 +218,10 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 10: Mundo 8 — Zaragoza (finale)
+### Phase 11: Mundo 8 — Zaragoza (finale)
 **Goal:** O jogador completa a jornada em Zaragoza, derrota O Medo da Mudança usando todos os poderes combinados no Combo Final e assiste ao ending com fotos reais de Renato e Natália.
 **Mode:** mvp
-**Depends on:** Phase 9
+**Depends on:** Phase 10
 **Requirements:** BOSS-08, POWER-07, POWER-08, NARR-04
 **Success Criteria:**
 1. Chefe O Medo da Mudança exige uso de pelo menos 3 poderes anteriores em mecânicas combinadas para ser derrotado.
@@ -215,10 +231,10 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 11: Overworld e NPCs Secundários
+### Phase 12: Overworld e NPCs Secundários
 **Goal:** A progressão entre mundos acontece via mapa-mundo navegável com mundos desbloqueáveis, e cada mundo tem NPCs secundários com diálogos que enriquecem a narrativa.
 **Mode:** mvp
-**Depends on:** Phase 10
+**Depends on:** Phase 11
 **Requirements:** WORLD-04, NPC-03
 **Success Criteria:**
 1. Mapa-mundo (overworld) é navegável; mundos desbloqueados aparecem acessíveis e mundos futuros aparecem bloqueados visualmente.
@@ -228,10 +244,10 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 12: Polish, Acessibilidade e Release
+### Phase 13: Polish, Acessibilidade e Release
 **Goal:** O jogo completo é jogável por qualquer pessoa com ajustes de acessibilidade, tem trilha sonora em todos os mundos, controles de volume, e builds funcionais para PC e web.
 **Mode:** mvp
-**Depends on:** Phase 11
+**Depends on:** Phase 12
 **Requirements:** ACCESS-01, AUDIO-01, AUDIO-03, EXPORT-01, EXPORT-02
 **Success Criteria:**
 1. Assist Mode está acessível no menu de pause: velocidade 0.5x, invencibilidade e poderes infinitos ativam/desativam sem reiniciar o jogo.
@@ -253,14 +269,15 @@
 | 2. Infraestrutura | 0/0 | Not started | - |
 | 3. Mundo 1 — Osasco | 0/0 | Not started | - |
 | 4. Mundo 2 — A Faculdade | 0/0 | Not started | - |
-| 5. Mundo 3 — O Corporativo | 0/0 | Not started | - |
-| 6. Mundo 4 — A Pandemia | 0/0 | Not started | - |
-| 7. Mundo 5 — Santiago e os Votos | 0/0 | Not started | - |
-| 8. Mundo 6 — Tossa de Mar | 0/0 | Not started | - |
-| 9. Mundo 7 — Vilanova i la Geltrú | 0/0 | Not started | - |
-| 10. Mundo 8 — Zaragoza | 0/0 | Not started | - |
-| 11. Overworld e NPCs Secundários | 0/0 | Not started | - |
-| 12. Polish, Acessibilidade e Release | 0/0 | Not started | - |
+| 5. Level Design Overhaul | 0/0 | Not started | - |
+| 6. Mundo 3 — O Corporativo | 0/0 | Not started | - |
+| 7. Mundo 4 — A Pandemia | 0/0 | Not started | - |
+| 8. Mundo 5 — Santiago e os Votos | 0/0 | Not started | - |
+| 9. Mundo 6 — Tossa de Mar | 0/0 | Not started | - |
+| 10. Mundo 7 — Vilanova i la Geltrú | 0/0 | Not started | - |
+| 11. Mundo 8 — Zaragoza | 0/0 | Not started | - |
+| 12. Overworld e NPCs Secundários | 0/0 | Not started | - |
+| 13. Polish, Acessibilidade e Release | 0/0 | Not started | - |
 
 ---
 
@@ -295,26 +312,26 @@
 | AUDIO-02 | Phase 3 |
 | BOSS-02 | Phase 4 |
 | POWER-01 | Phase 4 |
-| BOSS-03 | Phase 5 |
-| POWER-02 | Phase 5 |
-| BOSS-04 | Phase 6 |
-| POWER-03 | Phase 6 |
-| NPC-02 | Phase 6 |
-| BOSS-05 | Phase 7 |
-| POWER-04 | Phase 7 |
-| NARR-03 | Phase 7 |
-| BOSS-06 | Phase 8 |
-| POWER-05 | Phase 8 |
-| BOSS-07 | Phase 9 |
-| POWER-06 | Phase 9 |
-| BOSS-08 | Phase 10 |
-| POWER-07 | Phase 10 |
-| POWER-08 | Phase 10 |
-| NARR-04 | Phase 10 |
-| WORLD-04 | Phase 11 |
-| NPC-03 | Phase 11 |
-| ACCESS-01 | Phase 12 |
-| AUDIO-01 | Phase 12 |
-| AUDIO-03 | Phase 12 |
-| EXPORT-01 | Phase 12 |
-| EXPORT-02 | Phase 12 |
+| BOSS-03 | Phase 6 |
+| POWER-02 | Phase 6 |
+| BOSS-04 | Phase 7 |
+| POWER-03 | Phase 7 |
+| NPC-02 | Phase 7 |
+| BOSS-05 | Phase 8 |
+| POWER-04 | Phase 8 |
+| NARR-03 | Phase 8 |
+| BOSS-06 | Phase 9 |
+| POWER-05 | Phase 9 |
+| BOSS-07 | Phase 10 |
+| POWER-06 | Phase 10 |
+| BOSS-08 | Phase 11 |
+| POWER-07 | Phase 11 |
+| POWER-08 | Phase 11 |
+| NARR-04 | Phase 11 |
+| WORLD-04 | Phase 12 |
+| NPC-03 | Phase 12 |
+| ACCESS-01 | Phase 13 |
+| AUDIO-01 | Phase 13 |
+| AUDIO-03 | Phase 13 |
+| EXPORT-01 | Phase 13 |
+| EXPORT-02 | Phase 13 |
