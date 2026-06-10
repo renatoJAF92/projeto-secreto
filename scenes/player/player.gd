@@ -171,6 +171,8 @@ func take_damage(hit_from_position: Vector2) -> void:
 	hp -= 1
 	if hp <= 0:
 		_is_dead = true
+		_is_hurt = false
+		Engine.time_scale = 1.0  # cancel any active hit-stop so death anim plays immediately
 		return  # death animation triggers died signal via _on_animated_sprite_2d_animation_finished
 	# Play damage effects and knockback
 	var direction := (global_position - hit_from_position).normalized()
@@ -193,10 +195,10 @@ func _on_land() -> void:
 # Guard: only call play() when animation actually changes (prevents frame-0 freeze)
 func _update_animation() -> void:
 	var new_anim: String
-	if _is_hurt:
-		new_anim = "hurt"
-	elif _is_dead:
+	if _is_dead:
 		new_anim = "death"
+	elif _is_hurt:
+		new_anim = "hurt"
 	elif not is_on_floor():
 		new_anim = "jump" if velocity.y < 0.0 else "fall"
 	elif abs(velocity.x) > 10.0:
@@ -328,7 +330,7 @@ func _start_white_flash() -> void:
 # the timer is NOT paused by time_scale=0 (RESEARCH.md Pitfall 2)
 func _start_hit_stop(frames: int = 3) -> void:
 	Engine.time_scale = 0.0
-	await get_tree().create_timer(frames / 60.0, true).timeout
+	await get_tree().create_timer(frames / 60.0, true, false, true).timeout
 	Engine.time_scale = 1.0
 
 

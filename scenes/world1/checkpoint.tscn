@@ -4,7 +4,7 @@
 [ext_resource type="Resource" path="res://scenes/world1/checkpoint_sprite_frames.tres" id="2_frames"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_collision"]
-size = Vector2(16, 24)
+size = Vector2(24, 80)
 
 [node name="Checkpoint" type="Area2D"]
 monitoring = true

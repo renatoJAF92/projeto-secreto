@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 func _on_continue_pressed() -> void:
-	SceneTransition.go_to("res://scenes/world1/mundo1_abertura.tscn")
+	SceneTransition.go_to(SaveManager.get_checkpoint_scene())
 
 
 func _on_new_game_pressed() -> void:

@@ -3,6 +3,16 @@ extends Node
 const SAVE_PATH := "user://save.dat"
 const SCHEMA_VERSION := 3
 
+const CHECKPOINT_SCENES: Dictionary = {
+	"mundo1_fase1_cp1": "res://scenes/world1/fase1_rua.tscn",
+	"mundo1_fase2_cp1": "res://scenes/world1/fase2_parque.tscn",
+	"mundo1_fase3_cp1": "res://scenes/world1/fase3_restaurante.tscn",
+	"mundo2_fase1_cp1": "res://scenes/world2/fase1_campus.tscn",
+	"mundo2_fase2_cp1": "res://scenes/world2/fase2_atelie.tscn",
+	"mundo2_fase3_cp1": "res://scenes/world2/fase3_madrugada.tscn",
+}
+const DEFAULT_SCENE := "res://scenes/world1/fase1_rua.tscn"
+
 var current_save: Dictionary = {}
 
 func _ready() -> void:
@@ -51,6 +61,10 @@ func new_game() -> void:
 func set_checkpoint(checkpoint_id: String) -> void:
 	current_save["checkpoint_id"] = checkpoint_id
 	save_game()
+
+func get_checkpoint_scene() -> String:
+	var cp: String = current_save.get("checkpoint_id", "")
+	return CHECKPOINT_SCENES.get(cp, DEFAULT_SCENE)
 
 func mark_cutscene_seen(cutscene_id: String) -> void:
 	current_save["seen_cutscenes"][cutscene_id] = true

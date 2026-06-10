@@ -1,14 +1,5 @@
 extends CanvasLayer
 
-const CHECKPOINT_SCENES: Dictionary = {
-	"mundo1_fase1_cp1": "res://scenes/world1/fase1_rua.tscn",
-	"mundo1_fase2_cp1": "res://scenes/world1/fase2_parque.tscn",
-	"mundo1_fase3_cp1": "res://scenes/world1/fase3_restaurante.tscn",
-	"mundo2_fase1_cp1": "res://scenes/world2/fase1_campus.tscn",
-	"mundo2_fase2_cp1": "res://scenes/world2/fase2_atelie.tscn",
-	"mundo2_fase3_cp1": "res://scenes/world2/fase3_madrugada.tscn",
-}
-const DEFAULT_SCENE := "res://scenes/world1/fase1_rua.tscn"
 
 var _handling: bool = false
 var _overlay: ColorRect
@@ -91,5 +82,4 @@ func _show_game_over() -> void:
 
 
 func _get_checkpoint_scene() -> String:
-	var cp: String = SaveManager.current_save.get("checkpoint_id", "")
-	return CHECKPOINT_SCENES.get(cp, DEFAULT_SCENE)
+	return SaveManager.get_checkpoint_scene()
