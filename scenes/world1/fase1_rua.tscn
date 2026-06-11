@@ -22,6 +22,76 @@ size = Vector2(16, 200)
 [node name="Fase1Rua" type="Node2D"]
 script = ExtResource("1_script")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+z_index = -5
+
+[node name="ParallaxLayerFar" type="ParallexLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0)
+motion_mirroring = Vector2(6400, 0)
+
+[node name="BuildingSilhouettes" type="ColorRect" parent="ParallaxBackground/ParallaxLayerFar"]
+offset_right = 6400.0
+offset_bottom = 180.0
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="ParallaxLayerMid" type="ParallexLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0)
+motion_mirroring = Vector2(6400, 0)
+
+[node name="PolesPoly" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 20, 0, 20, 180, 0, 180)
+
+[node name="Pole1" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(150, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(300, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(450, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(600, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(750, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(900, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1050, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1200, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole9" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1350, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole10" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1500, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 6400.0
 offset_bottom = 180.0
