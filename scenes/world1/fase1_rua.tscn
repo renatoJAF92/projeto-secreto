@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://i1b0e1vl0s1i"]
+[gd_scene load_steps=13 format=3 uid="uid://i1b0e1vl0s1i"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase1_rua.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -6,9 +6,12 @@
 [ext_resource type="PackedScene" path="res://scenes/world1/malandro.tscn" id="4_malandro"]
 [ext_resource type="PackedScene" path="res://scenes/world1/checkpoint.tscn" id="5_checkpoint"]
 [ext_resource type="PackedScene" path="res://scenes/world1/prova_item.tscn" id="6_prova"]
+[ext_resource type="PackedScene" path="res://scenes/shared/moving_platform.tscn" id="7_platform"]
+[ext_resource type="PackedScene" path="res://scenes/shared/damage_zone.tscn" id="8_damage"]
+[ext_resource type="PackedScene" path="res://scenes/shared/timed_obstacle.tscn" id="9_obstacle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
-size = Vector2(1600, 16)
+size = Vector2(6400, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
 size = Vector2(32, 48)
@@ -20,7 +23,7 @@ size = Vector2(16, 200)
 script = ExtResource("1_script")
 
 [node name="Background" type="ColorRect" parent="."]
-offset_right = 1600.0
+offset_right = 6400.0
 offset_bottom = 180.0
 color = Color(0.101961, 0.101961, 0.18039, 1)
 
@@ -64,7 +67,7 @@ position = Vector2(1300, 144)
 position = Vector2(1460, 144)
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_checkpoint")]
-position = Vector2(790, 118)
+position = Vector2(3200, 118)
 checkpoint_id = "mundo1_fase1_cp1"
 
 [node name="ProvaItem1" parent="." instance=ExtResource("6_prova")]
@@ -75,14 +78,50 @@ prova_id = "prova_foto"
 position = Vector2(960, 94)
 prova_id = "prova_carta"
 
+[node name="Malandro11" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(3600, 144)
+
+[node name="Malandro12" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(4100, 144)
+
+[node name="Malandro13" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(4600, 144)
+
+[node name="Malandro14" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(5100, 144)
+
+[node name="Malandro15" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(5600, 144)
+
+[node name="MovingPlatform1" parent="." instance=ExtResource("7_platform")]
+position = Vector2(1500, 120)
+move_distance = 80.0
+move_speed = 40.0
+
+[node name="DamageZone1" parent="." instance=ExtResource("8_damage")]
+position = Vector2(4200, 140)
+damage_interval = 0.5
+damage_amount = 1
+
+[node name="TimedObstacle1" parent="." instance=ExtResource("9_obstacle")]
+position = Vector2(5300, 115)
+open_time = 2.0
+closed_time = 2.0
+start_open = false
+
+[node name="SectionDivider" type="ColorRect" parent="."]
+position = Vector2(3000, 0)
+size = Vector2(10, 180)
+color = Color(0.8, 0.8, 0.8, 0.15)
+
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(800, 168)
+position = Vector2(3200, 168)
 
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_floor")
 
 [node name="ExitTrigger" type="Area2D" parent="."]
-position = Vector2(1555, 144)
+position = Vector2(6355, 144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
 shape = SubResource("RectangleShape2D_exit")
@@ -94,7 +133,7 @@ position = Vector2(-8, 90)
 shape = SubResource("RectangleShape2D_wall")
 
 [node name="WallRight" type="StaticBody2D" parent="."]
-position = Vector2(1608, 90)
+position = Vector2(6408, 90)
 
 [node name="WallRightShape" type="CollisionShape2D" parent="WallRight"]
 shape = SubResource("RectangleShape2D_wall")
