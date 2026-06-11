@@ -28,7 +28,7 @@ script = ExtResource("1_script")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 z_index = -5
 
-[node name="ParallaxLayerFar" type="ParallexLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 0)
 motion_mirroring = Vector2(6400, 0)
 
@@ -37,7 +37,7 @@ offset_right = 6400.0
 offset_bottom = 180.0
 color = Color(0.08, 0.14, 0.08, 0.5)
 
-[node name="ParallaxLayerMid" type="ParallexLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayerMid" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.5, 0)
 motion_mirroring = Vector2(6400, 0)
 

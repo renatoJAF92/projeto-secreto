@@ -6,7 +6,7 @@ extends Node2D
 func _ready() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	if player and player.has_node("Camera2D"):
-		player.$Camera2D.limit_right = fase_width
+		player.get_node("Camera2D").limit_right = fase_width
 
 	if exit_trigger:
 		exit_trigger.body_entered.connect(_on_exit_trigger_body_entered)
