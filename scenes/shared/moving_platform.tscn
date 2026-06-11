@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://moving_platform"]
 
 [ext_resource type="Script" path="res://scenes/shared/moving_platform.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/plataforma.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(40, 8)
@@ -12,6 +13,7 @@ sync_to_physics = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="Visual" type="Polygon2D" parent="."]
-color = Color(0.7, 0.7, 0.7, 1)
-polygon = PackedVector2Array(-20, -4, 20, -4, 20, 4, -20, 4)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+centered = true
+position = Vector2(0, 0)
