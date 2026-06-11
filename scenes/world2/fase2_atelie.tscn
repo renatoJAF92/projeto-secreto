@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d4n1q0s2m4p5"]
+[gd_scene load_steps=23 format=3 uid="uid://d4n1q0s2m4p5"]
 
 [ext_resource type="Script" path="res://scenes/world2/fase2_atelie.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://pushable_box" path="res://scenes/shared/pushable_box.tscn" id="6_pushable_box"]
 [ext_resource type="PackedScene" uid="uid://moving_platform" path="res://scenes/shared/moving_platform.tscn" id="7_moving_platform"]
 [ext_resource type="PackedScene" uid="uid://timed_obstacle" path="res://scenes/shared/timed_obstacle.tscn" id="8_timed_obstacle"]
+[ext_resource type="PackedScene" path="res://scenes/world1/malandro_resistente.tscn" id="9_resistente"]
+[ext_resource type="PackedScene" path="res://scenes/world1/malandro_coraza.tscn" id="10_coraza"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(6400, 16)
@@ -84,6 +86,18 @@ position = Vector2(4600, 144)
 
 [node name="Impressora4" parent="Section2Enemies" instance=ExtResource("4_impressora")]
 position = Vector2(5100, 144)
+
+[node name="MalandroResistente1" parent="Section2Enemies" instance=ExtResource("9_resistente")]
+position = Vector2(3800, 144)
+
+[node name="MalandroResistente2" parent="Section2Enemies" instance=ExtResource("9_resistente")]
+position = Vector2(4900, 144)
+
+[node name="MalandroCoraza1" parent="Section2Enemies" instance=ExtResource("10_coraza")]
+position = Vector2(4300, 144)
+
+[node name="MalandroCoraza2" parent="Section2Enemies" instance=ExtResource("10_coraza")]
+position = Vector2(5400, 144)
 
 [node name="PushableBoxes" type="Node2D" parent="."]
 

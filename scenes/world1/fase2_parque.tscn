@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d1xowkflt0g0"]
+[gd_scene load_steps=16 format=3 uid="uid://d1xowkflt0g0"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase2_parque.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" path="res://scenes/shared/moving_platform.tscn" id="7_platform"]
 [ext_resource type="PackedScene" path="res://scenes/shared/damage_zone.tscn" id="8_damage"]
 [ext_resource type="PackedScene" path="res://scenes/shared/timed_obstacle.tscn" id="9_obstacle"]
+[ext_resource type="PackedScene" path="res://scenes/world1/moto_dois_homens.tscn" id="10_moto"]
+[ext_resource type="PackedScene" path="res://scenes/world1/malandro_resistente.tscn" id="11_resistente"]
+[ext_resource type="PackedScene" path="res://scenes/world1/malandro_coraza.tscn" id="12_coraza"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(6400, 16)
@@ -135,6 +138,18 @@ position = Vector2(5100, 144)
 
 [node name="Malandro10" parent="." instance=ExtResource("4_malandro")]
 position = Vector2(5600, 144)
+
+[node name="MotoDoisHomens1" parent="." instance=ExtResource("10_moto")]
+position = Vector2(2600, 144)
+
+[node name="MalandroResistente1" parent="." instance=ExtResource("11_resistente")]
+position = Vector2(3800, 144)
+
+[node name="MalandroResistente2" parent="." instance=ExtResource("11_resistente")]
+position = Vector2(5200, 144)
+
+[node name="MalandroCoraza1" parent="." instance=ExtResource("12_coraza")]
+position = Vector2(4400, 144)
 
 [node name="Renato" type="Node2D" parent="."]
 position = Vector2(1320, 152)
