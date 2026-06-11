@@ -167,6 +167,7 @@ func _trigger_victory() -> void:
 		$VictoryParticles.emitting = true
 
 	AudioManager.play_sfx("vitoria")
+	player.unlock_power("amor")
 
 	# Play victory dialogue
 	Dialogic.start("boss_vitoria")

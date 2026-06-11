@@ -1,0 +1,13 @@
+join Natalia (default) left
+join ProfessorPerpetuo (default) right
+
+ProfessorPerpetuo: [Pausa longa]
+ProfessorPerpetuo: Aprovado. Com distinção.
+ProfessorPerpetuo: Você demonstrou domínio técnico e visão social. Raridade aqui.
+
+Natalia (default): Obrigada, Professor. Foi uma longa jornada.
+
+ProfessorPerpetuo: Agora vá. O mundo real é mais exigente do que qualquer banca.
+
+leave all
+[end_timeline]

@@ -1,0 +1,36 @@
+join Natalia (default) left
+join ProfessorPerpetuo (default) right
+
+ProfessorPerpetuo: Silêncio. Esta é sua defesa de TFG. Vou avaliar cada detalhe.
+ProfessorPerpetuo: Apresente o que pesquisou.
+
+ProfessorPerpetuo: Hmm. Vamos ao mérito. Qual é a contribuição principal do seu projeto?
+
+- choice: Inclusão urbana — cria espaços acessíveis para todos os moradores da região
+	signal choice_correct
+
+- choice: Ainda estou desenvolvendo essa parte da argumentação
+	signal choice_wrong
+
+ProfessorPerpetuo: E a viabilidade econômica? Tem dados?
+
+- choice: Calculei custo por metro quadrado e comparei com três projetos similares da cidade
+	signal choice_correct
+
+- choice: Depende muito do contexto político local, é difícil prever
+	signal choice_wrong
+
+ProfessorPerpetuo: [Eleva os óculos] Insuficiente. Vou elevar o critério de aprovação.
+
+signal professor_increases_requirement
+
+ProfessorPerpetuo: Última questão: impacto social esperado em cinco anos?
+
+- choice: Com base nos dados demográficos, estimo 2.000 famílias beneficiadas diretamente
+	signal choice_correct
+
+- choice: O impacto real depende de como a prefeitura vai implementar o projeto
+	signal choice_wrong
+
+leave all
+[end_timeline]

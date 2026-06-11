@@ -1,0 +1,22 @@
+{
+"@subtype": "DialogicCharacter",
+"@path": "res://addons/dialogic/Resources/character.gd",
+"display_name": "Prof. Perpétuo",
+"nicknames": [],
+"color": Color(0.545098, 0.270588, 0.0745098, 1),
+"description": "O professor rigoroso da banca do TFG",
+"scale": 1.0,
+"offset": Vector2(0, 0),
+"mirror": false,
+"default_portrait": "default",
+"portraits": {
+"default": {
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn",
+"export_overrides": {
+"image": "res://addons/dialogic/Modules/Character/default_portrait.png"
+}
+}
+},
+"custom_info": {
+}
+}
