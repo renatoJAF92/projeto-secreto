@@ -1,0 +1,19 @@
+extends Node2D
+
+@export var fase_width: int = 6400
+
+@onready var exit_trigger: Area2D = $ExitTrigger
+
+func _ready() -> void:
+	# Set camera limit based on exported fase_width
+	var player = get_tree().get_first_node_in_group("player")
+	if player and player.has_node("Camera2D"):
+		player.$Camera2D.limit_right = fase_width
+
+	if exit_trigger:
+		exit_trigger.body_entered.connect(_on_exit_trigger_body_entered)
+
+func _on_exit_trigger_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		# TODO: Load boss arena or final sequence for World 2
+		SceneTransition.go_to("res://scenes/world3/mundo3_overworld.tscn")
