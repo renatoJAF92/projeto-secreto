@@ -1,0 +1,248 @@
+[gd_scene load_steps=17 format=3 uid="uid://dwhqcn1xhkqg"]
+
+[ext_resource type="Script" path="res://scenes/world1/fase3_restaurante.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="TileSet" uid="uid://c7xykjmutl5oj" path="res://scenes/world1/osasco_tileset.tres" id="3_tileset"]
+[ext_resource type="PackedScene" path="res://scenes/world1/malandro.tscn" id="4_malandro"]
+[ext_resource type="PackedScene" path="res://scenes/world1/checkpoint.tscn" id="5_checkpoint"]
+[ext_resource type="PackedScene" path="res://scenes/world1/prova_item.tscn" id="6_prova"]
+[ext_resource type="Script" path="res://scenes/world1/renato_npc.gd" id="7_renato"]
+[ext_resource type="PackedScene" path="res://scenes/shared/moving_platform.tscn" id="8_platform"]
+[ext_resource type="PackedScene" path="res://scenes/shared/damage_zone.tscn" id="9_damage"]
+[ext_resource type="PackedScene" path="res://scenes/shared/timed_obstacle.tscn" id="10_obstacle"]
+[ext_resource type="PackedScene" path="res://scenes/world1/moto_dois_homens.tscn" id="11_moto"]
+[ext_resource type="PackedScene" path="res://scenes/world1/malandro_resistente.tscn" id="12_resistente"]
+[ext_resource type="PackedScene" path="res://scenes/world1/malandro_coraza.tscn" id="13_coraza"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(6400, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dialogue"]
+size = Vector2(48, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(16, 200)
+
+[node name="Fase3Restaurante" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+z_index = -5
+
+[node name="ParallaxLayerFar" type="ParallexLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0)
+motion_mirroring = Vector2(6400, 0)
+
+[node name="BuildingSilhouettes" type="ColorRect" parent="ParallaxBackground/ParallaxLayerFar"]
+offset_right = 6400.0
+offset_bottom = 180.0
+color = Color(0.12, 0.08, 0.08, 0.5)
+
+[node name="ParallaxLayerMid" type="ParallexLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0)
+motion_mirroring = Vector2(6400, 0)
+
+[node name="PolesPoly" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 20, 0, 20, 180, 0, 180)
+
+[node name="Pole1" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(150, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(300, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(450, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(600, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(750, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(900, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1050, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1200, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole9" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1350, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole10" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1500, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 6400.0
+offset_bottom = 180.0
+color = Color(0.15, 0.08, 0.08, 1)
+
+[node name="TileMapLayerBackground" type="TileMapLayer" parent="."]
+tile_set = ExtResource("3_tileset")
+physics_layer_0/collision_enabled = true
+layer_physics_layer_0 = 0
+z_index = -2
+tile_data = PackedInt32Array(0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0)
+
+[node name="LuisForeshadow" type="Node2D" parent="."]
+position = Vector2(500, 152)
+z_index = -2
+
+[node name="LuisVisual" type="Polygon2D" parent="LuisForeshadow"]
+modulate = Color(1, 1, 1, 0.7)
+polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
+color = Color(0.545098, 0, 0, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("3_tileset")
+physics_layer_0/collision_enabled = true
+layer_physics_layer_0 = 1
+tile_data = PackedInt32Array(655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655379, 0, 0, 655380, 0, 0, 655381, 0, 0, 655382, 0, 0, 655383, 0, 0, 655384, 0, 0, 655385, 0, 0, 655386, 0, 0, 655387, 0, 0, 655388, 0, 0, 655389, 0, 0, 655390, 0, 0, 655391, 0, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0, 655395, 0, 0, 655396, 0, 0, 655397, 0, 0, 655398, 0, 0, 655399, 0, 0, 655400, 0, 0, 655401, 0, 0, 655402, 0, 0, 655403, 0, 0, 655404, 0, 0, 655405, 0, 0, 655406, 0, 0, 655407, 0, 0, 655408, 0, 0, 655409, 0, 0, 655410, 0, 0, 655411, 0, 0, 655412, 0, 0, 655413, 0, 0, 655414, 0, 0, 655415, 0, 0, 655416, 0, 0, 655417, 0, 0, 655418, 0, 0, 655419, 0, 0, 655420, 0, 0, 655421, 0, 0, 655422, 0, 0, 655423, 0, 0, 655424, 0, 0, 655425, 0, 0, 655426, 0, 0, 655427, 0, 0, 655428, 0, 0, 655429, 0, 0, 655430, 0, 0, 655431, 0, 0, 655432, 0, 0, 655433, 0, 0, 655434, 0, 0, 655435, 0, 0, 655436, 0, 0, 655437, 0, 0, 655438, 0, 0, 655439, 0, 0, 655440, 0, 0, 655441, 0, 0, 655442, 0, 0, 655443, 0, 0, 655444, 0, 0, 655445, 0, 0, 655446, 0, 0, 655447, 0, 0, 655448, 0, 0, 655449, 0, 0, 655450, 0, 0, 655451, 0, 0, 655452, 0, 0, 655453, 0, 0, 655454, 0, 0, 655455, 0, 0, 655456, 0, 0, 655457, 0, 0, 655458, 0, 0, 655459, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 458786, 0, 0, 458787, 0, 0, 458788, 0, 0, 458789, 0, 0, 458790, 0, 0, 393263, 0, 0, 393264, 0, 0, 393265, 0, 0, 393266, 0, 0, 393267, 0, 0, 458810, 0, 0, 458811, 0, 0, 458812, 0, 0, 458813, 0, 0, 524358, 0, 0, 524359, 0, 0, 524360, 0, 0, 524361, 0, 0, 524362, 0, 0, 458832, 0, 0, 458833, 0, 0, 458834, 0, 0, 458835, 0, 0, 458836, 0, 0, 393304, 0, 0, 393305, 0, 0, 393306, 0, 0, 393307, 0, 0, 393308, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(40, 144)
+
+[node name="Malandro1" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(160, 144)
+
+[node name="Malandro2" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(320, 144)
+
+[node name="Malandro3" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(490, 144)
+
+[node name="Malandro4" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(1800, 144)
+
+[node name="Malandro5" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(3600, 144)
+
+[node name="Malandro6" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(4100, 144)
+
+[node name="Malandro7" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(4600, 144)
+
+[node name="Malandro8" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(5100, 144)
+
+[node name="MotoDoisHomens1" parent="." instance=ExtResource("11_moto")]
+position = Vector2(2800, 144)
+
+[node name="MalandroResistente1" parent="." instance=ExtResource("12_resistente")]
+position = Vector2(3800, 144)
+
+[node name="MalandroCoraza1" parent="." instance=ExtResource("13_coraza")]
+position = Vector2(4400, 144)
+
+[node name="Checkpoint" parent="." instance=ExtResource("5_checkpoint")]
+position = Vector2(3200, 118)
+checkpoint_id = "mundo1_fase3_cp1"
+
+[node name="ProvaItem1" parent="." instance=ExtResource("6_prova")]
+position = Vector2(300, 109)
+prova_id = "prova_presente"
+
+[node name="RenatoNPC" type="StaticBody2D" parent="."]
+position = Vector2(1050, 152)
+script = ExtResource("7_renato")
+
+[node name="RenatoVisual" type="Polygon2D" parent="RenatoNPC"]
+polygon = PackedVector2Array(-8, -16, 8, -16, 8, 16, -8, 16)
+color = Color(0.160784, 0.501961, 0.729412, 1)
+
+[node name="RenatoEyes" type="Polygon2D" parent="RenatoNPC"]
+position = Vector2(-2, -8)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+color = Color(0.364706, 0.682353, 0.886275, 1)
+
+[node name="RenatoEye2" type="Polygon2D" parent="RenatoNPC"]
+position = Vector2(2, -8)
+polygon = PackedVector2Array(-1, -1, 1, -1, 1, 1, -1, 1)
+color = Color(0.364706, 0.682353, 0.886275, 1)
+
+[node name="DialogueZone" type="Area2D" parent="RenatoNPC"]
+position = Vector2(0, 0)
+
+[node name="DialogueZoneCollision" type="CollisionShape2D" parent="RenatoNPC/DialogueZone"]
+shape = SubResource("RectangleShape2D_dialogue")
+
+[node name="Prompt" type="Label" parent="RenatoNPC"]
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = -22.0
+text = "[Pular]"
+visible = false
+
+[node name="MovingPlatform1" parent="." instance=ExtResource("8_platform")]
+position = Vector2(1500, 120)
+move_distance = 80.0
+move_speed = 40.0
+
+[node name="DamageZone1" parent="." instance=ExtResource("9_damage")]
+position = Vector2(4200, 140)
+damage_interval = 0.5
+damage_amount = 1
+
+[node name="TimedObstacle1" parent="." instance=ExtResource("10_obstacle")]
+position = Vector2(5300, 115)
+open_time = 2.0
+closed_time = 2.0
+start_open = false
+
+[node name="SectionDivider" type="ColorRect" parent="."]
+position = Vector2(3000, 0)
+size = Vector2(10, 180)
+color = Color(0.8, 0.8, 0.8, 0.15)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(3200, 168)
+
+[node name="FloorShape" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="ExitTrigger" type="Area2D" parent="."]
+position = Vector2(6355, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
+shape = SubResource("RectangleShape2D_exit")
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-8, 90)
+
+[node name="WallLeftShape" type="CollisionShape2D" parent="WallLeft"]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(6408, 90)
+
+[node name="WallRightShape" type="CollisionShape2D" parent="WallRight"]
+shape = SubResource("RectangleShape2D_wall")
