@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwhqcn1xhkqg"]
+[gd_scene load_steps=14 format=3 uid="uid://dwhqcn1xhkqg"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase3_restaurante.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -7,9 +7,12 @@
 [ext_resource type="PackedScene" path="res://scenes/world1/checkpoint.tscn" id="5_checkpoint"]
 [ext_resource type="PackedScene" path="res://scenes/world1/prova_item.tscn" id="6_prova"]
 [ext_resource type="Script" path="res://scenes/world1/renato_npc.gd" id="7_renato"]
+[ext_resource type="PackedScene" path="res://scenes/shared/moving_platform.tscn" id="8_platform"]
+[ext_resource type="PackedScene" path="res://scenes/shared/damage_zone.tscn" id="9_damage"]
+[ext_resource type="PackedScene" path="res://scenes/shared/timed_obstacle.tscn" id="10_obstacle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
-size = Vector2(1600, 16)
+size = Vector2(6400, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dialogue"]
 size = Vector2(48, 32)
@@ -23,8 +26,78 @@ size = Vector2(16, 200)
 [node name="Fase3Restaurante" type="Node2D"]
 script = ExtResource("1_script")
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+z_index = -5
+
+[node name="ParallaxLayerFar" type="ParallexLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0)
+motion_mirroring = Vector2(6400, 0)
+
+[node name="BuildingSilhouettes" type="ColorRect" parent="ParallaxBackground/ParallaxLayerFar"]
+offset_right = 6400.0
+offset_bottom = 180.0
+color = Color(0.12, 0.08, 0.08, 0.5)
+
+[node name="ParallaxLayerMid" type="ParallexLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0)
+motion_mirroring = Vector2(6400, 0)
+
+[node name="PolesPoly" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 20, 0, 20, 180, 0, 180)
+
+[node name="Pole1" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(150, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole2" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(300, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole3" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(450, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole4" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(600, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole5" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(750, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole6" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(900, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole7" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1050, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole8" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1200, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole9" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1350, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
+[node name="Pole10" type="Polygon2D" parent="ParallaxBackground/ParallaxLayerMid"]
+position = Vector2(1500, 0)
+color = Color(0.35, 0.2, 0.2, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 180, 0, 180)
+
 [node name="Background" type="ColorRect" parent="."]
-offset_right = 1600.0
+offset_right = 6400.0
 offset_bottom = 180.0
 color = Color(0.15, 0.08, 0.08, 1)
 
@@ -63,22 +136,22 @@ position = Vector2(320, 144)
 position = Vector2(490, 144)
 
 [node name="Malandro4" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(660, 144)
+position = Vector2(1800, 144)
 
 [node name="Malandro5" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(870, 144)
+position = Vector2(3600, 144)
 
 [node name="Malandro6" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(1200, 144)
+position = Vector2(4100, 144)
 
 [node name="Malandro7" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(1360, 144)
+position = Vector2(4600, 144)
 
 [node name="Malandro8" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(1480, 144)
+position = Vector2(5100, 144)
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_checkpoint")]
-position = Vector2(810, 118)
+position = Vector2(3200, 118)
 checkpoint_id = "mundo1_fase3_cp1"
 
 [node name="ProvaItem1" parent="." instance=ExtResource("6_prova")]
@@ -117,14 +190,35 @@ offset_bottom = -22.0
 text = "[Pular]"
 visible = false
 
+[node name="MovingPlatform1" parent="." instance=ExtResource("8_platform")]
+position = Vector2(1500, 120)
+move_distance = 80.0
+move_speed = 40.0
+
+[node name="DamageZone1" parent="." instance=ExtResource("9_damage")]
+position = Vector2(4200, 140)
+damage_interval = 0.5
+damage_amount = 1
+
+[node name="TimedObstacle1" parent="." instance=ExtResource("10_obstacle")]
+position = Vector2(5300, 115)
+open_time = 2.0
+closed_time = 2.0
+start_open = false
+
+[node name="SectionDivider" type="ColorRect" parent="."]
+position = Vector2(3000, 0)
+size = Vector2(10, 180)
+color = Color(0.8, 0.8, 0.8, 0.15)
+
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(800, 168)
+position = Vector2(3200, 168)
 
 [node name="FloorShape" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("RectangleShape2D_floor")
 
 [node name="ExitTrigger" type="Area2D" parent="."]
-position = Vector2(1555, 144)
+position = Vector2(6355, 144)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
 shape = SubResource("RectangleShape2D_exit")
@@ -136,7 +230,7 @@ position = Vector2(-8, 90)
 shape = SubResource("RectangleShape2D_wall")
 
 [node name="WallRight" type="StaticBody2D" parent="."]
-position = Vector2(1608, 90)
+position = Vector2(6408, 90)
 
 [node name="WallRightShape" type="CollisionShape2D" parent="WallRight"]
 shape = SubResource("RectangleShape2D_wall")
