@@ -29,14 +29,18 @@ GameOverManager="*res://autoloads/game_over_manager.gd"
 directories/dch_directory={
 "Luis": "res://dialogic/characters/Luis.dch",
 "Natalia": "res://dialogic/characters/Natalia.dch",
+"ProfessorPerpetuo": "res://dialogic/characters/ProfessorPerpetuo.dch",
 "Renato": "res://dialogic/characters/Renato.dch"
 }
 directories/dtl_directory={
 "boss_abertura": "res://dialogic/timelines/boss_abertura.dtl",
 "boss_abertura_bloqueado": "res://dialogic/timelines/boss_abertura_bloqueado.dtl",
+"boss_abertura_tfg": "res://dialogic/timelines/boss_abertura_tfg.dtl",
 "boss_renato_entrada": "res://dialogic/timelines/boss_renato_entrada.dtl",
 "boss_vitoria": "res://dialogic/timelines/boss_vitoria.dtl",
+"boss_vitoria_tfg": "res://dialogic/timelines/boss_vitoria_tfg.dtl",
 "mundo1_abertura": "res://dialogic/timelines/mundo1_abertura.dtl",
+"mundo2_abertura": "res://dialogic/timelines/mundo2_abertura.dtl",
 "renato_restaurante": "res://dialogic/timelines/renato_restaurante.dtl",
 "test_dialogue": "res://dialogic/timelines/test_dialogue.dtl"
 }

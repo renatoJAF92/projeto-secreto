@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pb6ol5x5j0a"
-path="res://.godot/imported/placeholder_tiles.png-97cea9c12c3cc7b088a2948ff547195d.ctex"
+uid="uid://dih2e1ckkmpxt"
+path="res://.godot/imported/plataforma.png-5c0f381e986ac4b010610e22f765eec3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholder_tiles.png"
-dest_files=["res://.godot/imported/placeholder_tiles.png-97cea9c12c3cc7b088a2948ff547195d.ctex"]
+source_file="res://assets/sprites/items/plataforma.png"
+dest_files=["res://.godot/imported/plataforma.png-5c0f381e986ac4b010610e22f765eec3.ctex"]
 
 [params]
 

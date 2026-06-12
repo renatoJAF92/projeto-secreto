@@ -1,15 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5n3y1q0s2m3"]
+[gd_scene load_steps=14 format=3 uid="uid://c5n3y1q0s2m3"]
 
 [ext_resource type="Script" uid="uid://dgiev3ghy0y0g" path="res://scenes/world2/fase1_campus.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://cfcwy1asrq" path="res://scenes/world2/checkpoint_cafe.tscn" id="3_checkpoint"]
 [ext_resource type="PackedScene" uid="uid://d3m2r1s2n3q4" path="res://scenes/world2/impressora_raivosa.tscn" id="4_impressora"]
 [ext_resource type="PackedScene" uid="uid://wj8twxy6wvmx" path="res://scenes/world1/malandro.tscn" id="5_malandro"]
-[ext_resource type="PackedScene" uid="uid://moving_platform" path="res://scenes/shared/moving_platform.tscn" id="6_moving_platform"]
-[ext_resource type="PackedScene" uid="uid://damage_zone" path="res://scenes/shared/damage_zone.tscn" id="7_damage_zone"]
-[ext_resource type="PackedScene" uid="uid://timed_obstacle" path="res://scenes/shared/timed_obstacle.tscn" id="8_timed_obstacle"]
-[ext_resource type="PackedScene" path="res://scenes/world1/malandro_resistente.tscn" id="9_resistente"]
-[ext_resource type="PackedScene" path="res://scenes/world1/malandro_coraza.tscn" id="10_coraza"]
+[ext_resource type="PackedScene" path="res://scenes/shared/moving_platform.tscn" id="6_moving_platform"]
+[ext_resource type="PackedScene" path="res://scenes/shared/damage_zone.tscn" id="7_damage_zone"]
+[ext_resource type="PackedScene" path="res://scenes/shared/timed_obstacle.tscn" id="8_timed_obstacle"]
+[ext_resource type="PackedScene" uid="uid://c4fwyj7vvqqq0" path="res://scenes/world1/malandro_resistente.tscn" id="9_resistente"]
+[ext_resource type="PackedScene" uid="uid://cv42m1ucdx7nx" path="res://scenes/world1/malandro_coraza.tscn" id="10_coraza"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(6400, 16)
@@ -29,7 +29,6 @@ offset_bottom = 180.0
 color = Color(0.75, 0.8, 0.7, 1)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-z_index = -5
 
 [node name="ParallaxLayer_Far" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 0)
@@ -54,7 +53,6 @@ position = Vector2(40, 144)
 
 [node name="SectionDivider" type="ColorRect" parent="."]
 offset_left = 3000.0
-offset_top = 0.0
 offset_right = 3010.0
 offset_bottom = 180.0
 color = Color(0.8, 0.8, 0.8, 0.15)
