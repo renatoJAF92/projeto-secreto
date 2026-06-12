@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vwtjc8cluceu"
-path="res://.godot/imported/death.png-a4b58e1f17aea429f7325d63101b453b.ctex"
+uid="uid://6fc42b5f17b62b62"
+path="res://.godot/imported/patinador-patinador_skater.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/natalia/death.png"
-dest_files=["res://.godot/imported/death.png-a4b58e1f17aea429f7325d63101b453b.ctex"]
+source_file="res://assets/sprites/world1/patinador.png"
+dest_files=["res://.godot/imported/patinador-patinador_skater.ctex"]
 
 [params]
 

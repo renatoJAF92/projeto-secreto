@@ -49,6 +49,10 @@ var hp: int = 3  # Max HP for Mundo 2+
 var _current_power: String = ""  # "" = no power
 var _power_cooldown: float = 0.0
 
+# Bicycle mode (fase2 accessibility)
+var _bicycle_mode: bool = false
+var _bicycle_sprite: Sprite2D = null
+
 # Juice tween handles
 var _flash_tween: Tween
 var _squash_tween: Tween
@@ -170,8 +174,29 @@ func _start_dash() -> void:
 
 
 # Called by hazards/enemies — direction-based knockback away from hit source
+func enable_bicycle_mode() -> void:
+	_bicycle_mode = true
+	_is_invincible = true
+	run_speed = 350.0
+	# Attach bicycle sprite as child
+	var bike_tex = load("res://assets/sprites/player/bicicleta.png")
+	_bicycle_sprite = Sprite2D.new()
+	_bicycle_sprite.texture = bike_tex
+	_bicycle_sprite.position = Vector2(0, 8)
+	add_child(_bicycle_sprite)
+
+
+func disable_bicycle_mode() -> void:
+	_bicycle_mode = false
+	_is_invincible = false
+	run_speed = 200.0
+	if _bicycle_sprite:
+		_bicycle_sprite.queue_free()
+		_bicycle_sprite = null
+
+
 func take_damage(hit_from_position: Vector2) -> void:
-	if _is_invincible:
+	if _is_invincible or _bicycle_mode:
 		return
 	# Decrement HP (Phase 4+)
 	hp -= 1

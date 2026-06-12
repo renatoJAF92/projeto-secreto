@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vwtjc8cluceu"
-path="res://.godot/imported/death.png-a4b58e1f17aea429f7325d63101b453b.ctex"
+uid="uid://c69f2798460d2176"
+path="res://.godot/imported/bicicleta-bicicleta_natalia.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/natalia/death.png"
-dest_files=["res://.godot/imported/death.png-a4b58e1f17aea429f7325d63101b453b.ctex"]
+source_file="res://assets/sprites/player/bicicleta.png"
+dest_files=["res://.godot/imported/bicicleta-bicicleta_natalia.ctex"]
 
 [params]
 

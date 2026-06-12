@@ -1,0 +1,44 @@
+[gd_scene load_steps=1 format=3 uid="uid://bike_choice_ui"]
+
+[ext_resource type="Script" path="res://scenes/ui/bike_choice.gd" id="1_script"]
+
+[node name="BikeChoice" type="CanvasLayer"]
+script = ExtResource("1_script")
+process_mode = 3
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -50.0
+offset_right = 120.0
+offset_bottom = 50.0
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="Panel/VBox"]
+text = "Você gostaria de aprender\na andar de bicicleta?"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+
+[node name="HBox" type="HBoxContainer" parent="Panel/VBox"]
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="BtnSim" type="Button" parent="Panel/VBox/HBox"]
+text = "Sim"
+custom_minimum_size = Vector2(70, 28)
+
+[node name="BtnNao" type="Button" parent="Panel/VBox/HBox"]
+text = "Não"
+custom_minimum_size = Vector2(70, 28)
