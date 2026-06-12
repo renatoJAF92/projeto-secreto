@@ -12,7 +12,7 @@ content_margin_bottom = 6.0
 [node name="PhaseTitle" type="CanvasLayer"]
 script = ExtResource("1_phscript")
 
-[node name="Anchor" type="CenterContainer" parent="."]
+[node name="Container" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,11 +20,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Panel" type="PanelContainer" parent="Anchor"]
+[node name="Panel" type="PanelContainer" parent="Container"]
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1")
 
-[node name="Label" type="Label" parent="Anchor/Panel"]
+[node name="Label" type="Label" parent="Container/Panel"]
 text = "Fase"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 14
