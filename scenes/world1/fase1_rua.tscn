@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://i1b0e1vl0s1i"]
+[gd_scene load_steps=23 format=3 uid="uid://i1b0e1vl0s1i"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase1_rua.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/bg_mid2.png" id="bg_mid2"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/bg_near.png" id="bg_near"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/fg_street.png" id="bg_street"]
+[ext_resource type="PackedScene" path="res://scenes/ui/phase_title.tscn" id="13_phasetitle"]
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(6400, 16)
 
@@ -210,3 +211,6 @@ position = Vector2(6408, 90)
 
 [node name="WallRightShape" type="CollisionShape2D" parent="WallRight"]
 shape = SubResource("RectangleShape2D_wall")
+
+[node name="PhaseTitle" parent="." instance=ExtResource("13_phasetitle")]
+title_text = "Fase 1 - Ruas de Osasco"

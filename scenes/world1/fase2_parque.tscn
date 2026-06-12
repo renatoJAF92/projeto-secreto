@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1xowkflt0g0"]
+[gd_scene load_steps=23 format=3 uid="uid://d1xowkflt0g0"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase2_parque.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/parque_far.png" id="bg_far"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/parque_mid.png" id="bg_mid"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/parque_near.png" id="bg_near"]
+[ext_resource type="PackedScene" path="res://scenes/ui/phase_title.tscn" id="13_phasetitle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(6400, 16)
@@ -96,7 +97,7 @@ position = Vector2(1350, 144)
 position = Vector2(2100, 144)
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_checkpoint")]
-position = Vector2(3200, 118)
+position = Vector2(80, 118)
 checkpoint_id = "mundo1_fase2_cp1"
 
 [node name="ProvaItem1" parent="." instance=ExtResource("6_prova")]
@@ -168,3 +169,6 @@ position = Vector2(6408, 90)
 
 [node name="WallRightShape" type="CollisionShape2D" parent="WallRight"]
 shape = SubResource("RectangleShape2D_wall")
+
+[node name="PhaseTitle" parent="." instance=ExtResource("13_phasetitle")]
+title_text = "Fase 2 - Parque Villa Lobos"

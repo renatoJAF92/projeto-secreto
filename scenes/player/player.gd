@@ -63,6 +63,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if _is_dead:
+		velocity.x = move_toward(velocity.x, 0.0, run_speed)
+		velocity.y += gravity_down * delta
+		move_and_slide()
+		return
+
 	_jumped_this_frame = false
 
 	# 1. Asymmetric gravity: heavier fall than rise (skipped while dashing)

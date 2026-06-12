@@ -39,9 +39,11 @@ directories/dtl_directory={
 "boss_renato_entrada": "res://dialogic/timelines/boss_renato_entrada.dtl",
 "boss_vitoria": "res://dialogic/timelines/boss_vitoria.dtl",
 "boss_vitoria_tfg": "res://dialogic/timelines/boss_vitoria_tfg.dtl",
+"dia_seguinte": "res://dialogic/timelines/dia_seguinte.dtl",
 "mundo1_abertura": "res://dialogic/timelines/mundo1_abertura.dtl",
 "mundo2_abertura": "res://dialogic/timelines/mundo2_abertura.dtl",
 "renato_restaurante": "res://dialogic/timelines/renato_restaurante.dtl",
+"restaurante_saida": "res://dialogic/timelines/restaurante_saida.dtl",
 "test_dialogue": "res://dialogic/timelines/test_dialogue.dtl"
 }
 layout/default_style="res://dialogic/pixel_art_style.tres"
