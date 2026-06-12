@@ -5,16 +5,25 @@
 
 [sub_resource type="AtlasTexture" id="AT_idle_0"]
 atlas = ExtResource("2_tex")
-region = Rect2(0, 0, 16, 40)
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AT_active_0"]
+atlas = ExtResource("2_tex")
+region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_collision"]
-size = Vector2(24, 80)
+size = Vector2(40, 60)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1"]
 animations = [{
 "frames": [{"duration": 1.0, "texture": SubResource("AT_idle_0")}],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AT_active_0")}],
+"loop": true,
+"name": &"active",
 "speed": 5.0
 }]
 
@@ -30,4 +39,4 @@ shape = SubResource("RectangleShape2D_collision")
 sprite_frames = SubResource("SpriteFrames_1")
 animation = &"idle"
 autoplay = "idle"
-position = Vector2(0, -20)
+position = Vector2(0, -24)
