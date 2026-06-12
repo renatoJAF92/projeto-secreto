@@ -147,6 +147,64 @@ Only pause for:
 Conventions not yet established. Will populate as patterns emerge during development.
 <!-- GSD:conventions-end -->
 
+## Game Design — Decisões por Fase
+
+### Mecânicas Ambientais (todas as fases)
+
+- **Plataformas móveis com buraco:** Sempre que houver plataforma aérea móvel (lado a lado), DEVE existir um buraco no chão abaixo dela. Player que ignorar a plataforma e seguir reto cai e morre (KillZone Area2D abaixo).
+- **Obstáculo temporizado (timed_gate):** Bloqueia passagem inteiramente (colisão 16×128px) — player não passa nem andando nem pulando. Ciclo padrão: 4s fechado → 2s aberto. Pisca laranja 0.6s antes de fechar como aviso.
+
+### Fase 1 — Ruas de Osasco
+
+**Inimigos:** Malandros (walk, 40px/s), Malandro Resistente (2 hits), Malandro Coraza (dash), Moto com Dois Homens (velocidade alta)
+
+**Elementos visuais de Osasco:**
+- Ponte metálica (viaduto/overpass) no fundo — ParallaxLayer far (0.05x)
+- Shopping centers no mid-ground — ParallaxLayer mid2 (0.3x)
+- Trânsito de carros/ônibus — ParallaxLayer near (0.5x)
+- Carrinho de cachorro quente — elemento fixo no mundo
+
+**Mecânicas:** 1 plataforma móvel + buraco (x=1440–1664), 1 timed gate (x=5300)
+
+---
+
+### Fase 2 — Parque Villa Lobos
+
+**Inimigos:**
+- **Coruja (owl):** Voa lateralmente em patrol. Quando avista player (alcance 160x100px), faz ataque em parábola Bezier (razante no chão e volta ao ar). Player pode pisotear durante o ataque. Cooldown 2s entre ataques.
+- **Patinador:** Versão mais veloz do malandro (130px/s), anda de patins. Mesmo padrão de stomp.
+- Malandros, Malandro Resistente, MalandroCoraza como inimigos de chão.
+
+**Mecânica das 3 plataformas consecutivas:**
+- 3 plataformas aéreas com `phase_offset` diferente (0.0, 0.33, 0.66)
+- Velocidade ligeiramente maior (55px/s vs 40px/s da fase 1)
+- Player deve pular na hora certa entre as plataformas; cair = morte
+- Pit2 tem 496px de largura (x=1904–2400), cobrindo as 3 plataformas
+
+**Acessibilidade — Modo Bicicleta:**
+- Se o player morrer ≥5x sem avançar para fase 3: aparece diálogo "Você gostaria de aprender a andar de bicicleta?"
+- "Sim" → Natália ganha bicicleta (sprite sobreposto), velocidade 350px/s, invencível para dano de inimigos. Exclusivo da fase 2.
+- "Não" → respawn no checkpoint normalmente.
+- Estado salvo em `SaveManager.current_save["bicycle_active"]`. Limpo ao entrar na fase 3.
+- Contador de mortes em `SaveManager.current_save["fase2_deaths"]`.
+
+---
+
+### Fase 3 — Padoca do Anão
+
+*(Aguardando próximo prompt do usuário para detalhes de inimigos e mecânicas específicas)*
+
+---
+
+### Padrões de Componentes Reutilizáveis
+
+| Componente | Arquivo | Uso |
+|-----------|---------|-----|
+| KillZone | `scenes/shared/kill_zone.gd` | Pit abaixo de plataformas — chama `player.instant_kill()` |
+| TimedGate | `scenes/shared/timed_obstacle.gd/.tscn` | Obstáculo 4s/2s com warning blink |
+| MovingPlatform | `scenes/shared/moving_platform.gd` | Use `phase_offset` para desincronizar múltiplas plataformas |
+| DamageZone | `scenes/shared/damage_zone.gd` | Dano periódico em área (barreiras de obra) |
+
 <!-- GSD:architecture-start source:ARCHITECTURE.md -->
 ## Architecture
 
