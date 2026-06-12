@@ -38,7 +38,7 @@ script = ExtResource("2_3b8ue")
 scene = ExtResource("5_o6sv8")
 overrides = {
 "box_margin_bottom": "4",
-"box_size": "Vector2(300, 56)"
+"box_size": "Vector2(310, 80)"
 }
 
 [sub_resource type="Resource" id="Resource_glossary"]

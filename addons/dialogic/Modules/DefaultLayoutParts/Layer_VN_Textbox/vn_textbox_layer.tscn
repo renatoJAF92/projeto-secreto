@@ -302,6 +302,7 @@ mouse_filter = 2
 script = ExtResource("5_40a50")
 show_on_questions = true
 texture = ExtResource("6_uch03")
+texture_size = Vector2(10, 10)
 metadata/_edit_layout_mode = 1
 
 [node name="AutoAdvanceProgressbar" type="ProgressBar" parent="Anchor/AnimationParent/Sizer/DialogTextPanel"]

@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_stomp_zone_body_entered(body: Node2D) -> void:
 	# velocity.y may be 0 if move_and_slide already resolved the collision this frame
-	if body.is_in_group("player") and body.velocity.y > 80.0 and not _stomped_this_frame:
+	if body.is_in_group("player") and body.velocity.y > 30.0 and not _stomped_this_frame:
 		_stomped_this_frame = true
 		# DUAL-CHECK for dash state
 		var player_is_dashing = body._is_dashing or body._dash_frames_remaining > 0
@@ -72,7 +72,7 @@ func _on_body_hitbox_entered(body: Node2D) -> void:
 	if not body.is_in_group("player") or _is_dead or _stomped_this_frame:
 		return
 	# Fallback stomp: player center clearly above enemy center and not moving upward
-	if body.global_position.y < global_position.y - 8.0 and body.velocity.y > 80.0:
+	if body.global_position.y < global_position.y - 8.0 and body.velocity.y > 30.0:
 		_stomped_this_frame = true
 		# DUAL-CHECK for dash state
 		var player_is_dashing = body._is_dashing or body._dash_frames_remaining > 0
