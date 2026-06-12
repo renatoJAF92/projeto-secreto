@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-06-11T08:23:54.110Z"
+last_updated: "2026-06-12T11:43:57.995Z"
 progress:
   total_phases: 14
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 26
-  completed_plans: 22
-  percent: 85
+  completed_plans: 26
+  percent: 43
 ---
 
 # STATE — Jogo da Natália
