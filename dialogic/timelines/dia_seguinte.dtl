@@ -1,0 +1,21 @@
+join Natalia (default) left
+join Renato (default) right
+
+No outro dia...
+
+Natalia (default): Oi... eu tenho algo a dizer...
+Renato (default): O que foi? Foi tudo bem com o seu pai?
+Natalia (default): Sobre isso... precisamos ficar um tempo sem se ver.
+Renato (default): O QUÊ?
+Natalia (default): Sim... precisamos decidir se continuaremos a sair, formalizando nosso namoro ou se deveremos ir para caminhos diferentes.
+
+O que fazer?
+
+- choice: Continuar o relacionamento
+	signal continuar_namoro
+
+- choice: Acabar a história e não dar uma chance para o homem misterioso (você é quem sabe)
+	signal fim_precoce
+
+leave all
+[end_timeline]

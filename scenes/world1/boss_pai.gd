@@ -16,6 +16,7 @@ var _renato_entered: bool = false
 @onready var renato_entrance: Node2D = $RenatoEntrance
 
 func _ready() -> void:
+	renato_entrance.visible = true
 	_start_boss_sequence()
 
 func _start_boss_sequence() -> void:
@@ -77,7 +78,7 @@ func _show_prova_card(prova_id: String) -> void:
 func _on_dialogic_signal(argument: String) -> void:
 	match argument:
 		"choice_correct":
-			add_trust(10.0)
+			add_trust(20.0)
 		"choice_wrong":
 			add_trust(-15.0)
 			AudioManager.play_sfx("dialogo_errado")
@@ -92,7 +93,7 @@ func add_trust(amount: float) -> void:
 		_trigger_game_over()
 	elif _trust >= TRUST_MAX:
 		_trigger_victory()
-	elif _trust >= 80.0 and not _renato_entered:
+	elif _trust >= 80.0 and not _renato_entered and Dialogic.current_timeline == null:
 		_trigger_renato_entrance()
 
 func _update_hud() -> void:
@@ -116,18 +117,11 @@ func _trigger_renato_entrance() -> void:
 		return
 
 	_renato_entered = true
-	renato_entrance.visible = true
 
-	# Animate Renato entrance
-	var tween = create_tween()
-	tween.tween_property(renato_entrance, "position:x", 250.0, 0.5)
-
-	# Play Renato's dialogue
 	Dialogic.start("boss_renato_entrada")
 	await Dialogic.timeline_ended
 
-	# Renato's appearance grants final trust boost
-	add_trust(20.0)
+	add_trust(15.0)
 
 func _trigger_game_over() -> void:
 	# Update HUD for game over state
@@ -159,7 +153,7 @@ func _trigger_game_over() -> void:
 	SceneTransition.go_to("res://scenes/world1/boss_pai.tscn")
 
 func _trigger_victory() -> void:
-	# Update HUD for victory state
+	Dialogic.end_timeline()
 	trust_bar_fill.color = Color("#D4A017")  # Gold
 
 	# Create victory particle burst

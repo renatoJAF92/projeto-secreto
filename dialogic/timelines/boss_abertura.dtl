@@ -1,36 +1,46 @@
 join Natalia (default) left
 join Renato (default) right
 
-Natalia (default): Pai, eu queria falar de um jeito sério...
+Luis: Quem é esse PLAYBOYZINHO?
+Natalia (default): Esse playboyzinho é o MEU NAMORADO!
+Renato (default): ...playboyzinho?
+
 Luis: Você acha que está pronta para essa responsabilidade?
 
-Luis: Vou fazer três perguntas. Responda com verdade.
+Luis: Vou fazer três perguntas. Responda com sinceridade.
 
 Luis: Primeira: o Renato está realmente comprometido com você?
 
-- choice: Ele provou cada dia — trouxe presentes, planejou o futuro
-	signal choice_correct
-
-- choice: Acho que sim, mas é incerto
+- choice: Ah, ele está aqui, não está? (revira os olhos)
 	signal choice_wrong
 
-Luis: Segunda: você tem certeza que ele não foi só passageira?
-
-- choice: Temos memórias que provam o contrário — a carta dele, a foto do nosso encontro
+- choice: Ele provou cada dia. Fez eu me sentir feliz e me deu comida e presentes.
 	signal choice_correct
 
-- choice: As vezes tenho dúvidas...
+- choice: Espero que sim, mas a única certeza na vida é a morte.
 	signal choice_wrong
 
-Luis: Terceira: se tudo desse errado, você teria força para levantar sozinha?
+Luis: Segunda: ele é religioso?
 
-- choice: Aprendi a lutar — cada passo até aqui foi só meu
+- choice: Ele vem de uma família "católica", mas tem a própria crença.
 	signal choice_correct
 
-- choice: Espero que não chegue a isso...
+- choice: Ele só acredita no Cthulhu
 	signal choice_wrong
 
-Luis: Espera... quem é aquele rapaz ali?
+- choice: Ele acredita na rapazeada
+	signal choice_wrong
+
+Luis: Terceira: qual fenômeno físico é responsável por um lápis parecer quebrado quando colocado em um copo com água?
+
+- choice: Ahn?
+	signal choice_wrong
+
+- choice: Hmm... reflexão?
+	signal choice_wrong
+
+- choice: Hmm... refração?
+	signal choice_correct
 
 signal renato_entrada
 
