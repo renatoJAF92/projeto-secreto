@@ -347,5 +347,13 @@ func _start_hit_stop(frames: int = 3) -> void:
 
 # Temporary helper: exposes death animation for test scene
 # Phase 3 will wire real death/respawn logic
+func instant_kill() -> void:
+	if _is_dead:
+		return
+	_is_dead = true
+	Engine.time_scale = 1.0
+	_start_death_sequence()
+
+
 func die() -> void:
 	_is_dead = true

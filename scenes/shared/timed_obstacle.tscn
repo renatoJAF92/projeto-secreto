@@ -1,22 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://timed_obstacle"]
+[gd_scene load_steps=6 format=3 uid="uid://timed_obstacle"]
 
-[ext_resource type="Script" path="res://scenes/shared/timed_obstacle.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/shared/timed_obstacle.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/timed_gate.png" id="2_tex"]
+
+[sub_resource type="AtlasTexture" id="AT_closed_0"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 0, 16, 128)
+
+[sub_resource type="AtlasTexture" id="AT_open_0"]
+atlas = ExtResource("2_tex")
+region = Rect2(16, 0, 16, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(32, 32)
+size = Vector2(16, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("AT_closed_0")}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AT_open_0")}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
 
 [node name="TimedObstacle" type="StaticBody2D"]
-script = ExtResource("1")
+script = ExtResource("1_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1")
 
-[node name="visual_closed" type="Polygon2D" parent="."]
-visible = true
-color = Color(0.5, 0.5, 0.5, 1)
-polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-
-[node name="visual_open" type="Polygon2D" parent="."]
-visible = false
-color = Color(0.7, 0.7, 0.7, 1)
-polygon = PackedVector2Array(-16, -16, -4, -16, -4, 16, -16, 16)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1")
+animation = &"closed"
+autoplay = "closed"
