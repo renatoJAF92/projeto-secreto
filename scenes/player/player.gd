@@ -178,8 +178,9 @@ func take_damage(hit_from_position: Vector2) -> void:
 	if hp <= 0:
 		_is_dead = true
 		_is_hurt = false
-		Engine.time_scale = 1.0  # cancel any active hit-stop so death anim plays immediately
-		return  # death animation triggers died signal via _on_animated_sprite_2d_animation_finished
+		Engine.time_scale = 1.0
+		_start_death_sequence()
+		return
 	# Play damage effects and knockback
 	var direction := (global_position - hit_from_position).normalized()
 	_knockback = direction * knockback_impulse
@@ -197,13 +198,19 @@ func _on_land() -> void:
 	dust_particles.restart()  # One-shot burst on every landing
 
 
-# Animation state machine — 6 states by priority
+func _start_death_sequence() -> void:
+	sprite.stop()
+	sprite.modulate = Color(1.0, 0.15, 0.15)
+	await get_tree().create_timer(1.5).timeout
+	died.emit()
+
+# Animation state machine — 5 states by priority
 # Guard: only call play() when animation actually changes (prevents frame-0 freeze)
 func _update_animation() -> void:
-	var new_anim: String
 	if _is_dead:
-		new_anim = "death"
-	elif _is_hurt:
+		return
+	var new_anim: String
+	if _is_hurt:
 		new_anim = "hurt"
 	elif not is_on_floor():
 		new_anim = "jump" if velocity.y < 0.0 else "fall"
@@ -219,8 +226,6 @@ func _update_animation() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if sprite.animation == "hurt":
 		_is_hurt = false
-	elif sprite.animation == "death":
-		died.emit()
 
 
 # --- Power system (Phase 4+) ---
