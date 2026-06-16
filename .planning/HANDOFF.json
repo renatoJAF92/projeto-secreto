@@ -1,80 +1,97 @@
 {
   "version": "1.0",
-  "timestamp": "2026-06-10T15:52:07.275Z",
-  "phase": "05",
-  "phase_name": "level-design-overhaul",
-  "phase_dir": ".planning/phases/05-level-design-overhaul",
-  "plan": null,
-  "task": null,
-  "total_tasks": null,
+  "timestamp": "2026-06-16T08:46:35.080Z",
+  "phase": "06",
+  "phase_name": "Menu & UX Polish",
+  "phase_dir": ".planning/phases/06-menu-ux-polish",
+  "plan": 3,
+  "task": 0,
+  "total_tasks": 0,
   "status": "paused",
-  "session_work": "cross-AI review + replan with review feedback",
   "completed_tasks": [
-    {
-      "id": "review",
-      "name": "Cross-AI review of Phase 5 plans (/gsd-review --phase 5 --all)",
-      "status": "done",
-      "commit": "018bfd6",
-      "notes": "Ollama/qwen2.5-coder:7b reviewed all 4 plans. Gemini daily quota exhausted; OpenCode/Qwen unavailable."
-    },
-    {
-      "id": "replan",
-      "name": "Replan Phase 5 incorporating review findings (/gsd-plan-phase 5 --reviews)",
-      "status": "done",
-      "commit": "fb73777",
-      "notes": "5 targeted amendments: Coraza dual-check, @export var fase_width, motion_mirroring on ParallaxLayer, continuous_cd floor check, set_deferred grep fix."
-    },
-    {
-      "id": "verify",
-      "name": "Plan checker verified all 4 updated plans",
-      "status": "done",
-      "commit": "3a91210",
-      "notes": "VERIFICATION PASSED. STATE.md updated to Ready to execute."
-    }
+    {"id": 1, "name": "Plan 06-01: Audio buses + AudioManager volume methods + SaveManager volume fields", "status": "done"},
+    {"id": 2, "name": "Plan 06-02: Main menu background + music + custom popup replacing ConfirmationDialog", "status": "done"},
+    {"id": 3, "name": "Plan 06-03: Options volume sliders + SceneTransition.go_back() + ESC pause menu + player.tscn PauseMenu", "status": "done"}
   ],
   "remaining_tasks": [
     {
-      "id": "exec-ph4",
-      "name": "Execute Phase 4 (Mundo 2 — A Faculdade) — PREREQUISITE",
-      "status": "not_started",
-      "command": "/gsd-execute-phase 4"
+      "id": 4,
+      "name": "checkpoint:human-verify — open Godot editor, test ESC pause menu in any game phase, test volume sliders in options, test custom popup in main menu (NOVO JOGO with existing save)",
+      "status": "not_started"
     },
     {
-      "id": "exec-ph5",
-      "name": "Execute Phase 5 (Level Design Overhaul) — after Phase 4 is complete",
+      "id": 5,
+      "name": "Phase 7: v1.0 Polish & Release — plan + execute",
       "status": "not_started",
-      "command": "/gsd-execute-phase 5"
+      "command": "/gsd-plan-phase 7"
     }
   ],
-  "blockers": [],
+  "blockers": [
+    {
+      "description": "menu_theme.wav is 2.5MB — should be converted to OGG for smaller build. ffmpeg not on this machine.",
+      "type": "human_action",
+      "workaround": "Playable as-is. Convert to .ogg with ffmpeg or Audacity later and drop in assets/audio/music/ — main_menu.gd tries .ogg first, falls back to .wav."
+    }
+  ],
   "human_actions_pending": [
     {
-      "action": "Human verification in Godot editor for Phase 5 Plan 04 Task 9",
-      "context": "Plan 04 is autonomous:false — after Waves 1-3 of Plan 04 execute, a checkpoint:human-verify gate requires the user to play the game and approve all 3 enemy variant behaviors (Moto, Resistente, Coraza) before Wave 4 completion is recorded.",
+      "action": "Test Phase 6 in Godot: press ESC in a game phase → pause menu; adjust volume sliders → volume changes; NOVO JOGO with save → custom panel (not OS dialog)",
+      "context": "checkpoint:human-verify from Plan 06-03",
       "blocking": true
+    },
+    {
+      "action": "Provide new sprite files to replace placeholder pixel art (sprite list given in previous session)",
+      "context": "User generating replacement sprites externally",
+      "blocking": false
     }
   ],
   "decisions": [
     {
-      "decision": "Coraza dual-condition dash check: body._is_dashing OR body._dash_timer > 0.0",
-      "rationale": "Race condition: dash state may reset before stomp signal fires. Dual-check prevents unkillable enemy bug.",
-      "phase": "05"
+      "decision": "Roadmap restructured: v1.0 milestone = Phases 0-7 (Worlds 1+2 only), v2.0+ = Phases 8-15 (Worlds 3-8)",
+      "rationale": "User wants to ship playable v1.0 before building remaining worlds",
+      "phase": "06"
     },
     {
-      "decision": "@export var fase_width: int = 6400 in all 6 fase scripts",
-      "rationale": "Future maintainability: allows individual fases to override width without script changes.",
-      "phase": "05"
+      "decision": "menu_theme.wav used directly (not OGG)",
+      "rationale": "ffmpeg unavailable; Godot supports WAV for music; main_menu.gd has OGG fallback logic already",
+      "phase": "06"
     },
     {
-      "decision": "motion_mirroring=Vector2(6400, 0) belongs on ParallaxLayer nodes, not ParallaxBackground",
-      "rationale": "Godot 4 property location — review finding clarified which node owns the property.",
-      "phase": "05"
+      "decision": "PauseMenu instanced as child of player.tscn",
+      "rationale": "Present in all game phases automatically; absent from main_menu and cutscenes where pause must not fire",
+      "phase": "06"
+    },
+    {
+      "decision": "_came_from_pause detection via SceneTransition.previous_scene ('fase'/'mundo'/'boss'/'world' in path)",
+      "rationale": "pause_menu calls close() which unpauses the tree BEFORE navigating to options — get_tree().paused is false by the time options _ready() runs",
+      "phase": "06"
     }
   ],
   "uncommitted_files": [
-    ".planning/STATE.md — percent changed 85->36 (SDK recalculation artifact from state.planned-phase call)",
-    "scenes/world2/fase1_campus.tscn — trivial whitespace change (1 char, safe to discard)"
+    "autoloads/audio_manager.gd",
+    "autoloads/save_manager.gd",
+    "autoloads/scene_transition.gd",
+    "project.godot",
+    "scenes/main_menu/main_menu.gd",
+    "scenes/main_menu/main_menu.tscn",
+    "scenes/options_menu/options_menu.gd",
+    "scenes/options_menu/options_menu.tscn",
+    "scenes/player/player.tscn",
+    "scenes/ui/pause_menu.gd (new)",
+    "scenes/ui/pause_menu.tscn (new)",
+    "scenes/ui/bike_choice.gd",
+    "scenes/world1/checkpoint.gd",
+    "scenes/world1/coruja.gd",
+    "scenes/world1/fase1_rua.gd",
+    "scenes/world1/fase2_parque.gd",
+    "scenes/world1/fase3_restaurante.gd",
+    "scenes/world2/checkpoint_cafe.gd",
+    "scenes/world2/fase1_campus.gd",
+    "scenes/world2/fase2_atelie.gd",
+    "scenes/world2/fase3_madrugada.gd",
+    ".planning/ROADMAP.md",
+    ".planning/phases/06-menu-ux-polish/ (entire dir — new)"
   ],
-  "next_action": "Run /gsd-execute-phase 4 (Mundo 2) first, then /gsd-execute-phase 5 (Level Design Overhaul). Phase 4 is a prerequisite since Phase 5 rewrites World 2 fases.",
-  "context_notes": "This session was review+replan only — no game code was written. Phase 4 and Phase 5 are both planned and ready. STATE.md percent calculation shows 36% (possibly SDK bug vs earlier 85%). Phase 4 has 5 plans (04-01 through 04-05). Phase 5 has 4 plans (05-01 through 05-04, wave 4 requires human-verify gate in Godot)."
+  "next_action": "Run checkpoint:human-verify in Godot editor (test ESC pause, volume sliders, main menu popup). Then /gsd-plan-phase 7 to plan v1.0 Polish & Release.",
+  "context_notes": "Phase 6 fully implemented — all 3 plans complete with SUMMARY.md files. Also fixed in this session: coruja detection range + V-lerp dive, bike_choice frozen dialog (missing signal connect), checkpoint spawn (key mismatch + missing group lookup in all fase scripts). Roadmap restructured to v1.0 (Worlds 1-2, ship first) then v2.0+ (Worlds 3-8). Large backlog of uncommitted changes spanning Phase 6 + earlier bug fixes — all safe to commit together."
 }

@@ -7,8 +7,8 @@ extends CharacterBody2D
 
 @export_group("Attack")
 @export var detection_range_x: float = 160.0
-@export var detection_range_y: float = 100.0
-@export var dive_duration: float = 1.4
+@export var detection_range_y: float = 180.0
+@export var dive_duration: float = 1.2
 @export var post_dive_cooldown: float = 2.0
 
 enum State { PATROL, DIVING, COOLDOWN }
@@ -82,7 +82,7 @@ func _start_dive(target: Vector2) -> void:
 	_dive_t = 0.0
 	hurt_zone.monitoring = true
 	_dive_p0 = global_position
-	_dive_p1 = Vector2(target.x, 148.0)
+	_dive_p1 = Vector2(target.x, target.y - 4.0)
 	_dive_p2 = Vector2(_origin.x + _dir * patrol_range * 0.5, _origin.y + flight_height)
 
 
@@ -99,8 +99,12 @@ func _do_dive(delta: float) -> void:
 		)
 		return
 
+	# V-shaped path: dive straight to player, then back up
 	var t := _dive_t
-	global_position = (1-t)*(1-t)*_dive_p0 + 2*(1-t)*t*_dive_p1 + t*t*_dive_p2
+	if t < 0.5:
+		global_position = _dive_p0.lerp(_dive_p1, t * 2.0)
+	else:
+		global_position = _dive_p1.lerp(_dive_p2, (t - 0.5) * 2.0)
 
 	if sprite.animation != "dive":
 		sprite.play("dive")

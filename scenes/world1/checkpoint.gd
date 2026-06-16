@@ -6,6 +6,7 @@ var _activated: bool = false
 
 
 func _ready() -> void:
+	add_to_group("checkpoints")
 	body_entered.connect(_on_body_entered)
 	# Player may spawn inside the area — check immediately
 	await get_tree().physics_frame

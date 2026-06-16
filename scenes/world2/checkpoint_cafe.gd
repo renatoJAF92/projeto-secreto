@@ -6,6 +6,7 @@ var _activated: bool = false
 
 
 func _ready() -> void:
+	add_to_group("checkpoints")
 	body_entered.connect(_on_body_entered)
 
 

@@ -9,9 +9,9 @@ signal chose_bicycle(yes: bool)
 
 func _ready() -> void:
 	layer = 60
+	chose_bicycle.connect(_on_choice_made)
 	_btn_sim.pressed.connect(func(): chose_bicycle.emit(true))
 	_btn_nao.pressed.connect(func(): chose_bicycle.emit(false))
-	# Pause game while choosing
 	get_tree().paused = true
 
 

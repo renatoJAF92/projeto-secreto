@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://pause_menu_scene"]
+
+[ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_pausemenu"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+layer = 99
+process_mode = 3
+script = ExtResource("1_pausemenu")
+
+[node name="Overlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 0.65)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 96.0
+offset_top = 44.0
+offset_right = 224.0
+offset_bottom = 136.0
+
+[node name="TitleLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 6.0
+offset_right = 128.0
+offset_bottom = 20.0
+text = "PAUSADO"
+horizontal_alignment = 1
+
+[node name="ButtonList" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 88.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Panel/ButtonList"]
+custom_minimum_size = Vector2(96, 18)
+layout_mode = 2
+text = "RETOMAR"
+
+[node name="OptionsButton" type="Button" parent="Panel/ButtonList"]
+custom_minimum_size = Vector2(96, 18)
+layout_mode = 2
+text = "OPCOES"
+
+[node name="QuitButton" type="Button" parent="Panel/ButtonList"]
+custom_minimum_size = Vector2(96, 18)
+layout_mode = 2
+text = "MENU PRINCIPAL"

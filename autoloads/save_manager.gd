@@ -54,6 +54,9 @@ func save_game() -> void:
 	if file:
 		file.store_var(current_save, true)
 
+func save() -> void:
+	save_game()
+
 func new_game() -> void:
 	current_save = _default_save()
 	save_game()
@@ -83,4 +86,6 @@ func _default_save() -> Dictionary:
 		"seen_cutscenes": {},
 		"provas_mundo1": [],
 		"itens_tfg_mundo2": [],
+		"music_volume": 0.8,
+		"sfx_volume": 1.0,
 	}

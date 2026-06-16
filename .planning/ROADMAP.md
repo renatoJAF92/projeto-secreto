@@ -10,20 +10,27 @@
 
 ## Phases
 
+### Milestone v1.0 — Mundos 1 e 2 (Release Inicial)
+
 - [x] **Phase 0: Fundação** — Projeto Godot configurado, Git LFS ativo, renderer Compatibility definido, estrutura de pastas pronta.
 - [x] **Phase 1: Game Feel** — Movimentação da protagonista polida e responsiva antes de qualquer level design.
 - [x] **Phase 2: Infraestrutura** — Save system, transições de cena, signal bus, Dialogic 2 integrado, controles reconfiguráveis.
 - [x] **Phase 3: Mundo 1 — Osasco (vertical slice completo)** — Fases jogáveis, chefe O Pai Desconfiante, diálogos, padrão de mundo estabelecido.
 - [ ] **Phase 4: Mundo 2 — A Faculdade** — Mundo completo + poder Sketch desbloqueado. *(Planned — 5 plans, cross-AI reviewed 2026-06-09)*
 - [ ] **Phase 5: Level Design Overhaul** — Fases dos Mundos 1 e 2 expandidas: 6400px, mecânicas ambientais, inimigos ricos e arte melhorada.
-- [ ] **Phase 6: Mundo 3 — O Corporativo** — Mundo completo + poder Mapa Urbano desbloqueado.
-- [ ] **Phase 7: Mundo 4 — A Pandemia** — Mundo completo + poder Escudo Blueprint + cachorra companheira.
-- [ ] **Phase 8: Mundo 5 — Santiago e os Votos** — Mundo completo + poder Amor Power + cutscene da proposta.
-- [ ] **Phase 9: Mundo 6 — Tossa de Mar** — Mundo completo + poder Cerâmica desbloqueado.
-- [ ] **Phase 10: Mundo 7 — Vilanova i la Geltrú** — Mundo completo + poder UX Flow desbloqueado.
-- [ ] **Phase 11: Mundo 8 — Zaragoza (finale)** — Mundo completo + Combo Final + ending com fotos reais.
-- [ ] **Phase 12: Overworld e NPCs secundários** — Mapa-mundo navegável, NPCs de suporte por mundo, experiência de progressão conectada.
-- [ ] **Phase 13: Polish, Acessibilidade e Release** — Assist Mode, trilhas sonoras, opções de volume, builds PC e web validadas.
+- [x] **Phase 6: Menu & UX Polish** — Menu principal com background, música e popup customizada; menu de opções com sliders de volume; pause menu em-jogo com ESC.
+- [ ] **Phase 7: v1.0 Polish & Release** — Bug fixes finais, build HTML5 + Windows validada, publicação itch.io com Mundos 1 e 2 completos.
+
+### Milestone v2.0+ — Mundos 3–8 (Expansões pós-release)
+
+- [ ] **Phase 8: Mundo 3 — O Corporativo** — Mundo completo + poder Mapa Urbano desbloqueado.
+- [ ] **Phase 9: Mundo 4 — A Pandemia** — Mundo completo + poder Escudo Blueprint + cachorra companheira.
+- [ ] **Phase 10: Mundo 5 — Santiago e os Votos** — Mundo completo + poder Amor Power + cutscene da proposta.
+- [ ] **Phase 11: Mundo 6 — Tossa de Mar** — Mundo completo + poder Cerâmica desbloqueado.
+- [ ] **Phase 12: Mundo 7 — Vilanova i la Geltrú** — Mundo completo + poder UX Flow desbloqueado.
+- [ ] **Phase 13: Mundo 8 — Zaragoza (finale)** — Mundo completo + Combo Final + ending com fotos reais.
+- [ ] **Phase 14: Overworld e NPCs Secundários** — Mapa-mundo navegável, NPCs de suporte por mundo, experiência de progressão conectada.
+- [ ] **Phase 15: Polish, Acessibilidade e Release Final** — Assist Mode, trilhas sonoras completas, builds PC/web de todos os 8 mundos.
 
 ---
 
@@ -244,17 +251,60 @@
 **Plans:** TBD
 **UI hint:** yes
 
-### Phase 13: Polish, Acessibilidade e Release
-**Goal:** O jogo completo é jogável por qualquer pessoa com ajustes de acessibilidade, tem trilha sonora em todos os mundos, controles de volume, e builds funcionais para PC e web.
+### Phase 13: Mundo 8 — Zaragoza (finale) *(renumbered from 11)*
+*(ver "Phase 11" acima — numbers will be realigned when v2.0 planning starts)*
+**Plans:** TBD
+
+### Phase 14: Overworld e NPCs Secundários *(renumbered from 12)*
+*(ver "Phase 12" acima)*
+**Plans:** TBD
+
+### Phase 15: Polish, Acessibilidade e Release Final *(renumbered from 13)*
+**Goal:** O jogo completo (todos os 8 mundos) é jogável com Assist Mode, trilha sonora completa, e builds PC/web validadas.
 **Mode:** mvp
-**Depends on:** Phase 12
-**Requirements:** ACCESS-01, AUDIO-01, AUDIO-03, EXPORT-01, EXPORT-02
+**Depends on:** Phase 14
+**Requirements:** ACCESS-01, AUDIO-01, EXPORT-01, EXPORT-02
 **Success Criteria:**
-1. Assist Mode está acessível no menu de pause: velocidade 0.5x, invencibilidade e poderes infinitos ativam/desativam sem reiniciar o jogo.
-2. Cada um dos 8 mundos tem trilha sonora temática distinta que toca durante o gameplay (8 temas diferentes confirmaveis).
-3. Menu de opções tem sliders separados para música e SFX que alteram o volume em tempo real.
-4. Build Windows e macOS executam sem erros e sobrevivem ao checklist de glitches de level design em todos os 8 mundos.
-5. Build HTML5 carrega e é jogável no navegador via itch.io sem crash ou tela preta; teste em Chrome e Firefox documentado.
+1. Assist Mode acessível no menu de pause: velocidade 0.5x, invencibilidade e poderes infinitos.
+2. Cada um dos 8 mundos tem trilha sonora temática distinta.
+3. Build HTML5 carrega via itch.io sem crash em Chrome e Firefox.
+**Plans:** TBD
+**UI hint:** yes
+
+---
+
+### Phase 6: Menu & UX Polish
+**Goal:** O menu principal funciona dentro do viewport 320×180 com popup customizado, background visual e música. Menu de opções tem controles de volume independentes para música e SFX. Qualquer fase do jogo pode ser pausada com ESC.
+**Mode:** mvp
+**Depends on:** Phase 5
+**Requirements:** ACCESS-03, AUDIO-01, AUDIO-03
+**Success Criteria:**
+1. Clicar "NOVO JOGO" com save existente exibe popup in-game (não ConfirmationDialog OS) que escala corretamente com a janela.
+2. Menu principal tem imagem de fundo e música em loop.
+3. Menu de opções tem sliders separados de Música e SFX que alteram o volume em tempo real.
+4. Volumes são salvos e restaurados ao reabrir o jogo.
+5. Pressionar ESC em qualquer fase abre pause menu com overlay, "RETOMAR" e "MENU PRINCIPAL".
+**Plans:** 3 planos (sequenciais)
+
+**Wave 1**
+- [x] 06-01-PLAN.md — Audio buses (Music/SFX), AudioManager volume methods, SaveManager volume persistence
+
+**Wave 2** *(blocked on Wave 1)*
+- [x] 06-02-PLAN.md — Main menu: replace ConfirmationDialog, add background image + music
+
+**Wave 3** *(blocked on Waves 1-2)*
+- [x] 06-03-PLAN.md — Options menu volume sliders + in-game ESC pause menu + SceneTransition.previous_scene
+
+### Phase 7: v1.0 Polish & Release
+**Goal:** Mundos 1 e 2 polidos e publicados no itch.io como v1.0 jogável — o primeiro release real do jogo.
+**Mode:** mvp
+**Depends on:** Phase 6
+**Requirements:** EXPORT-01, EXPORT-02
+**Success Criteria:**
+1. Build HTML5 abre no navegador via itch.io sem crash ou tela preta.
+2. Build Windows executa sem erros e o jogo completo (Mundos 1 e 2) é jogável do início ao fim.
+3. Cheklist de bugs jogado por um playtest humano (Mundo 1 + Mundo 2 + Boss 1 + Boss 2) sem blocker.
+4. Página itch.io publicada com descrição, capturas de tela e tag "demo / early access".
 **Plans:** TBD
 **UI hint:** yes
 
@@ -262,22 +312,31 @@
 
 ## Progress Table
 
+### Milestone v1.0 — Mundos 1 e 2
+
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 0. Fundação | 0/4 | In progress | - |
-| 1. Game Feel | 3/3 | Complete | 2026-06-04 |
-| 2. Infraestrutura | 0/0 | Not started | - |
-| 3. Mundo 1 — Osasco | 0/0 | Not started | - |
-| 4. Mundo 2 — A Faculdade | 0/0 | Not started | - |
-| 5. Level Design Overhaul | 0/0 | Not started | - |
-| 6. Mundo 3 — O Corporativo | 0/0 | Not started | - |
-| 7. Mundo 4 — A Pandemia | 0/0 | Not started | - |
-| 8. Mundo 5 — Santiago e os Votos | 0/0 | Not started | - |
-| 9. Mundo 6 — Tossa de Mar | 0/0 | Not started | - |
-| 10. Mundo 7 — Vilanova i la Geltrú | 0/0 | Not started | - |
-| 11. Mundo 8 — Zaragoza | 0/0 | Not started | - |
-| 12. Overworld e NPCs Secundários | 0/0 | Not started | - |
-| 13. Polish, Acessibilidade e Release | 0/0 | Not started | - |
+| 0. Fundação | 4/4 | ✅ Complete | 2026-06-04 |
+| 1. Game Feel | 3/3 | ✅ Complete | 2026-06-04 |
+| 2. Infraestrutura | -/- | ✅ Complete | - |
+| 3. Mundo 1 — Osasco | 5/5 | ✅ Complete | 2026-06-09 |
+| 4. Mundo 2 — A Faculdade | 5/5 | ✅ Complete | - |
+| 5. Level Design Overhaul (M1+M2) | 4/4 | ✅ Complete | - |
+| 6. Menu & UX Polish | 3/3 | ✅ Complete | 2026-06-15 |
+| 7. v1.0 Polish & Release | 0/0 | Not started | - |
+
+### Milestone v2.0+ — Mundos 3–8
+
+| Phase | Plans Complete | Status | Completed |
+|-------|----------------|--------|-----------|
+| 8. Mundo 3 — O Corporativo | 0/0 | Not started | - |
+| 9. Mundo 4 — A Pandemia | 0/0 | Not started | - |
+| 10. Mundo 5 — Santiago e os Votos | 0/0 | Not started | - |
+| 11. Mundo 6 — Tossa de Mar | 0/0 | Not started | - |
+| 12. Mundo 7 — Vilanova i la Geltrú | 0/0 | Not started | - |
+| 13. Mundo 8 — Zaragoza | 0/0 | Not started | - |
+| 14. Overworld e NPCs Secundários | 0/0 | Not started | - |
+| 15. Polish, Acessibilidade e Release Final | 0/0 | Not started | - |
 
 ---
 

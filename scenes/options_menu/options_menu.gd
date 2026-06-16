@@ -1,6 +1,7 @@
 extends Control
 
 var _waiting_for_input: String = ""
+var _came_from_pause: bool = false
 
 const _ACTION_ROWS := {
 	"walk_left": "ActionList/ActionRow_WalkLeft",
@@ -9,14 +10,48 @@ const _ACTION_ROWS := {
 	"dash": "ActionList/ActionRow_Dash",
 }
 
+@onready var _music_slider: HSlider = $AudioSection/MusicRow/MusicSlider
+@onready var _sfx_slider: HSlider = $AudioSection/SFXRow/SFXSlider
+@onready var _music_val: Label = $AudioSection/MusicRow/MusicValueLabel
+@onready var _sfx_val: Label = $AudioSection/SFXRow/SFXValueLabel
+
 
 func _ready() -> void:
+	var prev := SceneTransition.previous_scene
+	_came_from_pause = ("fase" in prev or "mundo" in prev or "boss" in prev or "world" in prev)
+
+	_music_slider.value = SaveManager.current_save.get("music_volume", 0.8)
+	_sfx_slider.value = SaveManager.current_save.get("sfx_volume", 1.0)
+	_update_volume_labels()
+
+	_music_slider.value_changed.connect(_on_music_volume_changed)
+	_sfx_slider.value_changed.connect(_on_sfx_volume_changed)
+
 	for action in ControlsManager.ACTIONS:
 		var remap_btn: Button = get_node(_ACTION_ROWS[action] + "/RemapButton")
 		remap_btn.pressed.connect(start_remap.bind(action))
 	$BottomButtons/ResetButton.pressed.connect(_on_reset)
 	$BottomButtons/BackButton.pressed.connect(_on_back)
 	_refresh_ui()
+
+
+func _on_music_volume_changed(value: float) -> void:
+	AudioManager.set_music_volume(value)
+	SaveManager.current_save["music_volume"] = value
+	SaveManager.save()
+	_update_volume_labels()
+
+
+func _on_sfx_volume_changed(value: float) -> void:
+	AudioManager.set_sfx_volume(value)
+	SaveManager.current_save["sfx_volume"] = value
+	SaveManager.save()
+	_update_volume_labels()
+
+
+func _update_volume_labels() -> void:
+	_music_val.text = "%d%%" % int(_music_slider.value * 100)
+	_sfx_val.text = "%d%%" % int(_sfx_slider.value * 100)
 
 
 func start_remap(action_name: String) -> void:
@@ -30,7 +65,6 @@ func _input(event: InputEvent) -> void:
 	if _waiting_for_input.is_empty():
 		return
 
-	# Cancel on Escape or gamepad B
 	if event is InputEventKey and event.physical_keycode == KEY_ESCAPE and event.pressed:
 		_waiting_for_input = ""
 		_refresh_ui()
@@ -42,11 +76,9 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		return
 
-	# Drift guard: ignore analog stick motion at or below threshold (T-02-11)
 	if event is InputEventJoypadMotion and abs(event.axis_value) <= 0.5:
 		return
 
-	# Accept key press, joypad button press, or strong analog axis motion
 	var accepted := false
 	if event is InputEventKey and event.pressed:
 		accepted = true
@@ -72,7 +104,6 @@ func _refresh_ui() -> void:
 			binding_label.text = "-"
 			continue
 
-		# Build display string from all bound events
 		var parts: PackedStringArray = []
 		for ev in events:
 			if ev is InputEventKey:
@@ -89,10 +120,9 @@ func _refresh_ui() -> void:
 		else:
 			binding_label.text = " / ".join(parts)
 
-		# Yellow tint if any gamepad binding present
 		var has_gamepad := events.any(func(e): return e is InputEventJoypadButton or e is InputEventJoypadMotion)
 		if has_gamepad:
-			binding_label.modulate = Color(1.0, 0.866667, 0.341176, 1)  # #FFDD57
+			binding_label.modulate = Color(1.0, 0.866667, 0.341176, 1)
 
 
 func _on_reset() -> void:
@@ -105,4 +135,8 @@ func _on_reset() -> void:
 
 
 func _on_back() -> void:
-	SceneTransition.go_to("res://scenes/main_menu/main_menu.tscn")
+	if _came_from_pause:
+		get_tree().paused = false
+		SceneTransition.go_back()
+	else:
+		SceneTransition.go_to("res://scenes/main_menu/main_menu.tscn")

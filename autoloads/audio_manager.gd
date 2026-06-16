@@ -1,24 +1,22 @@
 extends Node
 
 # Centralized audio playback for SFX and music.
-# Follows the same pattern as SaveManager and ControlsManager autoloads.
-# Silent-fails on missing SFX keys (never crashes on unregistered audio).
+# Music plays on bus "Music" (idx 1), SFX on bus "SFX" (idx 2).
+
+const _MUSIC_BUS := 1
+const _SFX_BUS := 2
 
 var _sfx_players: Dictionary = {}
 var _music_player: AudioStreamPlayer
 
 func _ready() -> void:
-	# Initialize music player on Master bus
 	_music_player = AudioStreamPlayer.new()
-	_music_player.bus = "Master"
+	_music_player.bus = "Music"
 	add_child(_music_player)
+	_apply_saved_volumes()
 
-	# Register Mundo 1-4 SFX keys
-	# Each registration is guarded by ResourceLoader.exists() so missing WAVs never crash startup
 	var sfx_keys: Array[String] = [
-		# Mundo 1-3
 		"jump", "checkpoint", "prova_coletada", "prova_apresentada", "dialogo_errado", "stomp", "dano", "vitoria",
-		# Mundo 2+ (Phase 4)
 		"prova_tfg_coletada", "qualidade_apresentada", "qualidade_perdida", "sketch_disparo", "amor_ativado", "dano_profundo"
 	]
 	for key: String in sfx_keys:
@@ -27,17 +25,20 @@ func _ready() -> void:
 			var stream: AudioStream = load(path) as AudioStream
 			register_sfx(key, stream)
 
+func _apply_saved_volumes() -> void:
+	var music_vol: float = SaveManager.current_save.get("music_volume", 0.8)
+	var sfx_vol: float = SaveManager.current_save.get("sfx_volume", 1.0)
+	set_music_volume(music_vol)
+	set_sfx_volume(sfx_vol)
+
 func register_sfx(key: String, stream: AudioStream) -> void:
-	# Create a new AudioStreamPlayer for this SFX key
 	var player := AudioStreamPlayer.new()
 	player.stream = stream
-	player.bus = "Master"
+	player.bus = "SFX"
 	add_child(player)
 	_sfx_players[key] = player
 
 func play_sfx(key: String) -> void:
-	# Silent fail if key not registered (stub behavior).
-	# WAV files added by Phase 05 via register_sfx.
 	if _sfx_players.has(key):
 		_sfx_players[key].play()
 	else:
@@ -49,3 +50,17 @@ func play_music(stream: AudioStream) -> void:
 
 func stop_music() -> void:
 	_music_player.stop()
+
+func set_music_volume(linear: float) -> void:
+	AudioServer.set_bus_volume_db(_MUSIC_BUS, linear_to_db(linear) if linear > 0.0 else -80.0)
+
+func set_sfx_volume(linear: float) -> void:
+	AudioServer.set_bus_volume_db(_SFX_BUS, linear_to_db(linear) if linear > 0.0 else -80.0)
+
+func get_music_volume() -> float:
+	var db := AudioServer.get_bus_volume_db(_MUSIC_BUS)
+	return 0.0 if db <= -79.0 else db_to_linear(db)
+
+func get_sfx_volume() -> float:
+	var db := AudioServer.get_bus_volume_db(_SFX_BUS)
+	return 0.0 if db <= -79.0 else db_to_linear(db)

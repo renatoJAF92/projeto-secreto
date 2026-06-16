@@ -11,26 +11,42 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mainmenu")
 
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+expand_mode = 1
+stretch_mode = 5
+
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 180.0
-color = Color(0.101961, 0.101961, 0.180392, 1)
+color = Color(0.101961, 0.101961, 0.180392, 0.55)
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 0
-offset_top = 40.0
+offset_top = 30.0
 offset_right = 320.0
-offset_bottom = 60.0
+offset_bottom = 50.0
 text = "Destiny — Tales de Natalia"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 52.0
+offset_right = 320.0
+offset_bottom = 64.0
+modulate = Color(0.8, 0.8, 1.0, 0.8)
+text = "De Osasco à Espanha"
 horizontal_alignment = 1
 
 [node name="ButtonGroup" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 96.0
-offset_top = 80.0
+offset_top = 78.0
 offset_right = 224.0
-offset_bottom = 140.0
+offset_bottom = 150.0
 theme_override_constants/separation = 8
 alignment = 1
 
@@ -53,13 +69,44 @@ text = "OPCOES"
 modulate = Color(0.533333, 0.533333, 0.666667, 1)
 layout_mode = 0
 offset_left = 260.0
-offset_top = 168.0
+offset_top = 170.0
 offset_right = 316.0
-offset_bottom = 176.0
-text = "v0.2"
+offset_bottom = 178.0
+text = "v0.3"
 
-[node name="ConfirmNewGame" type="ConfirmationDialog" parent="."]
-title = "Novo Jogo"
-ok_button_text = "APAGAR"
-dialog_text = "Apagar progresso? Esta acao nao pode ser desfeita."
-cancel_button_text = "CANCELAR"
+[node name="ConfirmPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 56.0
+offset_right = 260.0
+offset_bottom = 124.0
+z_index = 10
+
+[node name="MessageLabel" type="Label" parent="ConfirmPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 40.0
+text = "Apagar progresso atual?
+Esta acao nao pode ser desfeita."
+autowrap_mode = 2
+
+[node name="ButtonRow" type="HBoxContainer" parent="ConfirmPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 44.0
+offset_right = 192.0
+offset_bottom = 62.0
+theme_override_constants/separation = 8
+
+[node name="ConfirmButton" type="Button" parent="ConfirmPanel/ButtonRow"]
+custom_minimum_size = Vector2(88, 18)
+layout_mode = 2
+text = "APAGAR"
+
+[node name="CancelButton" type="Button" parent="ConfirmPanel/ButtonRow"]
+custom_minimum_size = Vector2(88, 18)
+layout_mode = 2
+text = "CANCELAR"
