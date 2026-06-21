@@ -4,13 +4,13 @@
 
 [node name="BikeChoice" type="CanvasLayer"]
 script = ExtResource("1_script")
-process_mode = 3
 
 [node name="Dim" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.6)
+mouse_filter = 2
 
 [node name="Panel" type="PanelContainer" parent="."]
 anchors_preset = 8
