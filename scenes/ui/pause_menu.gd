@@ -83,6 +83,9 @@ func _on_code_confirm() -> void:
 	if code == "motherlode":
 		_activate_invincibility()
 		return
+	if code == "cockadoodledoo":
+		_activate_cockadoodledoo()
+		return
 	_on_code_cancel()
 
 
@@ -91,10 +94,19 @@ func _activate_invincibility() -> void:
 	if player and "invincible" in player:
 		player.invincible = true
 	close()
-	_show_feedback()
+	_show_feedback("INVENCIVEL ATIVADO!")
 
 
-func _show_feedback() -> void:
+func _activate_cockadoodledoo() -> void:
+	var player := get_tree().get_first_node_in_group("player")
+	if player and player.has_method("activate_cockadoodledoo"):
+		player.activate_cockadoodledoo()
+	close()
+	_show_feedback("SUPER PULO ATIVADO!")
+
+
+func _show_feedback(message: String) -> void:
+	_feedback_label.text = message
 	_feedback_label.modulate.a = 1.0
 	_feedback_label.visible = true
 	var t := create_tween()

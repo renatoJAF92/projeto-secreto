@@ -63,6 +63,12 @@ func _on_player_died() -> void:
 	_show_game_over()
 
 
+func cancel() -> void:
+	_overlay.visible = false
+	_container.visible = false
+	_handling = false
+
+
 func _show_game_over() -> void:
 	_overlay.modulate.a = 0.0
 	_overlay.visible = true
@@ -73,8 +79,12 @@ func _show_game_over() -> void:
 	tween.tween_property(_overlay, "modulate:a", 1.0, 0.5)
 	tween.parallel().tween_property(_container, "modulate:a", 1.0, 0.5)
 	await tween.finished
+	if not _handling:
+		return
 
 	await get_tree().create_timer(1.8, true).timeout
+	if not _handling:
+		return
 
 	_overlay.visible = false
 	_container.visible = false

@@ -42,8 +42,10 @@ func _ready() -> void:
 
 	_build()
 	get_viewport().size_changed.connect(_build)
-	# Auto-disable during Dialogic choice prompts so touches reach the choice buttons.
 	call_deferred("_connect_dialogic_choices")
+	# Reset ui_mode when a new player appears (scene reload after death/respawn).
+	get_tree().node_added.connect(func(n: Node):
+		if n.is_in_group("player"): ui_mode = false)
 
 
 func _connect_dialogic_choices() -> void:

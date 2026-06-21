@@ -166,6 +166,7 @@ func _on_player_died() -> void:
 
 
 func _show_bike_choice() -> void:
+	GameOverManager.cancel()
 	var choice_scene = preload("res://scenes/ui/bike_choice.tscn")
 	var dialog = choice_scene.instantiate()
 	add_child(dialog)

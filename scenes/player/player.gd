@@ -207,6 +207,11 @@ func _input(event: InputEvent) -> void:
 
 var _cockadoodledoo_applied: bool = false
 
+func activate_cockadoodledoo() -> void:
+	_cheat_cockadoodledoo = true
+	_cheat_buffer = ""
+	_apply_cockadoodledoo()
+
 func _apply_cockadoodledoo() -> void:
 	if _cockadoodledoo_applied:
 		return
