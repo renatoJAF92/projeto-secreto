@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5n3y1q0s2m3"]
+[gd_scene load_steps=15 format=3 uid="uid://c5n3y1q0s2m3"]
 
 [ext_resource type="Script" uid="uid://dgiev3ghy0y0g" path="res://scenes/world2/fase1_campus.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://scenes/shared/timed_obstacle.tscn" id="8_timed_obstacle"]
 [ext_resource type="PackedScene" uid="uid://c4fwyj7vvqqq0" path="res://scenes/world1/malandro_resistente.tscn" id="9_resistente"]
 [ext_resource type="PackedScene" uid="uid://cv42m1ucdx7nx" path="res://scenes/world1/malandro_coraza.tscn" id="10_coraza"]
+[ext_resource type="PackedScene" uid="uid://i1o2p3q4r5s6" path="res://scenes/world2/tfg_item.tscn" id="11_tfg_item"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(6400, 16)
@@ -111,6 +112,14 @@ position = Vector2(4500, 144)
 
 [node name="TimedObstacle1" parent="." instance=ExtResource("8_timed_obstacle")]
 position = Vector2(5500, 140)
+
+[node name="TFGItem1" parent="." instance=ExtResource("11_tfg_item")]
+position = Vector2(700, 120)
+prova_id = "tfg_pesquisa_campo"
+
+[node name="TFGItem2" parent="." instance=ExtResource("11_tfg_item")]
+position = Vector2(2400, 120)
+prova_id = "tfg_revisao_bibliografica"
 
 [node name="Checkpoint" parent="." instance=ExtResource("3_checkpoint")]
 position = Vector2(3200, 118)

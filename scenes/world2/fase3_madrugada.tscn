@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://e6p2r1s3n5q6"]
+[gd_scene load_steps=24 format=3 uid="uid://e6p2r1s3n5q6"]
 
 [ext_resource type="Script" path="res://scenes/world2/fase3_madrugada.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://timed_obstacle" path="res://scenes/shared/timed_obstacle.tscn" id="8_timed_obstacle"]
 [ext_resource type="PackedScene" path="res://scenes/world1/malandro_resistente.tscn" id="9_resistente"]
 [ext_resource type="PackedScene" path="res://scenes/world1/malandro_coraza.tscn" id="10_coraza"]
+[ext_resource type="PackedScene" uid="uid://i1o2p3q4r5s6" path="res://scenes/world2/tfg_item.tscn" id="11_tfg_item"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
 size = Vector2(6400, 16)
@@ -117,6 +118,10 @@ position = Vector2(5700, 140)
 
 [node name="MovingPlatform1" parent="." instance=ExtResource("6_moving_platform")]
 position = Vector2(1500, 100)
+
+[node name="TFGItem5" parent="." instance=ExtResource("11_tfg_item")]
+position = Vector2(2700, 120)
+prova_id = "tfg_resultados"
 
 [node name="Checkpoint" parent="." instance=ExtResource("3_checkpoint")]
 position = Vector2(3200, 118)
