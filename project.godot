@@ -15,6 +15,10 @@ run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://assets/audio/default_bus_layout.tres"
+
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
@@ -23,9 +27,12 @@ SceneTransition="*res://scenes/scene_transition/scene_transition.tscn"
 ControlsManager="*res://autoloads/controls_manager.gd"
 AudioManager="*res://autoloads/audio_manager.gd"
 GameOverManager="*res://autoloads/game_over_manager.gd"
+TouchControls="*res://autoloads/touch_controls.gd"
 
 [dialogic]
 
+choices/autofocus_first=false
+choices/delay=0.0
 directories/dch_directory={
 "Luis": "res://dialogic/characters/Luis.dch",
 "Natalia": "res://dialogic/characters/Natalia.dch",
@@ -36,6 +43,8 @@ directories/dtl_directory={
 "boss_abertura": "res://dialogic/timelines/boss_abertura.dtl",
 "boss_abertura_bloqueado": "res://dialogic/timelines/boss_abertura_bloqueado.dtl",
 "boss_abertura_tfg": "res://dialogic/timelines/boss_abertura_tfg.dtl",
+"boss_derrota": "res://dialogic/timelines/boss_derrota.dtl",
+"boss_intro": "res://dialogic/timelines/boss_intro.dtl",
 "boss_renato_entrada": "res://dialogic/timelines/boss_renato_entrada.dtl",
 "boss_vitoria": "res://dialogic/timelines/boss_vitoria.dtl",
 "boss_vitoria_tfg": "res://dialogic/timelines/boss_vitoria_tfg.dtl",
@@ -53,10 +62,6 @@ layout/style_directory={
 }
 layout/style_list=PackedStringArray("res://dialogic/pixel_art_style.tres")
 
-[audio]
-
-buses/default_bus_layout="res://assets/audio/default_bus_layout.tres"
-
 [display]
 
 window/size/viewport_width=320
@@ -64,6 +69,7 @@ window/size/viewport_height=180
 window/size/initial_position=Vector2i(1280, 720)
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+window/handheld/orientation=6
 
 [editor_plugins]
 
@@ -111,6 +117,18 @@ cycle_power={
 pause={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+attack={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":74,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+block={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":76,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 dialogic_default_action={

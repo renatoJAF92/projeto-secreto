@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal died
+signal hp_changed(new_hp: int)
 
 # --- Movement tuning (visible in Inspector) ---
 @export_group("Movement")
@@ -42,6 +43,20 @@ var _knockback: Vector2 = Vector2.ZERO
 var _is_hurt: bool = false
 var _is_dead: bool = false
 
+# Cheat: activated via pause menu "Códigos"
+var invincible: bool = false
+
+# Cheat code "cockadoodledoo" — persists across deaths, resets on phase change.
+static var _cheat_cockadoodledoo: bool = false
+static var _cheat_last_scene: String = ""
+var _cheat_buffer: String = ""
+
+# Attack / block state
+var _is_attacking: bool = false
+var _attack_cooldown: float = 0.0
+@export var attack_cooldown_time: float = 0.5
+var _is_blocking: bool = false
+
 # HP system (new in Phase 4, Mundo 2+)
 var hp: int = 3  # Max HP for Mundo 2+
 
@@ -55,7 +70,7 @@ var _bicycle_sprite: Sprite2D = null
 
 # Juice tween handles
 var _flash_tween: Tween
-var _squash_tween: Tween
+var _base_scale: Vector2 = Vector2(0.5, 0.5)
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dust_particles: CPUParticles2D = $DustParticles
@@ -63,7 +78,17 @@ var _squash_tween: Tween
 
 func _ready() -> void:
 	hp = 3
+	hp_changed.emit(hp)
 	_current_power = SaveManager.current_save.get("active_power", "")
+	sprite.scale = _base_scale
+	z_index = 1  # in front of checkpoint (0) and buildings (-1)
+	# Cheat persistence: reset on scene change, keep across deaths (same scene reload).
+	var cur_scene := get_tree().current_scene.scene_file_path if get_tree().current_scene else ""
+	if not cur_scene.is_empty() and _cheat_last_scene != cur_scene:
+		_cheat_cockadoodledoo = false
+		_cheat_last_scene = cur_scene
+	if _cheat_cockadoodledoo:
+		_apply_cockadoodledoo()
 
 
 func _physics_process(delta: float) -> void:
@@ -108,6 +133,14 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("cycle_power"):
 			cycle_power()
 
+		# Attack
+		_attack_cooldown -= delta
+		if Input.is_action_just_pressed("attack") and not _is_attacking and _attack_cooldown <= 0.0:
+			_start_attack()
+
+		# Block — held action
+		_is_blocking = Input.is_action_pressed("block") and not _is_attacking and not _is_hurt
+
 	# 3. Knockback application — SET velocity.x (not +=) to prevent per-frame accumulation
 	if _knockback.length() > 1.0:
 		velocity.x = _knockback.x
@@ -137,7 +170,6 @@ func _physics_process(delta: float) -> void:
 		# Dash-cancel on jump: prevent dash velocity from carrying through jump arc
 		_is_dashing = false
 		_dash_frames_remaining = 0
-		_apply_jump_stretch()
 		AudioManager.play_sfx("jump")
 
 	# 7. Snapshot floor state BEFORE move_and_slide, then slide
@@ -162,6 +194,25 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		_jump_buffer_timer = jump_buffer_frames
+	# Cheat code detection — type "cockadoodledoo" on keyboard.
+	if event is InputEventKey and event.pressed and not event.echo and event.unicode > 0:
+		_cheat_buffer += char(event.unicode).to_lower()
+		if _cheat_buffer.length() > 20:
+			_cheat_buffer = _cheat_buffer.right(20)
+		if _cheat_buffer.ends_with("cockadoodledoo"):
+			_cheat_cockadoodledoo = true
+			_cheat_buffer = ""
+			_apply_cockadoodledoo()
+
+
+var _cockadoodledoo_applied: bool = false
+
+func _apply_cockadoodledoo() -> void:
+	if _cockadoodledoo_applied:
+		return
+	_cockadoodledoo_applied = true
+	jump_velocity *= 1.6  # -380 → -608 (higher jump)
+	run_speed *= 1.5       # 200 → 300 (more air distance)
 
 
 func _start_dash() -> void:
@@ -174,32 +225,62 @@ func _start_dash() -> void:
 
 
 # Called by hazards/enemies — direction-based knockback away from hit source
+func _start_attack() -> void:
+	_is_attacking = true
+	_attack_cooldown = attack_cooldown_time
+	var hitbox = $AttackHitbox
+	hitbox.position.x = 30.0 if not sprite.flip_h else -30.0
+	hitbox.monitoring = true
+	AudioManager.play_sfx("stomp")
+	# body_entered only fires on NEW overlaps — also check bodies already in range
+	_check_attack_overlaps()
+
+
+func _check_attack_overlaps() -> void:
+	await get_tree().physics_frame
+	if not is_instance_valid(self) or not _is_attacking:
+		return
+	for body in $AttackHitbox.get_overlapping_bodies():
+		_on_attack_hitbox_body_entered(body)
+
+
+func _on_attack_hitbox_body_entered(body: Node) -> void:
+	if body.has_method("take_damage"):
+		body.take_damage(global_position)
+	elif body.has_method("die"):
+		body.die()
+
+
 func enable_bicycle_mode() -> void:
 	_bicycle_mode = true
 	_is_invincible = true
 	run_speed = 350.0
-	# Attach bicycle sprite as child
-	var bike_tex = load("res://assets/sprites/player/bicicleta.png")
-	_bicycle_sprite = Sprite2D.new()
-	_bicycle_sprite.texture = bike_tex
-	_bicycle_sprite.position = Vector2(0, 8)
-	add_child(_bicycle_sprite)
+	sprite.scale = Vector2(0.55, 0.55)
+	sprite.position = Vector2(0, -4)
+	sprite.play("bike_idle")
 
 
 func disable_bicycle_mode() -> void:
 	_bicycle_mode = false
 	_is_invincible = false
 	run_speed = 200.0
-	if _bicycle_sprite:
-		_bicycle_sprite.queue_free()
-		_bicycle_sprite = null
+	_base_scale = Vector2(0.5, 0.5)
+	sprite.scale = _base_scale
+	sprite.position = Vector2(0, 10)
 
 
 func take_damage(hit_from_position: Vector2) -> void:
-	if _is_invincible or _bicycle_mode:
+	if _is_invincible or _bicycle_mode or invincible:
 		return
+	# Block negates damage completely when facing the attacker
+	if _is_blocking:
+		var facing_attacker = (hit_from_position.x < global_position.x) == sprite.flip_h
+		if facing_attacker:
+			AudioManager.play_sfx("dano")
+			return
 	# Decrement HP (Phase 4+)
 	hp -= 1
+	hp_changed.emit(hp)
 	if hp <= 0:
 		_is_dead = true
 		_is_hurt = false
@@ -213,30 +294,36 @@ func take_damage(hit_from_position: Vector2) -> void:
 	_jump_buffer_timer = 0  # Cancel buffered jump so it doesn't fire after the hit
 	_is_hurt = true
 	_start_white_flash()
-	_start_hit_stop(hit_stop_frames)  # Detached coroutine — take_damage returns immediately
+	_start_hit_stop(hit_stop_frames)
+	get_tree().create_timer(0.3).timeout.connect(func(): _is_hurt = false, CONNECT_ONE_SHOT)
 	# Play damage SFX
 	AudioManager.play_sfx("dano")
 
 
 func _on_land() -> void:
-	_apply_land_squash()
 	dust_particles.restart()  # One-shot burst on every landing
 
 
 func _start_death_sequence() -> void:
 	sprite.stop()
-	sprite.modulate = Color(1.0, 0.15, 0.15)
-	await get_tree().create_timer(1.5).timeout
+	sprite.modulate = Color(1.5, 0.2, 0.2)
+	await get_tree().create_timer(1.2).timeout
 	died.emit()
 
-# Animation state machine — 5 states by priority
-# Guard: only call play() when animation actually changes (prevents frame-0 freeze)
+# Animation state machine — priority: dead > hurt > attack > block > air > run > idle
 func _update_animation() -> void:
-	if _is_dead:
+	if _is_dead or _is_hurt:
+		return
+	if _bicycle_mode:
+		var bike_anim := "bike" if abs(velocity.x) > 10.0 else "bike_idle"
+		if sprite.animation != bike_anim:
+			sprite.play(bike_anim)
 		return
 	var new_anim: String
-	if _is_hurt:
-		new_anim = "hurt"
+	if _is_attacking:
+		new_anim = "attack"
+	elif _is_blocking:
+		new_anim = "block"
 	elif not is_on_floor():
 		new_anim = "jump" if velocity.y < 0.0 else "fall"
 	elif abs(velocity.x) > 10.0:
@@ -245,12 +332,17 @@ func _update_animation() -> void:
 		new_anim = "idle"
 	if sprite.sprite_frames and sprite.animation != new_anim:
 		sprite.play(new_anim)
+		_base_scale = Vector2(0.74, 0.74) if new_anim == "run" \
+			else Vector2(0.65, 0.65) if new_anim in ["jump", "fall"] \
+			else Vector2(0.5, 0.5)
+		sprite.scale = _base_scale
 
 
 # Connected to AnimatedSprite2D.animation_finished signal (wired in player.tscn)
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if sprite.animation == "hurt":
-		_is_hurt = false
+	if sprite.animation == "attack":
+		_is_attacking = false
+		$AttackHitbox.monitoring = false
 
 
 # --- Power system (Phase 4+) ---
@@ -329,37 +421,20 @@ func unlock_power(power_id: String) -> void:
 
 
 func heal(amount: int = 1) -> void:
-	# Phase 4+: restore health (3 PV max)
 	hp = min(hp + amount, 3)
+	hp_changed.emit(hp)
 
 
 # --- Juice effects ---
 
-# Squash sprite tall+narrow on jump takeoff; elastic ease-out back to (1,1)
-func _apply_jump_stretch() -> void:
-	if _squash_tween and _squash_tween.is_valid():
-		_squash_tween.kill()
-	sprite.scale = Vector2(0.75, 1.3)
-	_squash_tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	_squash_tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.25)
-
-
-# Squash sprite wide+short on landing; elastic ease-out back to (1,1)
-func _apply_land_squash() -> void:
-	if _squash_tween and _squash_tween.is_valid():
-		_squash_tween.kill()
-	sprite.scale = Vector2(1.3, 0.75)
-	_squash_tween = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	_squash_tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.2)
-
-
-# Flash sprite to HDR white then tween back to normal color
+# Blink sprite red 3 times to indicate damage
 func _start_white_flash() -> void:
 	if _flash_tween and _flash_tween.is_valid():
 		_flash_tween.kill()
-	sprite.modulate = Color(10.0, 10.0, 10.0)
-	_flash_tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-	_flash_tween.tween_property(sprite, "modulate", Color(1.0, 1.0, 1.0), 0.3)
+	_flash_tween = create_tween()
+	for i in range(3):
+		_flash_tween.tween_property(sprite, "modulate", Color(2.5, 0.2, 0.2), 0.05)
+		_flash_tween.tween_property(sprite, "modulate", Color(1.0, 1.0, 1.0), 0.05)
 
 
 # Freeze game for N frames then resume — MUST use create_timer(duration, true) so
