@@ -21,7 +21,7 @@ func _ready() -> void:
 
 func _on_exit_trigger_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		SceneTransition.go_to("res://scenes/world2/boss_tfg.tscn")
+		SceneTransition.go_to("res://scenes/world3/mundo3_overworld.tscn")
 
 func _on_player_died() -> void:
 	_respawn()

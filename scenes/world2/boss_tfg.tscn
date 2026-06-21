@@ -83,6 +83,7 @@ layer = 51
 anchors_changed = false
 offset_right = 320.0
 offset_bottom = 180.0
+mouse_filter = 2
 
 [node name="QualityLabel" type="Label" parent="BossHUD/HUDContainer"]
 unique_name_in_owner = true

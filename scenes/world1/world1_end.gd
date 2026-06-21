@@ -16,4 +16,4 @@ func _ready() -> void:
 
 
 func _on_menu_pressed() -> void:
-	SceneTransition.go_to("res://scenes/world2/mundo2_abertura.tscn")
+	SceneTransition.go_to("res://scenes/main_menu/main_menu.tscn")
