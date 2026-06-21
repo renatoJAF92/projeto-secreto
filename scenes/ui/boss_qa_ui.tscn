@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://bossqaui_scene"]
+
+[ext_resource type="Script" path="res://scenes/ui/boss_qa_ui.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/panel_parchment.png" id="2_parchment"]
+
+[node name="BossQALayer" type="CanvasLayer"]
+layer = 2
+visible = false
+script = ExtResource("1_script")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 0
+
+[node name="BgDim" type="ColorRect" parent="Control"]
+offset_left = 0.0
+offset_top = 78.0
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.04, 0.04, 0.08, 0.88)
+
+[node name="QuestionPanel" type="NinePatchRect" parent="Control"]
+offset_left = 12.0
+offset_top = 81.0
+offset_right = 308.0
+offset_bottom = 113.0
+texture = ExtResource("2_parchment")
+patch_margin_left = 14
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="QuestionLabel" type="Label" parent="Control/QuestionPanel"]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 280.0
+offset_bottom = 29.0
+text = "..."
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 7
+
+[node name="AnswersBox" type="VBoxContainer" parent="Control"]
+offset_left = 18.0
+offset_top = 117.0
+offset_right = 302.0
+offset_bottom = 178.0
+theme_override_constants/separation = 4

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://hearthud_scene"]
+
+[ext_resource type="Script" path="res://scenes/ui/heart_hud.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Life_UI_001.png" id="2_hearts"]
+
+[node name="HeartHUD" type="CanvasLayer"]
+layer = 50
+script = ExtResource("1_script")
+
+[node name="Heart1" type="Sprite2D" parent="."]
+position = Vector2(3, 3)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_hearts")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 421, 353)
+
+[node name="Heart2" type="Sprite2D" parent="."]
+position = Vector2(22, 3)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_hearts")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 421, 353)
+
+[node name="Heart3" type="Sprite2D" parent="."]
+position = Vector2(41, 3)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_hearts")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 421, 353)

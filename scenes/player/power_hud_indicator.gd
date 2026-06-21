@@ -45,13 +45,11 @@ func update_power_display() -> void:
 
 	match current_power:
 		"sketch":
-			# Use placeholder sprite for sketch (orange #FF9500)
-			$TextureRect.texture = preload("res://assets/sprites/ui/power_sketch.png") if ResourceLoader.exists("res://assets/sprites/ui/power_sketch.png") else null
+			$TextureRect.texture = load("res://assets/sprites/ui/power_sketch.png") if ResourceLoader.exists("res://assets/sprites/ui/power_sketch.png") else null
 			$TextureRect.modulate = Color("#FF9500")
 			$Label.text = "Sketch"
 		"amor":
-			# Use placeholder sprite for amor (pink #FF1493)
-			$TextureRect.texture = preload("res://assets/sprites/ui/power_amor.png") if ResourceLoader.exists("res://assets/sprites/ui/power_amor.png") else null
+			$TextureRect.texture = load("res://assets/sprites/ui/power_amor.png") if ResourceLoader.exists("res://assets/sprites/ui/power_amor.png") else null
 			$TextureRect.modulate = Color("#FF1493")
 			$Label.text = "Amor"
 		_:

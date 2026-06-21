@@ -3,10 +3,16 @@ extends CharacterBody2D
 @export_group("Patrol")
 @export var patrol_speed: float = 130.0
 
+@export_group("Attack")
+@export var attack_range: float = 40.0
+@export var attack_cooldown: float = 1.2
+
 var _origin: Vector2
 var _direction: float = 1.0
 var _is_dead: bool = false
 var _stomped_this_frame: bool = false
+var _is_attacking: bool = false
+var _attack_timer: float = 0.0
 const GRAVITY: float = 900.0
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -19,6 +25,7 @@ func _ready() -> void:
 	add_to_group("enemies")
 	stomp_zone.body_entered.connect(_on_stomp_zone_body_entered)
 	$BodyHitbox.body_entered.connect(_on_body_hitbox_entered)
+	sprite.animation_finished.connect(_on_animation_finished)
 
 
 func _physics_process(delta: float) -> void:
@@ -26,6 +33,13 @@ func _physics_process(delta: float) -> void:
 		return
 	_stomped_this_frame = false
 	velocity.y += GRAVITY * delta
+	_attack_timer -= delta
+
+	if _is_attacking:
+		velocity.x = move_toward(velocity.x, 0.0, patrol_speed)
+		move_and_slide()
+		return
+
 	velocity.x = _direction * patrol_speed
 	move_and_slide()
 
@@ -34,8 +48,18 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = _direction < 0.0
 		edge_ray.position.x = abs(edge_ray.position.x) * _direction
 
-	if sprite.animation != "skate":
-		sprite.play("skate")
+	var player = get_tree().get_first_node_in_group("player")
+	if player and _attack_timer <= 0.0 and abs(player.global_position.x - global_position.x) < attack_range:
+		_is_attacking = true
+		_attack_timer = attack_cooldown
+		sprite.play("attack")
+	elif sprite.animation != "run":
+		sprite.play("run")
+
+
+func _on_animation_finished() -> void:
+	if sprite.animation == "attack":
+		_is_attacking = false
 
 
 func _on_stomp_zone_body_entered(body: Node2D) -> void:

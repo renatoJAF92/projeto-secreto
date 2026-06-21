@@ -1,4 +1,5 @@
-join Renato (default) right
+join Renato (default) left
+join Luis (default) right
 
 Renato (default): Seu Luis, eu gosto muito da sua filha. Darei tudo de mim para fazê-la a mulher mais feliz do mundo.
 Renato (default): Eu vou estar com ela em cada passo... nas dificuldades, nos momentos alegres... e vou garantir que ela se alimente bem.

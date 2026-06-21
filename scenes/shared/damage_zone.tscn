@@ -1,10 +1,98 @@
-[gd_scene load_steps=3 format=3 uid="uid://damage_zone"]
+[gd_scene load_steps=27 format=3 uid="uid://damage_zone"]
 
 [ext_resource type="Script" path="res://scenes/shared/damage_zone.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/sprites/items/damage_zone.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://assets/sprites/Spike_B.png" id="2_spike"]
+
+[sub_resource type="AtlasTexture" id="AT_spike_0"]
+atlas = ExtResource("2_spike")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_1"]
+atlas = ExtResource("2_spike")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_2"]
+atlas = ExtResource("2_spike")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_3"]
+atlas = ExtResource("2_spike")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_4"]
+atlas = ExtResource("2_spike")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_5"]
+atlas = ExtResource("2_spike")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_6"]
+atlas = ExtResource("2_spike")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_7"]
+atlas = ExtResource("2_spike")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_8"]
+atlas = ExtResource("2_spike")
+region = Rect2(128, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_9"]
+atlas = ExtResource("2_spike")
+region = Rect2(144, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_10"]
+atlas = ExtResource("2_spike")
+region = Rect2(160, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_11"]
+atlas = ExtResource("2_spike")
+region = Rect2(176, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_12"]
+atlas = ExtResource("2_spike")
+region = Rect2(192, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_13"]
+atlas = ExtResource("2_spike")
+region = Rect2(208, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_14"]
+atlas = ExtResource("2_spike")
+region = Rect2(224, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_15"]
+atlas = ExtResource("2_spike")
+region = Rect2(240, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_16"]
+atlas = ExtResource("2_spike")
+region = Rect2(256, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_17"]
+atlas = ExtResource("2_spike")
+region = Rect2(272, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_18"]
+atlas = ExtResource("2_spike")
+region = Rect2(288, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AT_spike_19"]
+atlas = ExtResource("2_spike")
+region = Rect2(304, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SF_spike"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("AT_spike_0")}, {"duration": 1.0, "texture": SubResource("AT_spike_1")}, {"duration": 1.0, "texture": SubResource("AT_spike_2")}, {"duration": 1.0, "texture": SubResource("AT_spike_3")}, {"duration": 1.0, "texture": SubResource("AT_spike_4")}, {"duration": 1.0, "texture": SubResource("AT_spike_5")}, {"duration": 1.0, "texture": SubResource("AT_spike_6")}, {"duration": 1.0, "texture": SubResource("AT_spike_7")}, {"duration": 1.0, "texture": SubResource("AT_spike_8")}, {"duration": 1.0, "texture": SubResource("AT_spike_9")}, {"duration": 1.0, "texture": SubResource("AT_spike_10")}, {"duration": 1.0, "texture": SubResource("AT_spike_11")}, {"duration": 1.0, "texture": SubResource("AT_spike_12")}, {"duration": 1.0, "texture": SubResource("AT_spike_13")}, {"duration": 1.0, "texture": SubResource("AT_spike_14")}, {"duration": 1.0, "texture": SubResource("AT_spike_15")}, {"duration": 1.0, "texture": SubResource("AT_spike_16")}, {"duration": 1.0, "texture": SubResource("AT_spike_17")}, {"duration": 1.0, "texture": SubResource("AT_spike_18")}, {"duration": 1.0, "texture": SubResource("AT_spike_19")}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(64, 48)
+size = Vector2(24, 18)
 
 [node name="DamageZone" type="Area2D"]
 script = ExtResource("1")
@@ -12,8 +100,12 @@ monitoring = true
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_1")
 
-[node name="Visual" type="Sprite2D" parent="."]
-texture = ExtResource("2_sprite")
-position = Vector2(0, 0)
+[node name="Visual" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SF_spike")
+animation = &"idle"
+autoplay = "idle"

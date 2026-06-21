@@ -1,15 +1,15 @@
 ---
 gsd_state_version: 1.0
 milestone: v1.0
-milestone_name: milestone
+milestone_name: — Mundos 1 e 2
 status: executing
-last_updated: "2026-06-12T11:43:57.995Z"
+last_updated: "2026-06-18T15:14:44.080Z"
 progress:
-  total_phases: 14
-  completed_phases: 6
-  total_plans: 26
-  completed_plans: 26
-  percent: 43
+  total_phases: 7
+  completed_phases: 7
+  total_plans: 29
+  completed_plans: 29
+  percent: 100
 ---
 
 # STATE — Jogo da Natália

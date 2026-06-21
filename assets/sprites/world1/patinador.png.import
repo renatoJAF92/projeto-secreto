@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6fc42b5f17b62b62"
-path="res://.godot/imported/patinador-patinador_skater.ctex"
+uid="uid://8n6nim34x5qf"
+path="res://.godot/imported/patinador.png-d17616581404a366b9f8b6700c3e30fd.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/world1/patinador.png"
-dest_files=["res://.godot/imported/patinador-patinador_skater.ctex"]
+dest_files=["res://.godot/imported/patinador.png-d17616581404a366b9f8b6700c3e30fd.ctex"]
 
 [params]
 

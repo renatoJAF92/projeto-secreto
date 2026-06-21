@@ -38,7 +38,9 @@ script = ExtResource("2_3b8ue")
 scene = ExtResource("5_o6sv8")
 overrides = {
 "box_margin_bottom": "4",
-"box_size": "Vector2(310, 80)"
+"box_size": "Vector2(310, 60)",
+"name_label_use_global_font_size": "true",
+"text_use_global_size": "true"
 }
 
 [sub_resource type="Resource" id="Resource_glossary"]
@@ -49,7 +51,13 @@ overrides = {}
 [sub_resource type="Resource" id="Resource_choices"]
 script = ExtResource("2_3b8ue")
 scene = ExtResource("8_tc6v1")
-overrides = {}
+overrides = {
+"boxes_fill_width": "true",
+"boxes_min_size": "Vector2(0, 12)",
+"boxes_v_separation": "3",
+"font_size_custom": "6",
+"font_size_use_global": "false"
+}
 
 [sub_resource type="Resource" id="Resource_textinput"]
 script = ExtResource("2_3b8ue")

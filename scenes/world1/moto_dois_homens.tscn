@@ -1,78 +1,121 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6k7k68ht0c0m"]
+[gd_scene load_steps=21 format=3 uid="uid://b6k7k68ht0c0m"]
 
-[ext_resource type="Script" path="res://scenes/world1/moto_dois_homens.gd" id="1"]
+[ext_resource type="Script" path="res://scenes/world1/moto_dois_homens.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/moto_walk2.png" id="2_w2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/moto_death2.png" id="3_d2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/moto_walk1.png" id="4_w1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/moto_death1.png" id="5_d1"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_moto"]
-radius = 8.0
-height = 24.0
+[sub_resource type="AtlasTexture" id="AT_w2_0"]
+atlas = ExtResource("2_w2")
+region = Rect2(9, 0, 68, 64)
+
+[sub_resource type="AtlasTexture" id="AT_w2_1"]
+atlas = ExtResource("2_w2")
+region = Rect2(86, 0, 68, 64)
+
+[sub_resource type="AtlasTexture" id="AT_w2_2"]
+atlas = ExtResource("2_w2")
+region = Rect2(163, 0, 68, 64)
+
+[sub_resource type="AtlasTexture" id="AT_w2_3"]
+atlas = ExtResource("2_w2")
+region = Rect2(241, 0, 68, 64)
+
+[sub_resource type="AtlasTexture" id="AT_d2_0"]
+atlas = ExtResource("3_d2")
+region = Rect2(9, 0, 43, 64)
+
+[sub_resource type="AtlasTexture" id="AT_d2_1"]
+atlas = ExtResource("3_d2")
+region = Rect2(74, 0, 44, 64)
+
+[sub_resource type="AtlasTexture" id="AT_d2_2"]
+atlas = ExtResource("3_d2")
+region = Rect2(151, 0, 35, 64)
+
+[sub_resource type="AtlasTexture" id="AT_w1_0"]
+atlas = ExtResource("4_w1")
+region = Rect2(4, 0, 61, 64)
+
+[sub_resource type="AtlasTexture" id="AT_d1_0"]
+atlas = ExtResource("5_d1")
+region = Rect2(9, 0, 57, 64)
+
+[sub_resource type="AtlasTexture" id="AT_d1_1"]
+atlas = ExtResource("5_d1")
+region = Rect2(74, 0, 41, 64)
+
+[sub_resource type="AtlasTexture" id="AT_d1_2"]
+atlas = ExtResource("5_d1")
+region = Rect2(169, 0, 48, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+radius = 12.0
+height = 28.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_stomp"]
-size = Vector2(32, 4)
+size = Vector2(40, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(30, 26)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(36, 32)
 
-[node name="MotoDoisHomens" type="CharacterBody2D" groups=["enemies"]]
-script = ExtResource("1")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edge"]
+size = Vector2(4, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1"]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("AT_w2_0")}, {"duration": 1.0, "texture": SubResource("AT_w2_1")}, {"duration": 1.0, "texture": SubResource("AT_w2_2")}, {"duration": 1.0, "texture": SubResource("AT_w2_3")}],
+"loop": true,
+"name": &"walk_2",
+"speed": 8.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AT_d2_0")}, {"duration": 1.0, "texture": SubResource("AT_d2_1")}, {"duration": 1.0, "texture": SubResource("AT_d2_2")}],
+"loop": false,
+"name": &"phase_death",
+"speed": 8.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AT_w1_0")}],
+"loop": true,
+"name": &"walk_1",
+"speed": 6.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AT_d1_0")}, {"duration": 1.0, "texture": SubResource("AT_d1_1")}, {"duration": 1.0, "texture": SubResource("AT_d1_2")}],
+"loop": false,
+"name": &"final_death",
+"speed": 6.0
+}]
+
+[node name="MotoDoisHomens" type="CharacterBody2D"]
+script = ExtResource("1_script")
+collision_layer = 2
+collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_moto")
+shape = SubResource("CapsuleShape2D_body")
 
-[node name="Visual" type="Node2D" parent="."]
-
-[node name="MotoBody" type="Polygon2D" parent="Visual"]
-color = Color(0.25, 0.25, 0.25, 1)
-polygon = PackedVector2Array(-14, -4, 14, -4, 16, 6, -12, 6)
-
-[node name="Wheel1" type="Polygon2D" parent="Visual"]
-position = Vector2(-8, 10)
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(0, -4, 4, 0, 0, 4, -4, 0)
-
-[node name="Wheel2" type="Polygon2D" parent="Visual"]
-position = Vector2(8, 10)
-color = Color(0.1, 0.1, 0.1, 1)
-polygon = PackedVector2Array(0, -4, 4, 0, 0, 4, -4, 0)
-
-[node name="Pilot" type="Node2D" parent="Visual"]
-position = Vector2(-4, -8)
-
-[node name="PilotHead" type="Polygon2D" parent="Visual/Pilot"]
-color = Color(0.8, 0.6, 0.3, 1)
-polygon = PackedVector2Array(-2, -3, 2, -3, 2, 1, -2, 1)
-
-[node name="PilotBody" type="Polygon2D" parent="Visual/Pilot"]
-position = Vector2(0, 4)
-color = Color(0.7, 0.3, 0.3, 1)
-polygon = PackedVector2Array(-2, 0, 2, 0, 3, 5, -3, 5)
-
-[node name="Passenger" type="Node2D" parent="Visual"]
-position = Vector2(6, -8)
-
-[node name="PassengerHead" type="Polygon2D" parent="Visual/Passenger"]
-color = Color(0.8, 0.6, 0.3, 1)
-polygon = PackedVector2Array(-2, -3, 2, -3, 2, 1, -2, 1)
-
-[node name="PassengerBody" type="Polygon2D" parent="Visual/Passenger"]
-position = Vector2(0, 4)
-color = Color(0.6, 0.4, 0.8, 1)
-polygon = PackedVector2Array(-2, 0, 2, 0, 3, 5, -3, 5)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1")
+scale = Vector2(0.65, 0.65)
+animation = &"walk_2"
+autoplay = "walk_2"
 
 [node name="StompZone" type="Area2D" parent="."]
-position = Vector2(0, -20)
-monitoring = true
-monitorable = false
+collision_layer = 0
+collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompZone"]
+position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_stomp")
 
 [node name="BodyHitbox" type="Area2D" parent="."]
-monitoring = true
-monitorable = false
+collision_layer = 0
+collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHitbox"]
-shape = SubResource("RectangleShape2D_body")
+shape = SubResource("RectangleShape2D_hitbox")
 
 [node name="EdgeRayCast" type="RayCast2D" parent="."]
-position = Vector2(16, 0)
-target_position = Vector2(0, 20)
+position = Vector2(20, 0)
+target_position = Vector2(0, 24)
+enabled = true

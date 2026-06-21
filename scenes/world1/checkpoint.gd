@@ -22,6 +22,8 @@ func _on_body_entered(body: Node2D) -> void:
 		SaveManager.set_checkpoint(checkpoint_id)
 		AudioManager.play_sfx("checkpoint")
 		_play_activate_animation()
+		if body.has_method("heal"):
+			body.heal(3)
 
 
 func _play_activate_animation() -> void:

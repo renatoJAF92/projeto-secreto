@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4bd4de29b73aa5d"
-path="res://.godot/imported/cachorro_quente-cachorro_quente.ctex"
+uid="uid://btts422gbneo2"
+path="res://.godot/imported/cachorro_quente.png-0aea7c2009532eaf6afaeddaf0c2fbeb.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/world1/cachorro_quente.png"
-dest_files=["res://.godot/imported/cachorro_quente-cachorro_quente.ctex"]
+dest_files=["res://.godot/imported/cachorro_quente.png-0aea7c2009532eaf6afaeddaf0c2fbeb.ctex"]
 
 [params]
 

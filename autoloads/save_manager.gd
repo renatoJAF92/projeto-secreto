@@ -5,6 +5,7 @@ const SCHEMA_VERSION := 3
 
 const CHECKPOINT_SCENES: Dictionary = {
 	"mundo1_fase1_cp1": "res://scenes/world1/fase1_rua.tscn",
+	"mundo1_fase2_cp0": "res://scenes/world1/fase2_parque.tscn",
 	"mundo1_fase2_cp1": "res://scenes/world1/fase2_parque.tscn",
 	"mundo1_fase3_cp1": "res://scenes/world1/fase3_restaurante.tscn",
 	"mundo2_fase1_cp1": "res://scenes/world2/fase1_campus.tscn",

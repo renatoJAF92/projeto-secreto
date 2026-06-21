@@ -11,11 +11,11 @@ Natalia (default): Sim... precisamos decidir se continuaremos a sair, formalizan
 
 O que fazer?
 
-- choice: Continuar o relacionamento
-	signal continuar_namoro
+- Continuar o relacionamento
+	[signal arg="continuar_namoro"]
 
-- choice: Acabar a história e não dar uma chance para o homem misterioso (você é quem sabe)
-	signal fim_precoce
+- Acabar a história e não dar uma chance para o homem misterioso (você é quem sabe)
+	[signal arg="fim_precoce"]
 
 leave all
 [end_timeline]

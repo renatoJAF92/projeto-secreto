@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d1xowkflt0g0"]
+[gd_scene load_steps=20 format=3 uid="uid://d1xowkflt0g0"]
 
 [ext_resource type="Script" path="res://scenes/world1/fase2_parque.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://b3kp7mjpv8n4" path="res://scenes/player/player.tscn" id="2_player"]
@@ -7,11 +7,6 @@
 [ext_resource type="PackedScene" path="res://scenes/world1/checkpoint.tscn" id="5_checkpoint"]
 [ext_resource type="PackedScene" path="res://scenes/world1/prova_item.tscn" id="6_prova"]
 [ext_resource type="PackedScene" path="res://scenes/shared/moving_platform.tscn" id="7_platform"]
-[ext_resource type="PackedScene" path="res://scenes/shared/damage_zone.tscn" id="8_damage"]
-[ext_resource type="PackedScene" path="res://scenes/shared/timed_obstacle.tscn" id="9_obstacle"]
-[ext_resource type="PackedScene" path="res://scenes/world1/moto_dois_homens.tscn" id="10_moto"]
-[ext_resource type="PackedScene" path="res://scenes/world1/malandro_resistente.tscn" id="11_resistente"]
-[ext_resource type="PackedScene" path="res://scenes/world1/malandro_coraza.tscn" id="12_coraza"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/parque_sky.png" id="bg_sky"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/parque_far.png" id="bg_far"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/world1/parque_mid.png" id="bg_mid"]
@@ -21,25 +16,37 @@
 [ext_resource type="PackedScene" path="res://scenes/world1/patinador.tscn" id="15_patinador"]
 [ext_resource type="Script" path="res://scenes/shared/kill_zone.gd" id="16_kzscript"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_left"]
-size = Vector2(1552, 16)
+[sub_resource type="RectangleShape2D" id="sh_floor_1"]
+size = Vector2(1456, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_mid"]
-size = Vector2(144, 16)
+[sub_resource type="RectangleShape2D" id="sh_floor_2"]
+size = Vector2(272, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_right"]
-size = Vector2(4000, 16)
+[sub_resource type="RectangleShape2D" id="sh_floor_3"]
+size = Vector2(592, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kz1"]
+[sub_resource type="RectangleShape2D" id="sh_floor_4"]
+size = Vector2(592, 16)
+
+[sub_resource type="RectangleShape2D" id="sh_floor_5"]
+size = Vector2(752, 16)
+
+[sub_resource type="RectangleShape2D" id="sh_floor_6"]
+size = Vector2(656, 16)
+
+[sub_resource type="RectangleShape2D" id="sh_floor_7"]
+size = Vector2(992, 16)
+
+[sub_resource type="RectangleShape2D" id="sh_floor_8"]
+size = Vector2(1232, 16)
+
+[sub_resource type="RectangleShape2D" id="sh_kz"]
 size = Vector2(208, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kz2"]
-size = Vector2(496, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+[sub_resource type="RectangleShape2D" id="sh_wall"]
 size = Vector2(16, 200)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+[sub_resource type="RectangleShape2D" id="sh_exit"]
 size = Vector2(32, 48)
 
 
@@ -56,25 +63,22 @@ motion_mirroring = Vector2(320, 0)
 [node name="SkySprite" type="Sprite2D" parent="ParallaxBackground/LayerSky"]
 texture = ExtResource("bg_sky")
 centered = false
-position = Vector2(0, 0)
 
 [node name="LayerFar" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.08, 0)
-motion_mirroring = Vector2(320, 0)
+motion_mirroring = Vector2(176, 0)
 
 [node name="FarSprite" type="Sprite2D" parent="ParallaxBackground/LayerFar"]
 texture = ExtResource("bg_far")
 centered = false
-position = Vector2(0, 0)
 
 [node name="LayerMid" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.25, 0)
-motion_mirroring = Vector2(320, 0)
+motion_mirroring = Vector2(240, 0)
 
 [node name="MidSprite" type="Sprite2D" parent="ParallaxBackground/LayerMid"]
 texture = ExtResource("bg_mid")
 centered = false
-position = Vector2(0, 0)
 
 [node name="LayerNear" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.55, 0)
@@ -83,177 +87,304 @@ motion_mirroring = Vector2(320, 0)
 [node name="NearSprite" type="Sprite2D" parent="ParallaxBackground/LayerNear"]
 texture = ExtResource("bg_near")
 centered = false
-position = Vector2(0, 0)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("3_tileset")
-physics_layer_0/collision_enabled = true
-layer_physics_layer_0 = 1
-tile_data = PackedInt32Array(655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 1, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 1, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655379, 0, 0, 655380, 0, 0, 655381, 0, 0, 655382, 1, 0, 655383, 0, 0, 655384, 0, 0, 655385, 0, 0, 655386, 0, 0, 655387, 0, 0, 655388, 0, 0, 655389, 0, 0, 655390, 0, 0, 655391, 1, 0, 655392, 0, 0, 655393, 0, 0, 655394, 0, 0, 655395, 0, 0, 655396, 0, 0, 655397, 0, 0, 655398, 0, 0, 655399, 0, 0, 655400, 1, 0, 655401, 0, 0, 655402, 0, 0, 655403, 0, 0, 655404, 0, 0, 655405, 0, 0, 655406, 0, 0, 655407, 0, 0, 655408, 0, 0, 655409, 1, 0, 655410, 0, 0, 655411, 0, 0, 655412, 0, 0, 655413, 0, 0, 655414, 0, 0, 655415, 0, 0, 655416, 0, 0, 655417, 0, 0, 655418, 1, 0, 655419, 0, 0, 655420, 0, 0, 655421, 0, 0, 655422, 0, 0, 655423, 0, 0, 655424, 0, 0, 655425, 0, 0, 655426, 0, 0, 655427, 1, 0, 655428, 0, 0, 655429, 0, 0, 655430, 0, 0, 655431, 0, 0, 655432, 0, 0, 655433, 0, 0, 655434, 0, 0, 655435, 0, 0, 655436, 1, 0, 655437, 0, 0, 655438, 0, 0, 655439, 0, 0, 655440, 0, 0, 655441, 0, 0, 655442, 0, 0, 655443, 0, 0, 655444, 0, 0, 655445, 1, 0, 655446, 0, 0, 655447, 0, 0, 655448, 0, 0, 655449, 0, 0, 655450, 0, 0, 655451, 0, 0, 655452, 0, 0, 655453, 0, 0, 655454, 1, 0, 655455, 0, 0, 655456, 0, 0, 655470, 0, 0, 655471, 0, 0, 655472, 1, 0, 655473, 0, 0, 655474, 0, 0, 655475, 0, 0, 655476, 0, 0, 655477, 0, 0, 655478, 0, 0, 655510, 0, 0, 655511, 0, 0, 655512, 0, 0, 655513, 0, 0, 655514, 0, 0, 655515, 0, 0, 655516, 0, 0, 655517, 1, 0, 655518, 0, 0, 655519, 0, 0, 655520, 0, 0, 655521, 0, 0, 655522, 0, 0, 655523, 0, 0, 655524, 0, 0, 655525, 0, 0, 655526, 1, 0, 655527, 0, 0, 655528, 0, 0, 655529, 0, 0, 655530, 0, 0, 655531, 0, 0, 655532, 0, 0, 655533, 0, 0, 655534, 0, 0, 655535, 1, 0, 655536, 0, 0, 655537, 0, 0, 655538, 0, 0, 655539, 0, 0, 655540, 0, 0, 655541, 0, 0, 655542, 0, 0, 655543, 0, 0, 655544, 1, 0, 655545, 0, 0, 655546, 0, 0, 655547, 0, 0, 655548, 0, 0, 655549, 0, 0, 655550, 0, 0, 655551, 0, 0, 655552, 0, 0, 655553, 1, 0, 655554, 0, 0, 655555, 0, 0, 655556, 0, 0, 655557, 0, 0, 655558, 0, 0, 655559, 0, 0, 655560, 0, 0, 655561, 0, 0, 655562, 1, 0, 655563, 0, 0, 655564, 0, 0, 655565, 0, 0, 655566, 0, 0, 655567, 0, 0, 655568, 0, 0, 655569, 0, 0, 655570, 0, 0, 655571, 1, 0, 655572, 0, 0, 655573, 0, 0, 655574, 0, 0, 655575, 0, 0, 655576, 0, 0, 655577, 0, 0, 655578, 0, 0, 655579, 0, 0, 655580, 1, 0, 655581, 0, 0, 655582, 0, 0, 655583, 0, 0, 655584, 0, 0, 655585, 0, 0, 655586, 0, 0, 655587, 0, 0, 655588, 0, 0, 655589, 1, 0, 655590, 0, 0, 655591, 0, 0, 655592, 0, 0, 655593, 0, 0, 655594, 0, 0, 655595, 0, 0, 655596, 0, 0, 655597, 0, 0, 655598, 1, 0, 655599, 0, 0, 655600, 0, 0, 655601, 0, 0, 655602, 0, 0, 655603, 0, 0, 655604, 0, 0, 655605, 0, 0, 655606, 0, 0, 655607, 1, 0, 655608, 0, 0, 655609, 0, 0, 655610, 0, 0, 655611, 0, 0, 655612, 0, 0, 655613, 0, 0, 655614, 0, 0, 655615, 0, 0, 655616, 1, 0, 655617, 0, 0, 655618, 0, 0, 655619, 0, 0, 655620, 0, 0, 655621, 0, 0, 655622, 0, 0, 655623, 0, 0, 655624, 0, 0, 655625, 1, 0, 655626, 0, 0, 655627, 0, 0, 655628, 0, 0, 655629, 0, 0, 655630, 0, 0, 655631, 0, 0, 655632, 0, 0, 655633, 0, 0, 655634, 1, 0, 655635, 0, 0, 655636, 0, 0, 655637, 0, 0, 655638, 0, 0, 655639, 0, 0, 655640, 0, 0, 655641, 0, 0, 655642, 0, 0, 655643, 1, 0, 655644, 0, 0, 655645, 0, 0, 655646, 0, 0, 655647, 0, 0, 655648, 0, 0, 655649, 0, 0, 655650, 0, 0, 655651, 0, 0, 655652, 1, 0, 655653, 0, 0, 655654, 0, 0, 655655, 0, 0, 655656, 0, 0, 655657, 0, 0, 655658, 0, 0, 655659, 0, 0, 655660, 0, 0, 655661, 1, 0, 655662, 0, 0, 655663, 0, 0, 655664, 0, 0, 655665, 0, 0, 655666, 0, 0, 655667, 0, 0, 655668, 0, 0, 655669, 0, 0, 655670, 1, 0, 655671, 0, 0, 655672, 0, 0, 655673, 0, 0, 655674, 0, 0, 655675, 0, 0, 655676, 0, 0, 655677, 0, 0, 655678, 0, 0, 655679, 1, 0, 655680, 0, 0, 655681, 0, 0, 655682, 0, 0, 655683, 0, 0, 655684, 0, 0, 655685, 0, 0, 655686, 0, 0, 655687, 0, 0, 655688, 1, 0, 655689, 0, 0, 655690, 0, 0, 655691, 0, 0, 655692, 0, 0, 655693, 0, 0, 655694, 0, 0, 655695, 0, 0, 655696, 0, 0, 655697, 1, 0, 655698, 0, 0, 655699, 0, 0, 655700, 0, 0, 655701, 0, 0, 655702, 0, 0, 655703, 0, 0, 655704, 0, 0, 655705, 0, 0, 655706, 1, 0, 655707, 0, 0, 655708, 0, 0, 655709, 0, 0, 655710, 0, 0, 655711, 0, 0, 655712, 0, 0, 655713, 0, 0, 655714, 0, 0, 655715, 1, 0, 655716, 0, 0, 655717, 0, 0, 655718, 0, 0, 655719, 0, 0, 655720, 0, 0, 655721, 0, 0, 655722, 0, 0, 655723, 0, 0, 655724, 1, 0, 655725, 0, 0, 655726, 0, 0, 655727, 0, 0, 655728, 0, 0, 655729, 0, 0, 655730, 0, 0, 655731, 0, 0, 655732, 0, 0, 655733, 1, 0, 655734, 0, 0, 655735, 0, 0, 655736, 0, 0, 655737, 0, 0, 655738, 0, 0, 655739, 0, 0, 655740, 0, 0, 655741, 0, 0, 655742, 1, 0, 655743, 0, 0, 655744, 0, 0, 655745, 0, 0, 655746, 0, 0, 655747, 0, 0, 655748, 0, 0, 655749, 0, 0, 655750, 0, 0, 655751, 1, 0, 655752, 0, 0, 655753, 0, 0, 655754, 0, 0, 655755, 0, 0, 655756, 0, 0, 655757, 0, 0, 655758, 0, 0, 655759, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 524310, 0, 0, 524311, 0, 0, 524312, 0, 0, 524313, 0, 0, 524314, 0, 0, 458786, 0, 0, 458787, 0, 0, 458788, 0, 0, 458789, 0, 0, 458790, 0, 0, 393263, 0, 0, 393264, 0, 0, 393265, 0, 0, 393266, 0, 0, 393267, 0, 0, 458810, 0, 0, 458811, 0, 0, 458812, 0, 0, 458813, 0, 0, 524358, 0, 0, 524359, 0, 0, 524360, 0, 0, 524361, 0, 0, 524362, 0, 0, 458832, 0, 0, 458833, 0, 0, 458834, 0, 0, 458835, 0, 0, 458836, 0, 0, 393304, 0, 0, 393305, 0, 0, 393306, 0, 0, 393307, 0, 0, 393308, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector2(40, 144)
+position = Vector2(40, 130)
 
-[node name="Malandro1" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(200, 144)
+[node name="PhaseTitle" parent="." instance=ExtResource("13_phasetitle")]
+title_text = "Fase 2 - Parque Villa Lobos"
 
-[node name="Malandro2" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(480, 144)
-
-[node name="Malandro3" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(720, 144)
-
-[node name="Malandro4" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(980, 144)
-
-[node name="MalandroResistente1" parent="." instance=ExtResource("11_resistente")]
-position = Vector2(1350, 144)
-
-[node name="MotoDoisHomens1" parent="." instance=ExtResource("10_moto")]
-position = Vector2(2100, 144)
+[node name="CheckpointStart" parent="." instance=ExtResource("5_checkpoint")]
+position = Vector2(80, 130)
+checkpoint_id = "mundo1_fase2_cp0"
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_checkpoint")]
-position = Vector2(80, 118)
+position = Vector2(2300, 160)
 checkpoint_id = "mundo1_fase2_cp1"
 
 [node name="ProvaItem1" parent="." instance=ExtResource("6_prova")]
 position = Vector2(600, 109)
 prova_id = "prova_carta"
 
-[node name="Malandro5" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(3450, 144)
-
-[node name="Malandro6" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(3750, 144)
-
-[node name="MalandroResistente2" parent="." instance=ExtResource("11_resistente")]
-position = Vector2(4100, 144)
-
-[node name="Malandro7" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(4400, 144)
-
-[node name="MalandroCoraza1" parent="." instance=ExtResource("12_coraza")]
-position = Vector2(4750, 144)
-
-[node name="Malandro8" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(5100, 144)
-
-[node name="Malandro9" parent="." instance=ExtResource("4_malandro")]
-position = Vector2(5500, 144)
+[node name="ProvaItem2" parent="." instance=ExtResource("6_prova")]
+position = Vector2(4200, 109)
 
 [node name="MovingPlatform1" parent="." instance=ExtResource("7_platform")]
-position = Vector2(1600, 120)
-move_distance = 80.0
+position = Vector2(1560, 130)
+move_distance = 64.0
 move_speed = 40.0
 
-[node name="Platform2" parent="." instance=ExtResource("7_platform")]
-position = Vector2(2020, 100)
-move_distance = 80.0
+[node name="MovingPlatform2" parent="." instance=ExtResource("7_platform")]
+position = Vector2(2040, 120)
+move_distance = 64.0
+move_speed = 50.0
+
+[node name="MovingPlatform3" parent="." instance=ExtResource("7_platform")]
+position = Vector2(2840, 120)
+move_distance = 64.0
+move_speed = 45.0
+
+[node name="MovingPlatform4" parent="." instance=ExtResource("7_platform")]
+position = Vector2(4600, 120)
+move_distance = 64.0
 move_speed = 55.0
-phase_offset = 0.0
 
-[node name="Platform3" parent="." instance=ExtResource("7_platform")]
-position = Vector2(2130, 100)
-move_distance = 80.0
-move_speed = 55.0
-phase_offset = 0.33
+[node name="MovingPlatform5" parent="." instance=ExtResource("7_platform")]
+position = Vector2(6664, 120)
+move_distance = 64.0
+move_speed = 50.0
 
-[node name="Platform4" parent="." instance=ExtResource("7_platform")]
-position = Vector2(2240, 100)
-move_distance = 80.0
-move_speed = 55.0
-phase_offset = 0.66
+[node name="Malandro1" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(200, 130)
 
-[node name="DamageZone1" parent="." instance=ExtResource("8_damage")]
-position = Vector2(4500, 140)
-damage_interval = 0.5
-damage_amount = 1
+[node name="Malandro2" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(450, 130)
 
-[node name="TimedObstacle1" parent="." instance=ExtResource("9_obstacle")]
-position = Vector2(5600, 100)
-open_time = 2.0
-closed_time = 4.0
-start_open = false
+[node name="Malandro3" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(700, 130)
 
-[node name="Coruja1" parent="." instance=ExtResource("14_coruja")]
-position = Vector2(600, 80)
+[node name="Malandro4" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(950, 130)
 
-[node name="Coruja2" parent="." instance=ExtResource("14_coruja")]
-position = Vector2(1820, 72)
+[node name="Malandro5" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(1200, 130)
 
-[node name="Coruja3" parent="." instance=ExtResource("14_coruja")]
-position = Vector2(3100, 78)
+[node name="Malandro6" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(1800, 130)
 
-[node name="Coruja4" parent="." instance=ExtResource("14_coruja")]
-position = Vector2(4800, 74)
+[node name="Malandro7" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(2200, 130)
+
+[node name="Malandro8" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(2500, 130)
+
+[node name="Malandro9" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(2700, 130)
+
+[node name="Malandro10" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(3050, 130)
+
+[node name="Malandro11" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(3300, 130)
+
+[node name="Malandro12" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(3800, 130)
+
+[node name="Malandro13" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(4100, 130)
+
+[node name="Malandro14" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(4400, 130)
+
+[node name="Malandro15" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(4800, 130)
+
+[node name="Malandro16" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(5100, 130)
+
+[node name="Malandro17" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(5300, 130)
+
+[node name="Malandro18" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(5700, 130)
+
+[node name="Malandro19" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(6000, 130)
+
+[node name="Malandro20" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(6300, 130)
+
+[node name="Malandro21" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(6900, 130)
+
+[node name="Malandro22" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(7200, 130)
+
+[node name="Malandro23" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(7500, 130)
+
+[node name="Malandro24" parent="." instance=ExtResource("4_malandro")]
+position = Vector2(7800, 130)
 
 [node name="Patinador1" parent="." instance=ExtResource("15_patinador")]
-position = Vector2(260, 144)
+position = Vector2(300, 130)
 
 [node name="Patinador2" parent="." instance=ExtResource("15_patinador")]
-position = Vector2(2650, 144)
+position = Vector2(800, 130)
 
 [node name="Patinador3" parent="." instance=ExtResource("15_patinador")]
-position = Vector2(4300, 144)
+position = Vector2(2600, 130)
 
-[node name="SectionDivider" type="ColorRect" parent="."]
-position = Vector2(3000, 0)
-size = Vector2(10, 180)
-color = Color(0.8, 0.8, 0.8, 0.15)
+[node name="Patinador4" parent="." instance=ExtResource("15_patinador")]
+position = Vector2(3150, 130)
 
-[node name="FloorLeft" type="StaticBody2D" parent="."]
-position = Vector2(776, 168)
+[node name="Patinador5" parent="." instance=ExtResource("15_patinador")]
+position = Vector2(3900, 130)
 
-[node name="FloorShape" type="CollisionShape2D" parent="FloorLeft"]
-shape = SubResource("RectangleShape2D_floor_left")
+[node name="Patinador6" parent="." instance=ExtResource("15_patinador")]
+position = Vector2(4900, 130)
 
-[node name="FloorMid" type="StaticBody2D" parent="."]
-position = Vector2(1832, 168)
+[node name="Patinador7" parent="." instance=ExtResource("15_patinador")]
+position = Vector2(5800, 130)
 
-[node name="FloorMidShape" type="CollisionShape2D" parent="FloorMid"]
-shape = SubResource("RectangleShape2D_floor_mid")
+[node name="Patinador8" parent="." instance=ExtResource("15_patinador")]
+position = Vector2(7000, 130)
 
-[node name="FloorRight" type="StaticBody2D" parent="."]
-position = Vector2(4400, 168)
+[node name="Patinador9" parent="." instance=ExtResource("15_patinador")]
+position = Vector2(7600, 130)
 
-[node name="FloorRightShape" type="CollisionShape2D" parent="FloorRight"]
-shape = SubResource("RectangleShape2D_floor_right")
+[node name="Coruja1" parent="." instance=ExtResource("14_coruja")]
+position = Vector2(500, 130)
+
+[node name="Coruja2" parent="." instance=ExtResource("14_coruja")]
+position = Vector2(1100, 130)
+
+[node name="Coruja3" parent="." instance=ExtResource("14_coruja")]
+position = Vector2(2400, 130)
+
+[node name="Coruja4" parent="." instance=ExtResource("14_coruja")]
+position = Vector2(3200, 130)
+
+[node name="Coruja5" parent="." instance=ExtResource("14_coruja")]
+position = Vector2(4000, 130)
+
+[node name="Coruja6" parent="." instance=ExtResource("14_coruja")]
+position = Vector2(5000, 130)
+
+[node name="Coruja7" parent="." instance=ExtResource("14_coruja")]
+position = Vector2(6100, 130)
+
+[node name="Coruja8" parent="." instance=ExtResource("14_coruja")]
+position = Vector2(7300, 130)
+
+[node name="Floor1" type="StaticBody2D" parent="."]
+position = Vector2(728, 168)
+
+[node name="FloorShape1" type="CollisionShape2D" parent="Floor1"]
+shape = SubResource("sh_floor_1")
+
+[node name="Floor2" type="StaticBody2D" parent="."]
+position = Vector2(1800, 168)
+
+[node name="FloorShape2" type="CollisionShape2D" parent="Floor2"]
+shape = SubResource("sh_floor_2")
+
+[node name="Floor3" type="StaticBody2D" parent="."]
+position = Vector2(2440, 168)
+
+[node name="FloorShape3" type="CollisionShape2D" parent="Floor3"]
+shape = SubResource("sh_floor_3")
+
+[node name="Floor4" type="StaticBody2D" parent="."]
+position = Vector2(3240, 168)
+
+[node name="FloorShape4" type="CollisionShape2D" parent="Floor4"]
+shape = SubResource("sh_floor_4")
+
+[node name="Floor5" type="StaticBody2D" parent="."]
+position = Vector2(4120, 168)
+
+[node name="FloorShape5" type="CollisionShape2D" parent="Floor5"]
+shape = SubResource("sh_floor_5")
+
+[node name="Floor6" type="StaticBody2D" parent="."]
+position = Vector2(5032, 168)
+
+[node name="FloorShape6" type="CollisionShape2D" parent="Floor6"]
+shape = SubResource("sh_floor_6")
+
+[node name="Floor7" type="StaticBody2D" parent="."]
+position = Vector2(6064, 168)
+
+[node name="FloorShape7" type="CollisionShape2D" parent="Floor7"]
+shape = SubResource("sh_floor_7")
+
+[node name="Floor8" type="StaticBody2D" parent="."]
+position = Vector2(7384, 168)
+
+[node name="FloorShape8" type="CollisionShape2D" parent="Floor8"]
+shape = SubResource("sh_floor_8")
 
 [node name="KillZone1" type="Area2D" parent="."]
 script = ExtResource("16_kzscript")
 monitoring = true
 monitorable = false
-position = Vector2(1656, 200)
+position = Vector2(1560, 200)
 
 [node name="KZShape1" type="CollisionShape2D" parent="KillZone1"]
-shape = SubResource("RectangleShape2D_kz1")
+shape = SubResource("sh_kz")
 
 [node name="KillZone2" type="Area2D" parent="."]
 script = ExtResource("16_kzscript")
 monitoring = true
 monitorable = false
-position = Vector2(2152, 200)
+position = Vector2(2040, 200)
 
 [node name="KZShape2" type="CollisionShape2D" parent="KillZone2"]
-shape = SubResource("RectangleShape2D_kz2")
+shape = SubResource("sh_kz")
 
-[node name="ExitTrigger" type="Area2D" parent="."]
-position = Vector2(6355, 144)
+[node name="KillZone3" type="Area2D" parent="."]
+script = ExtResource("16_kzscript")
+monitoring = true
+monitorable = false
+position = Vector2(2840, 200)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
-shape = SubResource("RectangleShape2D_exit")
+[node name="KZShape3" type="CollisionShape2D" parent="KillZone3"]
+shape = SubResource("sh_kz")
+
+[node name="KillZone4" type="Area2D" parent="."]
+script = ExtResource("16_kzscript")
+monitoring = true
+monitorable = false
+position = Vector2(3640, 200)
+
+[node name="KZShape4" type="CollisionShape2D" parent="KillZone4"]
+shape = SubResource("sh_kz")
+
+[node name="KillZone5" type="Area2D" parent="."]
+script = ExtResource("16_kzscript")
+monitoring = true
+monitorable = false
+position = Vector2(4600, 200)
+
+[node name="KZShape5" type="CollisionShape2D" parent="KillZone5"]
+shape = SubResource("sh_kz")
+
+[node name="KillZone6" type="Area2D" parent="."]
+script = ExtResource("16_kzscript")
+monitoring = true
+monitorable = false
+position = Vector2(5464, 200)
+
+[node name="KZShape6" type="CollisionShape2D" parent="KillZone6"]
+shape = SubResource("sh_kz")
+
+[node name="KillZone7" type="Area2D" parent="."]
+script = ExtResource("16_kzscript")
+monitoring = true
+monitorable = false
+position = Vector2(6664, 200)
+
+[node name="KZShape7" type="CollisionShape2D" parent="KillZone7"]
+shape = SubResource("sh_kz")
 
 [node name="WallLeft" type="StaticBody2D" parent="."]
 position = Vector2(-8, 90)
 
 [node name="WallLeftShape" type="CollisionShape2D" parent="WallLeft"]
-shape = SubResource("RectangleShape2D_wall")
+shape = SubResource("sh_wall")
 
 [node name="WallRight" type="StaticBody2D" parent="."]
-position = Vector2(6408, 90)
+position = Vector2(8008, 90)
 
 [node name="WallRightShape" type="CollisionShape2D" parent="WallRight"]
-shape = SubResource("RectangleShape2D_wall")
+shape = SubResource("sh_wall")
 
-[node name="PhaseTitle" parent="." instance=ExtResource("13_phasetitle")]
-title_text = "Fase 2 - Parque Villa Lobos"
+[node name="ExitTrigger" type="Area2D" parent="."]
+position = Vector2(7955, 130)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
+shape = SubResource("sh_exit")

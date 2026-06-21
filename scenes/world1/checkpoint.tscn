@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfcwyz8qpq"]
 
 [ext_resource type="Script" path="res://scenes/world1/checkpoint.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://assets/sprites/items/checkpoint.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/sprites/items/mcfly_save.png" id="2_tex"]
 
 [sub_resource type="AtlasTexture" id="AT_idle_0"]
 atlas = ExtResource("2_tex")

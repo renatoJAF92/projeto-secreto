@@ -13,7 +13,13 @@
 "default": {
 "scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn",
 "export_overrides": {
-"image": "res://addons/dialogic/Modules/Character/default_portrait.png"
+"image": "res://assets/sprites/portraits/luis_portrait.png"
+}
+},
+"happy": {
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn",
+"export_overrides": {
+"image": "res://assets/sprites/portraits/luis_happy_portrait.png"
 }
 }
 },

@@ -61,7 +61,7 @@ func _do_patrol(delta: float) -> void:
 
 	sprite.flip_h = _dir < 0.0
 	if sprite.animation != "fly":
-		sprite.play("fly")
+		_play_anim("fly")
 
 	if _state == State.PATROL:
 		_check_player_in_range()
@@ -93,7 +93,7 @@ func _do_dive(delta: float) -> void:
 		global_position = _dive_p2
 		_state = State.COOLDOWN
 		hurt_zone.monitoring = false
-		sprite.play("fly")
+		_play_anim("fly")
 		get_tree().create_timer(post_dive_cooldown).timeout.connect(
 			func(): _state = State.PATROL, CONNECT_ONE_SHOT
 		)
@@ -107,7 +107,7 @@ func _do_dive(delta: float) -> void:
 		global_position = _dive_p1.lerp(_dive_p2, (t - 0.5) * 2.0)
 
 	if sprite.animation != "dive":
-		sprite.play("dive")
+		_play_anim("dive")
 	sprite.flip_h = (_dive_p1.x - _dive_p0.x) < 0.0
 
 
@@ -130,5 +130,14 @@ func die() -> void:
 	hurt_zone.monitoring = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	AudioManager.play_sfx("stomp")
-	sprite.play("death")
+	_play_anim("death")
 	get_tree().create_timer(0.4).timeout.connect(queue_free, CONNECT_ONE_SHOT)
+
+
+func _play_anim(anim: String) -> void:
+	match anim:
+		"fly":
+			sprite.scale = Vector2(0.45, 0.45)  # fly source is 960x540 (large native content)
+		"dive", "death":
+			sprite.scale = Vector2(0.75, 0.75)  # attack/death source is 109x64 (small native content)
+	sprite.play(anim)

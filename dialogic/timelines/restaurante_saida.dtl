@@ -1,6 +1,10 @@
 join Natalia (default) left
 
-Natalia (default): MEU PAI ESTÁ NA PORTA ME ESPERANDO! Rápido, me deixe mais para frente, talvez ele não tenha te visto.
+Natalia (default): MEU PAI ESTÁ NA PORTA ME ESPERANDO!
+Natalia (default): Rápido, me deixe mais para frente, talvez ele não tenha te visto.
+
+join Luis (default) right
+
 Luis: VI SIM! Eu vi os dois pombinhos no restaurante!
 
 leave all

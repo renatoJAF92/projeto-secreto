@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2b969f2bcfc0a0f0"
-path="res://.godot/imported/timed_gate-timed_gate_closed_open.ctex"
+uid="uid://b078gh4dvmdr0"
+path="res://.godot/imported/timed_gate.png-a6f30bd5c0822e3f4bb3487f77d413f4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/items/timed_gate.png"
-dest_files=["res://.godot/imported/timed_gate-timed_gate_closed_open.ctex"]
+dest_files=["res://.godot/imported/timed_gate.png-a6f30bd5c0822e3f4bb3487f77d413f4.ctex"]
 
 [params]
 

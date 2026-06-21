@@ -2,7 +2,6 @@ extends StaticBody2D
 
 var _player_in_zone: bool = false
 var _dialogue_done: bool = false
-var _fim_precoce: bool = false
 
 func _ready() -> void:
 	if has_node("DialogueZone"):
@@ -30,22 +29,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		_run_restaurant_sequence()
 
 func _run_restaurant_sequence() -> void:
-	Dialogic.signal_event.connect(_on_dialogic_signal)
+	var player = get_tree().get_first_node_in_group("player")
+
+	# Freeze player and enemies during dialogue
+	if player:
+		player.process_mode = Node.PROCESS_MODE_DISABLED
+		player.velocity = Vector2.ZERO
+	get_tree().call_group("enemies", "set_process", false)
+	get_tree().call_group("enemies", "set_physics_process", false)
 
 	Dialogic.start("renato_restaurante")
 	await Dialogic.timeline_ended
 
-	Dialogic.start("restaurante_saida")
-	await Dialogic.timeline_ended
-
-	Dialogic.start("dia_seguinte")
-	await Dialogic.timeline_ended
-
-	Dialogic.signal_event.disconnect(_on_dialogic_signal)
-
-	if _fim_precoce:
-		SceneTransition.go_to("res://scenes/main_menu/main_menu.tscn")
-
-func _on_dialogic_signal(arg: String) -> void:
-	if arg == "fim_precoce":
-		_fim_precoce = true
+	# Restore
+	if player:
+		player.process_mode = Node.PROCESS_MODE_INHERIT
+	get_tree().call_group("enemies", "set_process", true)
+	get_tree().call_group("enemies", "set_physics_process", true)

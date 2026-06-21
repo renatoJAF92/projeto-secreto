@@ -3,9 +3,10 @@ extends Control
 @onready var continue_button: Button = $ButtonGroup/ContinueButton
 @onready var new_game_button: Button = $ButtonGroup/NewGameButton
 @onready var options_button: Button = $ButtonGroup/OptionsButton
-@onready var confirm_panel: Panel = $ConfirmPanel
-@onready var confirm_btn: Button = $ConfirmPanel/ButtonRow/ConfirmButton
-@onready var cancel_btn: Button = $ConfirmPanel/ButtonRow/CancelButton
+@onready var confirm_overlay: ColorRect = $ConfirmOverlay
+@onready var confirm_panel: PanelContainer = $ConfirmPanel
+@onready var confirm_btn: Button = $ConfirmPanel/VBox/ButtonRow/ConfirmButton
+@onready var cancel_btn: Button = $ConfirmPanel/VBox/ButtonRow/CancelButton
 @onready var background_image: TextureRect = $BackgroundImage
 
 const _BG_PATH := "res://assets/sprites/ui/menu_background.png"
@@ -30,7 +31,7 @@ func _ready() -> void:
 	new_game_button.pressed.connect(_on_new_game_pressed)
 	options_button.pressed.connect(_on_options_pressed)
 	confirm_btn.pressed.connect(_on_new_game_confirmed)
-	cancel_btn.pressed.connect(func(): confirm_panel.visible = false)
+	cancel_btn.pressed.connect(_hide_confirm)
 
 	if SaveManager.save_exists():
 		continue_button.grab_focus()
@@ -43,8 +44,15 @@ func _on_continue_pressed() -> void:
 	SceneTransition.go_to(SaveManager.get_checkpoint_scene())
 
 
+func _hide_confirm() -> void:
+	confirm_overlay.visible = false
+	confirm_panel.visible = false
+	new_game_button.grab_focus()
+
+
 func _on_new_game_pressed() -> void:
 	if SaveManager.save_exists():
+		confirm_overlay.visible = true
 		confirm_panel.visible = true
 		confirm_btn.grab_focus()
 		return
@@ -54,7 +62,7 @@ func _on_new_game_pressed() -> void:
 
 
 func _on_new_game_confirmed() -> void:
-	confirm_panel.visible = false
+	_hide_confirm()
 	SaveManager.new_game()
 	AudioManager.stop_music()
 	SceneTransition.go_to("res://scenes/world1/mundo1_abertura.tscn")

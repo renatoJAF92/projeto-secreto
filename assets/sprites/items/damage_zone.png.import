@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdmgzone0obra1"
-path="res://.godot/imported/damage_zone.png-obra_barreira.ctex"
+uid="uid://ctr6d44qlhvg5"
+path="res://.godot/imported/damage_zone.png-90d1c4304b284946de7482ffba3a16a5.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://assets/sprites/items/damage_zone.png"
-dest_files=["res://.godot/imported/damage_zone.png-obra_barreira.ctex"]
+dest_files=["res://.godot/imported/damage_zone.png-90d1c4304b284946de7482ffba3a16a5.ctex"]
 
 [params]
 

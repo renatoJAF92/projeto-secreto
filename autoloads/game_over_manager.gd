@@ -51,6 +51,8 @@ func _on_node_added(node: Node) -> void:
 	if node.is_in_group("player") and node.has_signal("died"):
 		if not node.died.is_connected(_on_player_died):
 			node.died.connect(_on_player_died, CONNECT_ONE_SHOT)
+		if node.has_method("heal"):
+			node.heal(3)
 
 
 func _on_player_died() -> void:

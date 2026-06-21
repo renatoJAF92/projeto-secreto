@@ -1,48 +1,52 @@
 join Natalia (default) left
-join Renato (default) right
+join Luis (default) right
 
 Luis: Quem é esse PLAYBOYZINHO?
 Natalia (default): Esse playboyzinho é o MEU NAMORADO!
-Renato (default): ...playboyzinho?
+
+leave Luis
+join Renato (default) right
+
+Renato (default): playboyzinho?
+
+leave Renato
+join Luis (default) right
 
 Luis: Você acha que está pronta para essa responsabilidade?
-
 Luis: Vou fazer três perguntas. Responda com sinceridade.
 
 Luis: Primeira: o Renato está realmente comprometido com você?
 
-- choice: Ah, ele está aqui, não está? (revira os olhos)
-	signal choice_wrong
+- Ah, ele está aqui, não está? (revira os olhos).
+	[signal arg="choice_wrong"]
 
-- choice: Ele provou cada dia. Fez eu me sentir feliz e me deu comida e presentes.
-	signal choice_correct
+- Ele provou cada dia. Fez eu me sentir feliz e me deu comida e presentes.
+	[signal arg="choice_correct"]
 
-- choice: Espero que sim, mas a única certeza na vida é a morte.
-	signal choice_wrong
+- Espero que sim, mas a única certeza na vida é a morte.
+	[signal arg="choice_wrong"]
 
 Luis: Segunda: ele é religioso?
 
-- choice: Ele vem de uma família "católica", mas tem a própria crença.
-	signal choice_correct
+- Ele vem de uma família "católica", mas tem a própria crença.
+	[signal arg="choice_correct"]
 
-- choice: Ele só acredita no Cthulhu
-	signal choice_wrong
+- Ele só acredita no Cthulhu
+	[signal arg="choice_wrong"]
 
-- choice: Ele acredita na rapazeada
-	signal choice_wrong
+- Ele acredita na rapazeada
+	[signal arg="choice_wrong"]
 
-Luis: Terceira: qual fenômeno físico é responsável por um lápis parecer quebrado quando colocado em um copo com água?
+Luis: Terceira: Qual fenômeno físico é responsável por um lápis parecer quebrado ou dobrado quando colocado parcialmente dentro de um copo com água?
 
-- choice: Ahn?
-	signal choice_wrong
+- Ahn?
+	[signal arg="choice_wrong"]
 
-- choice: Hmm... reflexão?
-	signal choice_wrong
+- Hmm... reflexão?
+	[signal arg="choice_wrong"]
 
-- choice: Hmm... refração?
-	signal choice_correct
-
-signal renato_entrada
+- Hmm... refração?
+	[signal arg="choice_correct"]
 
 leave all
 [end_timeline]
