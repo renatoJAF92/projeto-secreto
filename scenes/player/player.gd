@@ -216,7 +216,7 @@ func _apply_cockadoodledoo() -> void:
 	if _cockadoodledoo_applied:
 		return
 	_cockadoodledoo_applied = true
-	jump_velocity *= 3.0  # -380 → -1140 (super jump)
+	jump_velocity *= 2.0  # -380 → -760 (super jump)
 	run_speed *= 1.5      # 200 → 300 (more air distance)
 
 
